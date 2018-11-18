@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>cn.koala</groupId>
-  <artifactId>koala-account</artifactId>
+  <artifactId>koala-platform</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
@@ -252,7 +252,7 @@
         <version>9.2.1.v20140609</version>
         <configuration>
           <httpConnector>
-            <port>8091</port>
+            <port>8092</port>
           </httpConnector>
           <webAppConfig>
             <defaultsDescriptor>src/main/resources/else/jettyCustom.xml</defaultsDescriptor>

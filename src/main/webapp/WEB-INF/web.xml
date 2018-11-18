@@ -6,8 +6,7 @@
 
   <display-name>Archetype Created Web Application</display-name>
   <welcome-file-list>
-    <welcome-file>view/jsp/login.jsp</welcome-file>
-    <welcome-file>/koala-home/user/toHome?userName=hynkoala</welcome-file>
+    <welcome-file>view/jsp/homePage.jsp</welcome-file>
   </welcome-file-list>
 
   <context-param>

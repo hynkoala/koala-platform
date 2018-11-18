@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.koala.home.mapper.VisitorBookMapper">
+    <resultMap id="visitorBook" type="cn.koala.home.model.VisitorBook">
+        <id property="bookId" column="book_id" jdbcType="VARCHAR"/>
+        <result property="bookContent" column="book_content" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="writeTime" column="write_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <insert id="insertVisitorMessage" parameterType="cn.koala.home.model.VisitorBook">
+        INSERT into koala_visitor_book(book_id,book_content,user_name,write_time)
+        VALUES (#{bookId},#{bookContent},#{userName},#{writeTime})
+    </insert>
+
+    <select id="getHistoryBook" resultType="arraylist" resultMap="visitorBook">
+        select * from koala_visitor_book t order by write_time desc
+    </select>
+</mapper>

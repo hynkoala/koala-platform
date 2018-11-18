@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.koala.home.mapper.PhotoMapper">
+    <resultMap id="photo" type="cn.koala.home.model.Photo">
+        <id property="photoId" column="photo_id" jdbcType="VARCHAR"/>
+        <result property="photoName" column="photo_name" jdbcType="VARCHAR"/>
+        <result property="photoNewName" column="photo_new_name" jdbcType="VARCHAR"/>
+        <result property="photoComment" column="photo_comment" jdbcType="VARCHAR"/>
+        <result property="photoPath" column="photo_path" jdbcType="VARCHAR"/>
+        <result property="uploadTime" column="upload_time" jdbcType="TIMESTAMP"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="albumId" column="album_id" jdbcType="VARCHAR"/>
+        <result property="albumName" column="album_name" jdbcType="VARCHAR"/>
+        <result property="photoRawPath" column="photo_raw_path" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="savePhoto" parameterType="cn.koala.home.model.Photo">
+        insert INTO
+        koala_photo(photo_id,photo_comment,photo_name,photo_new_name,photo_path,upload_time,user_name,photo_raw_path,album_id,album_name)
+        VALUES
+        (#{photoId,jdbcType=VARCHAR},#{photoComment,jdbcType=VARCHAR},#{photoName,jdbcType=VARCHAR},
+        #{photoNewName,jdbcType=VARCHAR},#{photoPath,jdbcType=VARCHAR},#{uploadTime,jdbcType=TIMESTAMP},
+        #{userName,jdbcType=VARCHAR},#{photoRawPath,jdbcType=VARCHAR},#{albumId,jdbcType=VARCHAR},#{albumName,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="queryPhoto" resultMap="photo" resultType="list">
+        select * from koala_photo t order by t.upload_time desc
+    </select>
+
+    <delete id="deletePhoto" parameterType="string">
+        delete koala_photo t where t.photo_id=#{id,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="getFileByPhotoId" parameterType="string" resultType="string">
+        select t.photo_path from koala_photo t where t.photo_id=#{id}
+    </select>
+
+    <select id="getPhotoById" parameterType="string" resultType="cn.koala.home.model.Photo" resultMap="photo">
+        select t.* from koala_photo t where t.photo_id=#{id}
+    </select>
+
+</mapper>

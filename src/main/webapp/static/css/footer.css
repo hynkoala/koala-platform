@@ -1,0 +1,20 @@
+/* CSS Document */
+@charset "utf-8";
+#footer{
+	position: relative;
+	margin-left: 0;
+	height: 53px;
+	width: 100%;
+	bottom: 0px;
+	left:0px;
+	background:url(../img/footer.jpg);
+}
+
+p#shengming{
+	position: absolute;
+	font-size:16px;
+	left: 0;
+	right: 0;
+	top: 10px;
+	color: rgb(200, 200, 200);
+}

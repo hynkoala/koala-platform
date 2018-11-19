@@ -1,0 +1,61 @@
+/*//////////////// jqGrid ////////////////////*/
+.table tbody tr.success, .table tbody tr.success > td, .table tbody tr.success > th, .table tbody tr .success {
+    background-color: #f5f5f5 !important
+}
+
+.ui-jqgrid .ui-jqgrid-view {
+    background: #fff;
+}
+
+.ui-jqgrid .table-bordered, .ui-jqgrid .table-bordered td, .ui-jqgrid .table-bordered th.ui-th-ltr {
+
+}
+
+.ui-jqgrid .ui-jqgrid-bdiv table.table-bordered td {
+
+}
+
+.ui-jqgrid .ui-jqgrid-btable tbody tr:nth-child(odd) > td {
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.ui-jqgrid .ui-jqgrid-htable .ui-th-div {
+    height: 17px;
+    margin-top: 2px;
+    display: inline-block;
+    text-align: center;
+}
+
+.glyphicon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-top: 1px;
+    line-height: 14px;
+    vertical-align: text-top;
+    background-image: url("../../bootstrap/img/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+}
+
+.glyphicon-step-backward {
+    background-position: -192px -72px;
+}
+
+.glyphicon-backward {
+    background-position: -240px -72px;
+}
+
+.glyphicon-forward {
+    background-position: -336px -72px;
+}
+
+.glyphicon-step-forward {
+    background-position: -384px -72px;
+}
+
+.ui-jqgrid .ui-jqgrid-pager .ui-pager-table, .ui-jqgrid .ui-jqgrid-toppager .ui-pager-table {
+    background: #fff;
+}

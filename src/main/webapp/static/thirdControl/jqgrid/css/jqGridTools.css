@@ -1,0 +1,54 @@
+.positionCenter {
+    min-width: 980px;
+    min-height: 600px;
+}
+
+.border-all-2px {
+    border: 2px solid #ddd;
+}
+
+.ToolsHeight {
+    height: 28px;
+}
+
+.conditionStyle01 {
+    position: relative;
+    display: block;
+
+}
+
+.conditionStyle01 .conditionStyle01_lab {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.conditionStyle01 .conditionStyle01_content {
+    position: absolute;
+    top: 0px;
+    left: 70px;
+    width: auto !important;
+}
+
+.form-horizontal-style01 {
+    height: 30px;
+}
+
+.modalSize {
+    width: 800px;
+    margin-left: -400px;
+}
+
+.greenStyle .modalSize .modal-header {
+    padding: 12px 10px;
+    background: #5eb95e;
+    color: #fff;
+}
+
+.modalSize .modal-header h3 {
+    padding: 0px;
+}
+
+.modalSize.fade.in {
+    top: 10%;
+}

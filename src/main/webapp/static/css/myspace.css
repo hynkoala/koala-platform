@@ -1,0 +1,40 @@
+.content-item {
+    padding: 30px;
+    text-align: center;
+    color: greenyellow;
+    background-color: rgb(30, 60, 90);
+    position: absolute;
+    font-size: 20px;
+    cursor: hand;
+}
+
+#content-group {
+    position: relative;
+    padding: 30px;
+    margin: 0 auto;
+    height: 483px;
+}
+
+#content-personal {
+    width: 250px;
+    height: 120px;
+}
+
+#content-userManager {
+    margin-left: 300px;
+    width: 250px;
+    height: 120px;
+}
+
+#content-chatRoom {
+    margin-top: 200px;
+    width: 550px;
+    height: 200px;
+}
+
+.content-font {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -17,9 +17,9 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="cn.koala.home"/>
-    <context:component-scan base-package="cn.koala.home.constant"/>
-    <context:component-scan base-package="cn.koala.home.controller">
+    <context:component-scan base-package="cn.koala.platform"/>
+    <context:component-scan base-package="cn.koala.platform.constant"/>
+    <context:component-scan base-package="cn.koala.platform.controller">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -81,7 +81,7 @@
         <property name="locations">
             <list>
                 <value>classpath:else/dataSource.properties</value>
-                <value>classpath:else/home-config.properties</value>
+                <value>classpath:else/platform-config.properties</value>
             </list>
         </property>
         <property name="fileEncoding" value="UTF-8"/>

@@ -1,0 +1,46 @@
+
+#write-area {
+    width: 800px;
+}
+
+#history-book {
+    width: 1000px;
+    height: 320px;
+    overflow: auto;
+    margin-bottom: 20px;
+}
+
+textarea.form-control {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 100px;
+    font-size: 14px;
+}
+
+.book-group {
+    margin: 5px 20px;
+}
+
+.book-message {
+    font-size: 14px;
+    background-color: #eaebee;
+    height: 50px;
+    border-radius: 10px;
+    text-align: left;
+    padding: 3px 8px;
+}
+
+.user-name {
+    display: inline;
+    margin-right: -70%;
+}
+
+.write-time {
+    display: inline;
+    float: right;
+}
+
+#show-more {
+    margin-right: -66%;
+    height: 30px;
+}

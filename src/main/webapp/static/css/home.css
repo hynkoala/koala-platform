@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+#out-box {
+    width: 1024px;
+    min-height: 768px;
+    position: relative;
+    margin-top: 8px;
+    margin: 0 auto;
+    border: 1px solid rgb(36, 66, 92);
+}
+
+#content {
+    width: 100%;
+    position: relative;
+    min-height: 483px;
+    padding:20px 50px;
+}
+
+

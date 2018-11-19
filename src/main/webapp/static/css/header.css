@@ -1,0 +1,68 @@
+/* CSS Document */
+@charset "utf-8";
+#header{
+	background: url("../img/header.jpg");
+	width:100%;
+	margin-top:0px;
+	height:230px;
+	position:relative;
+}
+#banner{
+	position: absolute;
+	width: 100%;
+	height: 192px;
+}
+#biaoqian{
+	position: absolute;
+	width: 976px;
+	top: 192px;
+	height: 31px;
+	left: 0px;
+	padding-top: 5px;
+	padding-left: 50px;
+}
+#anniu li {
+	margin-left: 30px;
+	float: left;
+}
+.showtime{
+	bottom:35px;
+	position:absolute;
+	color: rgb(230, 230, 230);
+	left:10px;
+}
+a{
+	color: #e5e5e7;
+	font-family: "黑体";
+	font-size:18px;
+	hover:rgb(5,5,5);
+	
+}
+ a:link {
+	text-decoration: none;
+}
+ a:visited {
+	text-decoration: none;
+}
+ a:hover {
+	text-decoration:underline;
+}
+ a:active {
+	text-decoration: none;
+ }
+a#register-a {
+	font-size: 12px;
+}
+li#register-li {
+	float: right;
+	margin-top: 2px;
+}
+
+a#login-a {
+	font-size: 12px;
+}
+
+li#login-li {
+	float: right;
+	margin-top: 2px;
+}

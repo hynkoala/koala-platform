@@ -1,17 +1,18 @@
 /* CSS Document */
 @charset "utf-8";
 body {
-    padding-top: 13%;
+    padding-top: 16%;
+    background-image: url("/koala-platform/static/img/login-bg.jpg");
 }
 
 .out-box {
     position: relative;
     font-size: 20px;
-    background-color: rgb(200, 220, 240);
     width: 400px;
     height: 250px;
     margin: 0 auto;
-    /* border:1px solid greenyellow;*/
+    /*border:1px solid darkgray;*/
+    box-shadow: -6px -6px 16px 6px #761c19;
     padding-top: 40px;
 }
 
@@ -24,8 +25,11 @@ a {
     margin-left: 40px;
 }
 
-input .form-control {
-    width: 55%;
+input.form-control {
+    width: 100% !important;
+    height:40px;
+    font-size:20px;
+    margin-left:15px;
 }
 
 .form-group label {

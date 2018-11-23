@@ -1,5 +1,8 @@
 ﻿@charset "utf-8";
 /* CSS Document */
+body{
+	background-image: url("/koala-platform/static/img/content-bg.png");
+}
 #out-box {
 	width:1024px;
 	height:768px;

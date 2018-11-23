@@ -1,68 +1,52 @@
 /* CSS Document */
 @charset "utf-8";
+body{
+	background-image: url("../img/content-bg.png");
+}
 #header{
-	background: url("../img/header.jpg");
+	background-image: url("../img/header-bg.png");
+	background-repeat: round;
 	width:100%;
-	margin-top:0px;
-	height:230px;
+	height :230px;
 	position:relative;
+	padding-top:10px;
 }
 #banner{
 	position: absolute;
 	width: 100%;
 	height: 192px;
+	padding-left:10%;
 }
-#biaoqian{
-	position: absolute;
-	width: 976px;
-	top: 192px;
-	height: 31px;
-	left: 0px;
-	padding-top: 5px;
-	padding-left: 50px;
+
+a:hover, a:visited, a:link, a:active {
+	text-decoration:none;
+	out-line: none;
+	color: black;
 }
-#anniu li {
-	margin-left: 30px;
-	float: left;
-}
+
 .showtime{
 	bottom:35px;
 	position:absolute;
 	color: rgb(230, 230, 230);
 	left:10px;
 }
-a{
-	color: #e5e5e7;
-	font-family: "黑体";
-	font-size:18px;
-	hover:rgb(5,5,5);
-	
-}
- a:link {
-	text-decoration: none;
-}
- a:visited {
-	text-decoration: none;
-}
- a:hover {
-	text-decoration:underline;
-}
- a:active {
-	text-decoration: none;
+a.dropdown-toggle{
+	font-size:24px;
+	color:gainsboro;
  }
-a#register-a {
-	font-size: 12px;
+div.main-menu{
+	display: inline-block;
+	float:left;
+	margin-right:20px;
+	font-size:18px;
 }
-li#register-li {
-	float: right;
-	margin-top: 2px;
+ul.dropdown-menu{
+	background: rgb(100,100,100);
+	font-size:18px;
+	color:rgb(180,180,180);
 }
-
-a#login-a {
-	font-size: 12px;
-}
-
-li#login-li {
-	float: right;
-	margin-top: 2px;
+li.sec-menu{
+	line-height: 35px;
+	margin-left:12px;
+	cursor:pointer;
 }

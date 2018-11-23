@@ -33,11 +33,9 @@
 <div class="out-box">
     <form role="form" class="form-inline" method="post">
         <div class="form-group">
-            <label class="label" for="user-name">用户名：</label>
             <input class="form-control" type="text" id="user-name"/>
         </div>
         <div class="form-group">
-            <label class="label" for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
             <input class="form-control" type="password" id="password"/>
         </div>
         <div class="btn-group">

@@ -8,9 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>世友办公</title>
+    <title>平台管理</title>
 </head>
+<jsp:include page="alluse/autoImport.jsp"></jsp:include>
 <body>
+<jsp:include page="alluse/header.jsp"></jsp:include>
         hello world!
+<jsp:include page="alluse/footer.jsp"></jsp:include>
+
 </body>
 </html>

@@ -1,13 +1,12 @@
 /* CSS Document */
 @charset "utf-8";
 #footer{
-	position: relative;
+	position: absolute;
 	margin-left: 0;
 	height: 53px;
 	width: 100%;
-	bottom: 0px;
-	left:0px;
-	background:url(../img/footer.jpg);
+	background:url(../img/footer-bg.png);
+	bottom:0;
 }
 
 p#shengming{

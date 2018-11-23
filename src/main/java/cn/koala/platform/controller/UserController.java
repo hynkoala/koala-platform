@@ -96,7 +96,7 @@ public class UserController {
         }
         Map<String, String> map = new HashMap();
         modelMap.addAttribute("user", user);
-        return "home";
+        return "platformIndex";
     }
 
     /**

@@ -17,20 +17,16 @@ import javax.annotation.PostConstruct;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @Component
-@ContextConfiguration("classpath:else/home-config.properties")
+@ContextConfiguration("classpath:else/platform-config.properties")
 public class ConfigConstant {
-    @Value("${photo.path}")
-    public String PHOTO_PATH_CONF;
-    @Value("${photo.raw.path}")
-    public String PHOTO_RAW_PATH_CONF;
+    @Value("${platform.url}")
+    public String PLATFORM_URL_CONF;
 
-    public static String PHOTO_PATH;
-    public static String PHOTO_RAW_PATH;
+    public static String PLATFORM_URL;
 
     @PostConstruct
     public void init() {
-        PHOTO_PATH = PHOTO_PATH_CONF;
-        PHOTO_RAW_PATH = PHOTO_RAW_PATH_CONF;
+        PLATFORM_URL = PLATFORM_URL_CONF;
     }
 
 }

@@ -1,13 +1,6 @@
 <%@ page language="java" pageEncoding="utf-8" %>
 <script>
     window.onload = function () {
-       /* document.getElementById("to-home").href = "/koala-platform/user/toHome?userName=" + userName;
-        document.getElementById("to-myspace").href = "/koala-platform/user/toMyspace?userName=" + userName;
-        document.getElementById("to-visitor-book").href = "/koala-platform/view/jsp/visitorBook.jsp?userName=" + userName;
-        document.getElementById("to-diary").href = "/koala-platform/view/jsp/diary.jsp?userName=" + userName;
-        document.getElementById("to-album").href = "/koala-platform/view/jsp/album.jsp?userName=" + userName;
-        document.getElementById("user-name").innerHTML = userName;*/
-
         $("div.main-menu").mouseover(function(){
             $(this).css("border-top","2px solid red");
             /*$(this).children("a.dropdown-toggle").click();*/
@@ -26,18 +19,24 @@
         $('.dropdown-toggle').dropdown()
     }
 
-    function toKoalaHome(){
-        window.open("/koala-platform/view/jsp/home.jsp");
+    function toOneMenu(fileName, projectName) {
+        url = "/koala-platform/view/jsp/" + fileName + ".jsp";
+        window.open(url);
     }
 
 </script>
 <div id="header">
     <div id="banner">
+        <div id="action-area">
+            <input type="button" class="btn-default-dark" onclick="toLogin()" value="登录">
+            <input type="button" class="btn-default-dark" value="注册" onclick="toRegister()">
+            <input type="button" class="btn-default-dark" value="退出" onclick="exitLogin()">
+        </div>
         <div id="platform-function" class="dropdown main-menu">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">平台功能</a>
             <ul class="dropdown-menu">
-                <li class="sec-menu" href="/koala-platform/view/jsp/home.jsp" onclick="toKoalaHome()">koala驿站</li>
-                <li class="sec-menu">记账系统</li>
+                <li class="sec-menu" onclick="toOneMenu('home','koala-home')">koala驿站</li>
+                <li class="sec-menu" onclick="toOneMenu('accountIndex','koala-account')">记账系统</li>
                 <li class="sec-menu">3</li>
             </ul>
         </div>
@@ -54,7 +53,7 @@
         <div id="manager-login" class="dropdown main-menu">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">管理员</a>
             <ul class="dropdown-menu" role="menu">
-                <li class="sec-menu">后台管理系统</li>
+                <li class="sec-menu" onclick="toOneMenu('userManager')">后台管理系统</li>
                 <li class="sec-menu">申请成为管理员</li>
                 <li class="sec-menu">找管理员</li>
             </ul>

@@ -34,25 +34,21 @@
 <div class="out-box">
     <form role="form" class="form-inline" method="post">
         <div class="form-group">
-            <label class="control-label">用户名：&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input class="form-control" type="text" name="userName" id="register-userName"/>
+            <input class="form-control" type="text" name="userName" id="register-userName" placeholder="用户名"/>
         </div>
         <div class="form-group">
-            <label for="password" class="control-label">密码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input class="form-control" type="password" name="userPassword" id="password"/>
+            <input class="form-control" type="password" name="userPassword" id="password" placeholder="密码"/>
         </div>
         <div class="form-group">
-            <label for="email">邮箱：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input class="form-control" type="email" name="userEmail" id="email"/>
+            <input class="form-control" type="email" name="userEmail" id="email" placeholder="邮箱"/>
         </div>
         <div class="form-group">
-            <label for="password-hint">密码提示：</label>
-            <input class="form-control" type="text" name="passwordHint" id="password-hint"/>
+            <input class="form-control" type="text" name="passwordHint" id="password-hint" placeholder="密码提示"/>
         </div>
         <div class="btn-group">
-            <button class="btn btn-info" onclick="checkInputData();return false">确定</button>
-            <button class="btn btn-default" type="reset" id="reset">重置</button>
-            <a class="btn btn-default" href="/koala-platform/view/jsp/login.jsp">返回登陆</a>
+            <button class="btn-default-dark" onclick="checkInputData();return false">确定</button>
+            <button class="btn-default-dark" type="reset" id="reset">重置</button>
+            <a class="btn-default-dark" href="/koala-platform/view/jsp/login.jsp">返回登陆</a>
         </div>
     </form>
 </div>

@@ -13,7 +13,9 @@
 <jsp:include page="alluse/autoImport.jsp"></jsp:include>
 <body>
 <jsp:include page="alluse/header.jsp"></jsp:include>
-        hello world!
+<div id="main-content">
+    <img style="width:1200px;height:800px;" src="/koala-platform/static/img/singleTree.jpg"/>
+</div>
 <jsp:include page="alluse/footer.jsp"></jsp:include>
 
 </body>

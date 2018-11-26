@@ -33,14 +33,14 @@
 <div class="out-box">
     <form role="form" class="form-inline" method="post">
         <div class="form-group">
-            <input class="form-control" type="text" id="user-name"/>
+            <input class="form-control" type="text" id="user-name" placeholder="用户名"/>
         </div>
         <div class="form-group">
-            <input class="form-control" type="password" id="password"/>
+            <input class="form-control" type="password" id="password" placeholder="密码"/>
         </div>
         <div class="btn-group">
-            <button id="submit-login" onclick="checkUser();return false" class="btn btn-info">登陆</button>
-            <button id="to-register" onclick="toRegister();return false" class="btn btn-default">注册</button>
+            <button id="submit-login" onclick="checkUser();return false" class="btn-default-dark">登陆</button>
+            <button id="to-register" onclick="toRegister();return false" class="btn-default-dark">注册</button>
         </div>
     </form>
 </div>

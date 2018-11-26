@@ -1,16 +1,17 @@
 /* CSS Document */
 @charset "utf-8";
 body{
-    padding-top: 10%;
+    padding-top: 12%;
+    background-image: url("/koala-platform/static/img/login-bg.jpg");
 }
 .out-box{
     font-size: 15px;
-    background-color: rgb(200, 220, 240);
-    width: 500px;
+    width: 380px;
     height:330px;
     margin:0 auto;
     position:relative;
     padding-top: 16px;
+    box-shadow: -6px -6px 16px 6px #761c19;
 }
 
 .form-group {
@@ -24,5 +25,7 @@ body{
 }
 
 .form-group .form-control {
-    width: 50%;
+    width: 60%;
+    font-size: 18px;
 }
+

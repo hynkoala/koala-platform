@@ -103,7 +103,7 @@ public class UserController {
      * @Author: hanyaning
      * @Email: hynkoala@163.com
      * @Date: 2018.08.23
-     * @Description: 从前台获取用户输入信息更新用户，并重定向到toMyspace的mapping
+     * @Description: 从前台获取用户输入信息更新用户，并重定向到toMyspace的mapping。
      */
     @ResponseBody
     @RequestMapping(value = "/alterUserInfo", method = RequestMethod.POST)

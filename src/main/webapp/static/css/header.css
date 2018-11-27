@@ -59,11 +59,15 @@ li.sec-menu {
     cursor: pointer;
 }
 
-input.btn-default-dark {
+#header input.btn-default-dark {
     position: relative;
     display: inline-block;
     float: left;
     left: -10%;
     margin-left: 6px;
     padding: 2px 5px;
+}
+
+#footer {
+    bottom: 0 !important;
 }

@@ -37,7 +37,11 @@
         });
     });
     function addGoods() {
-        url = "/koala-platform/goods/toAddGoods";
+        var url = "/koala-platform/goods/toAddGoods";
+        window.open(url);
+    }
+    function goodsList() {
+        var url = "/koala-platform/goods/toGoodsList";
         window.open(url);
     }
 
@@ -54,7 +58,7 @@
     <div id="add-goods" class="account-tools" onclick="addGoods()">
         加入新货
     </div>
-    <div id="goods-list" class="account-tools">
+    <div id="goods-list" class="account-tools" onclick="goodsList()">
         货物清单
     </div>
     <div id="query-system" class="account-tools">

@@ -10,12 +10,12 @@
         <result property="goodsType" column="goods_type" jdbcType="TIMESTAMP"/>
         <result property="goodsBigType" column="goods_big_type" jdbcType="TIMESTAMP"/>
         <result property="goodsInPrice" column="goods_in_prise" jdbcType="NUMERIC"/>
-        <result property="goodsFixedPrice" column="goods_fixed_price" jdbcType="VARCHAR"/>
+        <result property="goodsFixedPrice" column="goods_fixed_price" jdbcType="NUMERIC"/>
         <result property="goodsUsage" column="goods_usage" jdbcType="VARCHAR"/>
         <result property="produceDate" column="produce_date" jdbcType="TIMESTAMP"/>
         <result property="expiryDate" column="expiry_date" jdbcType="TIMESTAMP"/>
-        <result property="guaranteePeriod" column="guaranteePeriod" jdbcType="VARCHAR"/>
-        <result property="doHave" column="last_login_time" jdbcType="TIMESTAMP"/>
+        <result property="guaranteePeriod" column="guarantee_period" jdbcType="VARCHAR"/>
+        <result property="doHave" column="do_have" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insertGoods" parameterType="cn.koala.platform.model.User">
@@ -26,8 +26,7 @@
         #{goodsBigType,jdbcType=VARCHAR},#{goodsInPrice,jdbcType=NUMERIC},
         #{goodsFixedPrice,jdbcType=NUMERIC},#{goodsUsage,jdbcType=VARCHAR},
         #{produceDate,jdbcType=TIMESTAMP},#{expiryDate,jdbcType=TIMESTAMP},
-        #{guaranteePeriod,jdbcType=VARCHAR},#{doHave,jdbcType=VARCHAR},
-        #{adminType,jdbcType=VARCHAR})
+        #{guaranteePeriod,jdbcType=VARCHAR},#{doHave,jdbcType=VARCHAR})
     </insert>
 
     <!--<update id="updateUser" parameterType="cn.koala.platform.model.User">

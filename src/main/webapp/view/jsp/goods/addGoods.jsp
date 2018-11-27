@@ -8,13 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>记账系统</title>
-    <jsp:include page="alluse/autoImport.jsp"></jsp:include>
+    <title>添加货物</title>
+    <jsp:include page="../alluse/autoImport.jsp"></jsp:include>
 </head>
 <style>
-    #header {
-        background-image: url("/koala-platform/static/img/header-bg-account.png");
-    }
+
 
     .account-tools {
         position: relative;
@@ -37,31 +35,17 @@
         });
     });
     function addGoods() {
-        url = "/koala-platform/goods/toAddGoods";
-        window.open(url);
+
     }
 
 </script>
 <body>
-<jsp:include page="alluse/header.jsp"></jsp:include>
 <div id="main-content">
-    <div id="account-in" class="account-tools">
-        入账单
-    </div>
-    <div id="account-out" class="account-tools">
-        出账单
-    </div>
-    <div id="add-goods" class="account-tools" onclick="addGoods()">
-        加入新货
-    </div>
-    <div id="goods-list" class="account-tools">
-        货物清单
-    </div>
-    <div id="query-system" class="account-tools">
-        查询系统
+    <div id="input-area">
+
     </div>
 </div>
-<jsp:include page="alluse/footer.jsp"></jsp:include>
+<jsp:include page="../alluse/footer.jsp"></jsp:include>
 
 </body>
 </html>

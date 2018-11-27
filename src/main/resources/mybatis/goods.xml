@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.koala.platform.mapper.GoodsMapper">
+    <resultMap id="goods" type="cn.koala.platform.model.Goods">
+        <id property="goodsId" column="goods_id" jdbcType="VARCHAR"/>
+        <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
+        <result property="goodsUnit" column="goods_unit" jdbcType="VARCHAR"/>
+        <result property="goodsType" column="goods_type" jdbcType="TIMESTAMP"/>
+        <result property="goodsBigType" column="goods_big_type" jdbcType="TIMESTAMP"/>
+        <result property="goodsInPrice" column="goods_in_prise" jdbcType="NUMERIC"/>
+        <result property="goodsFixedPrice" column="goods_fixed_price" jdbcType="VARCHAR"/>
+        <result property="goodsUsage" column="goods_usage" jdbcType="VARCHAR"/>
+        <result property="produceDate" column="produce_date" jdbcType="TIMESTAMP"/>
+        <result property="expiryDate" column="expiry_date" jdbcType="TIMESTAMP"/>
+        <result property="guaranteePeriod" column="guaranteePeriod" jdbcType="VARCHAR"/>
+        <result property="doHave" column="last_login_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="insertGoods" parameterType="cn.koala.platform.model.User">
+        insert into goods_list (goods_id, goods_name,goods_unit,goods_type,goods_big_type,goods_in_price,
+        goods_fixed_price,goods_usage, produce_date, expiry_date, guarantee_period,do_have)
+        VALUES(#{goodsId,jdbcType=VARCHAR},#{goodsName,jdbcType=VARCHAR},
+        #{goodsUnit,jdbcType=VARCHAR},#{goodsType,jdbcType=VARCHAR},
+        #{goodsBigType,jdbcType=VARCHAR},#{goodsInPrice,jdbcType=NUMERIC},
+        #{goodsFixedPrice,jdbcType=NUMERIC},#{goodsUsage,jdbcType=VARCHAR},
+        #{produceDate,jdbcType=TIMESTAMP},#{expiryDate,jdbcType=TIMESTAMP},
+        #{guaranteePeriod,jdbcType=VARCHAR},#{doHave,jdbcType=VARCHAR},
+        #{adminType,jdbcType=VARCHAR})
+    </insert>
+
+    <!--<update id="updateUser" parameterType="cn.koala.platform.model.User">
+        UPDATE koala_user
+        SET
+        <if test="userAge!=null">user_age = #{userAge,jdbcType=NUMERIC},</if>
+        <if test="userPhone!=null">user_phone = #{userPhone,jdbcType=VARCHAR},</if>
+        <if test="userEmail!=null">user_email = #{userEmail,jdbcType=VARCHAR},</if>
+        <if test="userTrueName!=null">user_true_name = #{userTrueName,jdbcType=VARCHAR},</if>
+        <if test="lastUpdateTime!=null">last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},</if>
+        <if test="lastLoginTime!=null">last_login_time=#{lastLoginTime,jdbcType=TIMESTAMP},</if>
+        <if test="adminType!=null">admin_type=#{adminType,jdbcType=VARCHAR},</if>
+        <if test="userSex!=null">user_sex = #{userSex,jdbcType=VARCHAR},</if>
+        <if test="userName!=null">user_name = #{userName,jdbcType=VARCHAR}</if>
+        where user_name = #{userName,jdbcType=VARCHAR}
+    </update>-->
+
+
+</mapper>

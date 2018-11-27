@@ -258,7 +258,7 @@
                 <version>9.2.1.v20140609</version>
                 <configuration>
                     <httpConnector>
-                        <port>8092</port>
+                        <port>8082</port>
                     </httpConnector>
                     <webAppConfig>
                         <defaultsDescriptor>src/main/resources/else/jettyCustom.xml</defaultsDescriptor>

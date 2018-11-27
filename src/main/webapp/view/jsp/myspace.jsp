@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="utf-8" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>hynkoala</title>
     <jsp:include page="alluse/autoImport.jsp"></jsp:include>
     <link type="text/css" rel="stylesheet" href="/koala-platform/static/css/myspace.css"/>
@@ -12,10 +12,9 @@
         $(function () {
             var url = '/koala-platform/user/getUserInfo?userName=' + userName;
             var xmlhttp = new XMLHttpRequest();
-            if (xmlhttp!=null)
-            {
-                xmlhttp.onreadystatechange=state_Change;
-                xmlhttp.open("GET",url,true);
+            if (xmlhttp != null) {
+                xmlhttp.onreadystatechange = state_Change;
+                xmlhttp.open("GET", url, true);
                 xmlhttp.send(null);
             }
             function state_Change() {
@@ -58,7 +57,6 @@
             return theRequest.userName;
         }
     </script>
-
 
 
     <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>-->

@@ -35,7 +35,7 @@
                 TYPE_LEVEL: "level"
             }
         },
-    //default setting of excheck
+        //default setting of excheck
         _setting = {
             check: {
                 enable: false,
@@ -59,15 +59,15 @@
                 onCheck: null
             }
         },
-    //default root of excheck
+        //default root of excheck
         _initRoot = function (setting) {
             var r = data.getRoot(setting);
             r.radioCheckedList = [];
         },
-    //default cache of excheck
+        //default cache of excheck
         _initCache = function (treeId) {
         },
-    //default bind event of excheck
+        //default bind event of excheck
         _bindEvent = function (setting) {
             var o = setting.treeObj,
                 c = consts.event;
@@ -81,7 +81,7 @@
                 c = consts.event;
             o.unbind(c.CHECK);
         },
-    //default event proxy of excheck
+        //default event proxy of excheck
         _eventProxy = function (e) {
             var target = e.target,
                 setting = data.getSetting(e.data.treeId),
@@ -129,7 +129,7 @@
             };
             return proxyResult
         },
-    //default init node of excheck
+        //default init node of excheck
         _initNode = function (setting, level, n, parentNode, isFirstNode, isLastNode, openFlag) {
             if (!n) return;
             var checkedKey = setting.data.key.checked;
@@ -153,7 +153,7 @@
                 r.radioCheckedList.push(n);
             }
         },
-    //add dom for check
+        //add dom for check
         _beforeA = function (setting, node, html) {
             var checkedKey = setting.data.key.checked;
             if (setting.check.enable) {
@@ -161,7 +161,7 @@
                 html.push("<span ID='", node.tId, consts.id.CHECK, "' class='", view.makeChkClass(setting, node), "' treeNode", consts.id.CHECK, (node.nocheck === true ? " style='display:none;'" : ""), "></span>");
             }
         },
-    //update zTreeObj, add method of check
+        //update zTreeObj, add method of check
         _zTreeTools = function (setting, zTreeTools) {
             zTreeTools.checkNode = function (node, checked, checkTypeFlag, callbackFlag) {
                 var checkedKey = this.setting.data.key.checked;
@@ -224,7 +224,7 @@
                 }
             }
         },
-    //method of operate data
+        //method of operate data
         _data = {
             getRadioCheckedList: function (setting) {
                 var checkedList = data.getRoot(setting).radioCheckedList;
@@ -332,9 +332,9 @@
                 node.check_Child_State = chkFlag;
             }
         },
-    //method of event proxy
+        //method of event proxy
         _event = {},
-    //method of event handler
+        //method of event handler
         _handler = {
             onCheckNode: function (event, node) {
                 if (node.chkDisabled === true) return false;
@@ -366,9 +366,9 @@
                 return true;
             }
         },
-    //method of tools for zTree
+        //method of tools for zTree
         _tools = {},
-    //method of operate ztree dom
+        //method of operate ztree dom
         _view = {
             checkNodeRelation: function (setting, node) {
                 var pNode, i, l,

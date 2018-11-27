@@ -41,12 +41,12 @@
         }
     </style>
     <script>
-        $(function(){
+        $(function () {
             showPhoto(8, "download");
         });
 
-        function photoManager(){
-            var url="/koala-platform/view/jsp/photoManager.jsp";
+        function photoManager() {
+            var url = "/koala-platform/view/jsp/photoManager.jsp";
             window.open(url);
         }
 
@@ -67,7 +67,8 @@
                 </div>
             </form>
             <button type="submit" onclick="uploadPhoto()" class="btn btn-info" id="upload-btn">上传</button>
-            <button type="submit" onclick="photoManager()" class="btn btn-info only-admin" id="to-photo-manager">管理</button>
+            <button type="submit" onclick="photoManager()" class="btn btn-info only-admin" id="to-photo-manager">管理
+            </button>
         </div>
         <div id="see-photo"></div>
     </div>

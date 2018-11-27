@@ -34,7 +34,6 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-
     /**
      * @Author: hanyaning
      * @Email: hynkoala@163.com

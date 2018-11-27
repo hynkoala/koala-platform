@@ -98,84 +98,84 @@
         var pager_selector = "#grid-pager";
         $(function () {
             $(grid_selector)
-                    .jqGrid(
+                .jqGrid(
+                    {
+                        mtype: 'post',
+                        datatype: "local",
+                        height: '20px',
+                        jsonReader: {id: 'userId'},
+                        colNames: ["用户名", '真实名', '电话', '邮箱', '性别', '年龄', '注册时间', '最近修改时间', '最近登陆时间', '管理员'],
+                        colModel: [
                             {
-                                mtype: 'post',
-                                datatype: "local",
-                                height: '20px',
-                                jsonReader: {id: 'userId'},
-                                colNames: ["用户名", '真实名', '电话', '邮箱', '性别', '年龄', '注册时间', '最近修改时间', '最近登陆时间', '管理员'],
-                                colModel: [
-                                    {
-                                        name: 'userName',
-                                        index: 'userName',
-                                        width: '10%',
-                                        heigth: '30px',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'userTrueName',
-                                        index: 'userTrueName',
-                                        width: '8%',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'userPhone',
-                                        index: 'userPhone',
-                                        width: '8%',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'userEmail',
-                                        index: 'userEmail',
-                                        width: '15%',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'userSex',
-                                        index: 'userSex',
-                                        width: '4%',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'userAge',
-                                        index: 'userAge',
-                                        width: '4%',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'regTime',
-                                        index: 'regTime',
-                                        width: '10%',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'lastUpdateTime',
-                                        index: 'lastUpdateTime',
-                                        width: '10%',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'lastLoginTime',
-                                        index: 'lastLoginTime',
-                                        width: '10%',
-                                        sortable: false
-                                    },
-                                    {
-                                        name: 'adminType',
-                                        index: 'adminType',
-                                        width: '5%',
-                                        sortable: false
-                                    }
-                                ],
-                                viewrecords: false,//定义是否要显示总记录数
-                                loadonce: true,//不配置始终只显示页面显示的数据，无法显示隐藏的后面的数据，导致无法翻页
-                                multiselect: false,//不配置不会显示复选框
-                                rowNum: -1,
-                                rownumbers: true,
-                                rownumWidth: 50,
-                                autowidth: true
-                            });
+                                name: 'userName',
+                                index: 'userName',
+                                width: '10%',
+                                heigth: '30px',
+                                sortable: false
+                            },
+                            {
+                                name: 'userTrueName',
+                                index: 'userTrueName',
+                                width: '8%',
+                                sortable: false
+                            },
+                            {
+                                name: 'userPhone',
+                                index: 'userPhone',
+                                width: '8%',
+                                sortable: false
+                            },
+                            {
+                                name: 'userEmail',
+                                index: 'userEmail',
+                                width: '15%',
+                                sortable: false
+                            },
+                            {
+                                name: 'userSex',
+                                index: 'userSex',
+                                width: '4%',
+                                sortable: false
+                            },
+                            {
+                                name: 'userAge',
+                                index: 'userAge',
+                                width: '4%',
+                                sortable: false
+                            },
+                            {
+                                name: 'regTime',
+                                index: 'regTime',
+                                width: '10%',
+                                sortable: false
+                            },
+                            {
+                                name: 'lastUpdateTime',
+                                index: 'lastUpdateTime',
+                                width: '10%',
+                                sortable: false
+                            },
+                            {
+                                name: 'lastLoginTime',
+                                index: 'lastLoginTime',
+                                width: '10%',
+                                sortable: false
+                            },
+                            {
+                                name: 'adminType',
+                                index: 'adminType',
+                                width: '5%',
+                                sortable: false
+                            }
+                        ],
+                        viewrecords: false,//定义是否要显示总记录数
+                        loadonce: true,//不配置始终只显示页面显示的数据，无法显示隐藏的后面的数据，导致无法翻页
+                        multiselect: false,//不配置不会显示复选框
+                        rowNum: -1,
+                        rownumbers: true,
+                        rownumWidth: 50,
+                        autowidth: true
+                    });
             if (printData != null && printData != 'undefined') {
                 for (i = 0; i < printData.length; i++) {
                     data = printData[i];
@@ -200,7 +200,7 @@
         }
 
         function exportExcel() {
-            var inName = getFileName("用户信息",'xls');
+            var inName = getFileName("用户信息", 'xls');
             var caption = "用户信息表";
             var thead = $("#thead-area");
             var gridTable = $("#grid-table");

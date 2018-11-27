@@ -1445,7 +1445,9 @@
                     } else {
                         return;
                     }
-                    var self = $(ts), i, fpos, ir = 0, v, gi = ts.p.multiselect === true ? 1 : 0, si = 0, addSubGridCell, ni = ts.p.rownumbers === true ? 1 : 0, idn, getId, f = [], F, rd = {}, xmlr, rid, rowData = [], cn = (ts.p.altRows === true) ? ts.p.altclass : "", cn1;
+                    var self = $(ts), i, fpos, ir = 0, v, gi = ts.p.multiselect === true ? 1 : 0, si = 0,
+                        addSubGridCell, ni = ts.p.rownumbers === true ? 1 : 0, idn, getId, f = [], F, rd = {}, xmlr,
+                        rid, rowData = [], cn = (ts.p.altRows === true) ? ts.p.altclass : "", cn1;
                     if (ts.p.subGrid === true) {
                         si = 1;
                         addSubGridCell = $.jgrid.getMethod("addSubGridCell");
@@ -1493,7 +1495,8 @@
                     if (!gxml) {
                         gxml = [];
                     }
-                    var gl = gxml.length, j = 0, grpdata = [], rn = parseInt(ts.p.rowNum, 10), br = ts.p.scroll ? $.jgrid.randId() : 1, altr;
+                    var gl = gxml.length, j = 0, grpdata = [], rn = parseInt(ts.p.rowNum, 10),
+                        br = ts.p.scroll ? $.jgrid.randId() : 1, altr;
                     if (gl > 0 && ts.p.page <= 0) {
                         ts.p.page = 1;
                     }
@@ -1689,7 +1692,10 @@
                         dReader = ts.p.jsonReader;
                         frd = 'json';
                     }
-                    var self = $(ts), ir = 0, v, i, j, f = [], cur, gi = ts.p.multiselect ? 1 : 0, si = ts.p.subGrid === true ? 1 : 0, addSubGridCell, ni = ts.p.rownumbers === true ? 1 : 0, arrayReader = orderedCols(gi + si + ni), objectReader = reader(frd), rowReader, len, drows, idn, rd = {}, fpos, idr, rowData = [], cn = (ts.p.altRows === true) ? ts.p.altclass : "", cn1;
+                    var self = $(ts), ir = 0, v, i, j, f = [], cur, gi = ts.p.multiselect ? 1 : 0,
+                        si = ts.p.subGrid === true ? 1 : 0, addSubGridCell, ni = ts.p.rownumbers === true ? 1 : 0,
+                        arrayReader = orderedCols(gi + si + ni), objectReader = reader(frd), rowReader, len, drows, idn,
+                        rd = {}, fpos, idr, rowData = [], cn = (ts.p.altRows === true) ? ts.p.altclass : "", cn1;
                     ts.p.page = intNum($.jgrid.getAccessor(data, dReader.page), ts.p.page);
                     ts.p.lastpage = intNum($.jgrid.getAccessor(data, dReader.total), 1);
                     ts.p.records = intNum($.jgrid.getAccessor(data, dReader.records));
@@ -1720,7 +1726,8 @@
                     if (len > 0 && ts.p.page <= 0) {
                         ts.p.page = 1;
                     }
-                    var rn = parseInt(ts.p.rowNum, 10), br = ts.p.scroll ? $.jgrid.randId() : 1, altr, selected = false, selr;
+                    var rn = parseInt(ts.p.rowNum, 10), br = ts.p.scroll ? $.jgrid.randId() : 1, altr, selected = false,
+                        selr;
                     if (adjust) {
                         rn *= adjust + 1;
                     }
@@ -1915,7 +1922,8 @@
                     }
                 },
                 addLocalData = function () {
-                    var st = ts.p.multiSort ? [] : "", sto = [], fndsort = false, cmtypes = {}, grtypes = [], grindexes = [], srcformat, sorttype, newformat;
+                    var st = ts.p.multiSort ? [] : "", sto = [], fndsort = false, cmtypes = {}, grtypes = [],
+                        grindexes = [], srcformat, sorttype, newformat;
                     if (!$.isArray(ts.p.data)) {
                         return;
                     }
@@ -2739,7 +2747,8 @@
                             }
                             ts.p.sortorder = sor;
                         }
-                        var previousSelectedTh = ts.grid.headers[ts.p.lastsort].el, newSelectedTh = ts.p.frozenColumns ? obj : ts.grid.headers[idxcol].el;
+                        var previousSelectedTh = ts.grid.headers[ts.p.lastsort].el,
+                            newSelectedTh = ts.p.frozenColumns ? obj : ts.grid.headers[idxcol].el;
 
                         $("span.ui-grid-ico-sort", previousSelectedTh).addClass('ui-state-disabled');
                         $(previousSelectedTh).attr("aria-selected", "false");
@@ -2800,7 +2809,8 @@
                     }
                 },
                 setColWidth = function () {
-                    var initwidth = 0, brd = $.jgrid.cell_width ? 0 : intNum(ts.p.cellLayout, 0), vc = 0, lvc, scw = intNum(ts.p.scrollOffset, 0), cw, hs = false, aw, gw = 0, cr;
+                    var initwidth = 0, brd = $.jgrid.cell_width ? 0 : intNum(ts.p.cellLayout, 0), vc = 0, lvc,
+                        scw = intNum(ts.p.scrollOffset, 0), cw, hs = false, aw, gw = 0, cr;
                     $.each(ts.p.colModel, function () {
                         if (this.hidden === undefined) {
                             this.hidden = false;
@@ -3341,55 +3351,55 @@
                     }
                 }
             }).bind('reloadGrid', function (e, opts) {
-                    if (ts.p.treeGrid === true) {
-                        ts.p.datatype = ts.p.treedatatype;
+                if (ts.p.treeGrid === true) {
+                    ts.p.datatype = ts.p.treedatatype;
+                }
+                if (opts && opts.current) {
+                    ts.grid.selectionPreserver(ts);
+                }
+                if (ts.p.datatype === "local") {
+                    $(ts).jqGrid("resetSelection");
+                    if (ts.p.data.length) {
+                        refreshIndex();
                     }
-                    if (opts && opts.current) {
-                        ts.grid.selectionPreserver(ts);
+                }
+                else if (!ts.p.treeGrid) {
+                    ts.p.selrow = null;
+                    if (ts.p.multiselect) {
+                        ts.p.selarrrow = [];
+                        setHeadCheckBox(false);
                     }
-                    if (ts.p.datatype === "local") {
-                        $(ts).jqGrid("resetSelection");
-                        if (ts.p.data.length) {
-                            refreshIndex();
-                        }
+                    ts.p.savedRow = [];
+                }
+                if (ts.p.scroll) {
+                    emptyRows.call(ts, true, false);
+                }
+                if (opts && opts.page) {
+                    var page = opts.page;
+                    if (page > ts.p.lastpage) {
+                        page = ts.p.lastpage;
                     }
-                    else if (!ts.p.treeGrid) {
-                        ts.p.selrow = null;
-                        if (ts.p.multiselect) {
-                            ts.p.selarrrow = [];
-                            setHeadCheckBox(false);
-                        }
-                        ts.p.savedRow = [];
+                    if (page < 1) {
+                        page = 1;
                     }
-                    if (ts.p.scroll) {
-                        emptyRows.call(ts, true, false);
-                    }
-                    if (opts && opts.page) {
-                        var page = opts.page;
-                        if (page > ts.p.lastpage) {
-                            page = ts.p.lastpage;
-                        }
-                        if (page < 1) {
-                            page = 1;
-                        }
-                        ts.p.page = page;
-                        if (ts.grid.prevRowHeight) {
-                            ts.grid.bDiv.scrollTop = (page - 1) * ts.grid.prevRowHeight * ts.p.rowNum;
-                        } else {
-                            ts.grid.bDiv.scrollTop = 0;
-                        }
-                    }
-                    if (ts.grid.prevRowHeight && ts.p.scroll) {
-                        delete ts.p.lastpage;
-                        ts.grid.populateVisible();
+                    ts.p.page = page;
+                    if (ts.grid.prevRowHeight) {
+                        ts.grid.bDiv.scrollTop = (page - 1) * ts.grid.prevRowHeight * ts.p.rowNum;
                     } else {
-                        ts.grid.populate();
+                        ts.grid.bDiv.scrollTop = 0;
                     }
-                    if (ts.p._inlinenav === true) {
-                        $(ts).jqGrid('showAddEditButtons');
-                    }
-                    return false;
-                })
+                }
+                if (ts.grid.prevRowHeight && ts.p.scroll) {
+                    delete ts.p.lastpage;
+                    ts.grid.populateVisible();
+                } else {
+                    ts.grid.populate();
+                }
+                if (ts.p._inlinenav === true) {
+                    $(ts).jqGrid('showAddEditButtons');
+                }
+                return false;
+            })
                 .dblclick(function (e) {
                     td = e.target;
                     ptr = $(td, ts.rows).closest("tr.jqgrow");
@@ -4277,7 +4287,8 @@
                     return;
                 }
                 var $t = this, cw,
-                    initwidth = 0, brd = $.jgrid.cell_width ? 0 : $t.p.cellLayout, lvc, vc = 0, hs = false, scw = $t.p.scrollOffset, aw, gw = 0, cr;
+                    initwidth = 0, brd = $.jgrid.cell_width ? 0 : $t.p.cellLayout, lvc, vc = 0, hs = false,
+                    scw = $t.p.scrollOffset, aw, gw = 0, cr;
                 if (typeof shrink !== 'boolean') {
                     shrink = $t.p.shrinkToFit;
                 }
@@ -5093,7 +5104,8 @@
                         var sdata = {}, j = 0, nm;
                         trigger = (typeof trigger !== 'boolean') ? true : trigger;
                         $.each($t.p.colModel, function () {
-                            var v, $elem = $("#gs_" + $.jgrid.jqID(this.name), (this.frozen === true && $t.p.frozenColumns === true) ? $t.grid.fhDiv : $t.grid.hDiv);
+                            var v,
+                                $elem = $("#gs_" + $.jgrid.jqID(this.name), (this.frozen === true && $t.p.frozenColumns === true) ? $t.grid.fhDiv : $t.grid.hDiv);
                             if (this.searchoptions && this.searchoptions.defaultValue !== undefined) {
                                 v = this.searchoptions.defaultValue;
                             }
@@ -5572,7 +5584,7 @@
                     i, cmi, skip = 0, $tr, $colHeader, th, $th, thStyle,
                     iCol,
                     cghi,
-                //startColumnName,
+                    //startColumnName,
                     numberOfColumns,
                     titleText,
                     cVisibleColumns,
@@ -5795,7 +5807,8 @@
                     // sorting stuff
                     $($t).bind('jqGridSortCol.setFrozenColumns', function (e, index, idxcol) {
 
-                        var previousSelectedTh = $("tr.ui-jqgrid-labels:last th:eq(" + $t.p.lastsort + ")", $t.grid.fhDiv), newSelectedTh = $("tr.ui-jqgrid-labels:last th:eq(" + idxcol + ")", $t.grid.fhDiv);
+                        var previousSelectedTh = $("tr.ui-jqgrid-labels:last th:eq(" + $t.p.lastsort + ")", $t.grid.fhDiv),
+                            newSelectedTh = $("tr.ui-jqgrid-labels:last th:eq(" + idxcol + ")", $t.grid.fhDiv);
 
                         $("span.ui-grid-ico-sort", previousSelectedTh).addClass('ui-state-disabled');
                         $(previousSelectedTh).attr("aria-selected", "false");
@@ -5922,7 +5935,7 @@
             s++;
             this._jqm = s;
             H[s] = {c: $.extend(p, $.jqm.params, o), a: F, w: $(this).addClass('jqmID' + s), s: s};
-            if (p.trigger)$(this).jqmAddTrigger(p.trigger);
+            if (p.trigger) $(this).jqmAddTrigger(p.trigger);
         });
     };
 
@@ -5962,7 +5975,7 @@
             h.a = true;
             h.w.css('z-index', z);
             if (c.modal) {
-                if (!A[0])setTimeout(function () {
+                if (!A[0]) setTimeout(function () {
                     L('bind');
                 }, 1);
                 A.push(s);
@@ -5979,14 +5992,14 @@
                 r = (typeof r == 'string') ? $(r, h.w) : $(r);
                 u = (u.substr(0, 1) == '@') ? $(t).attr(u.substring(1)) : u;
                 r.html(c.ajaxText).load(u, function () {
-                    if (c.onLoad)c.onLoad.call(this, h);
-                    if (cc)h.w.jqmAddClose($(cc, h.w));
+                    if (c.onLoad) c.onLoad.call(this, h);
+                    if (cc) h.w.jqmAddClose($(cc, h.w));
                     e(h);
                 });
             }
-            else if (cc)h.w.jqmAddClose($(cc, h.w));
+            else if (cc) h.w.jqmAddClose($(cc, h.w));
 
-            if (c.toTop && h.o)h.w.before('<span id="jqmP' + h.w[0]._jqm + '"></span>').insertAfter(h.o);
+            if (c.toTop && h.o) h.w.before('<span id="jqmP' + h.w[0]._jqm + '"></span>').insertAfter(h.o);
             (c.onShow) ? c.onShow(h) : h.w.show();
             e(h);
             return F;
@@ -5997,12 +6010,12 @@
             h.a = F;
             if (A[0]) {
                 A.pop();
-                if (!A[0])L('unbind');
+                if (!A[0]) L('unbind');
             }
-            if (h.c.toTop && h.o)$('#jqmP' + h.w[0]._jqm).after(h.w).remove();
-            if (h.c.onHide)h.c.onHide(h); else {
+            if (h.c.toTop && h.o) $('#jqmP' + h.w[0]._jqm).after(h.w).remove();
+            if (h.c.onHide) h.c.onHide(h); else {
                 h.w.hide();
-                if (h.o)h.o.remove();
+                if (h.o) h.o.remove();
             }
             return F;
         },
@@ -6045,7 +6058,7 @@
                             for (var i in {
                                 jqmShow: 1,
                                 jqmHide: 1
-                            })for (var s in this[i])if (H[this[i][s]])H[this[i][s]].w[i](this);
+                            })for (var s in this[i])if (H[this[i][s]]) H[this[i][s]].w[i](this);
                             return F;
                         });
                     }
@@ -7149,11 +7162,11 @@ var xmlJsonClass = {
                 coord.left += "px";
             }
             $(mw).css($.extend({
-                    width: isNaN(p.width) ? "auto" : p.width + "px",
-                    height: isNaN(p.height) ? "auto" : p.height + "px",
-                    zIndex: p.zIndex,
-                    overflow: 'hidden'
-                }, coord))
+                width: isNaN(p.width) ? "auto" : p.width + "px",
+                height: isNaN(p.height) ? "auto" : p.height + "px",
+                zIndex: p.zIndex,
+                overflow: 'hidden'
+            }, coord))
                 .attr({tabIndex: "-1", "role": "dialog", "aria-labelledby": aIDs.modalhead, "aria-hidden": "true"});
             if (p.drag === undefined) {
                 p.drag = true;
@@ -7989,7 +8002,7 @@ var xmlJsonClass = {
                 var that = this, i;
                 // this table will hold all the group (tables) and rules (rows)
                 var table = $("<table class='group ui-widget ui-widget-content' style='border:0px none;'><tbody></tbody></table>"),
-                // create error message row
+                    // create error message row
                     align = "left";
                 if (this.p.direction === "rtl") {
                     align = "right";
@@ -8048,7 +8061,8 @@ var xmlJsonClass = {
                 th.append(inputAddSubgroup);
                 if (this.p.ruleButtons === true) {
                     // button for adding a new rule
-                    var inputAddRule = $("<input type='button' value='+' title='Add rule' class='add-rule ui-add'/>"), cm;
+                    var inputAddRule = $("<input type='button' value='+' title='Add rule' class='add-rule ui-add'/>"),
+                        cm;
                     inputAddRule.bind('click', function () {
                         //if(!group) { group = {};}
                         if (group.rules === undefined) {
@@ -8150,19 +8164,17 @@ var xmlJsonClass = {
                 // be referenced in anonimous method calls
 
                 var that = this, $t = getGrid(), tr = $("<tr></tr>"),
-                //document.createElement("tr"),
+                    //document.createElement("tr"),
 
-                // first column used for padding
-                //tdFirstHolderForRule = document.createElement("td"),
+                    // first column used for padding
+                    //tdFirstHolderForRule = document.createElement("td"),
                     i, op, trpar, cm, str = "", selected;
                 //tdFirstHolderForRule.setAttribute("class", "first");
                 tr.append("<td class='first'></td>");
 
-
                 // create field container
                 var ruleFieldTd = $("<td class='columns'></td>");
                 tr.append(ruleFieldTd);
-
 
                 // dropdown for: choosing field
                 var ruleFieldSelect = $("<select></select>"), ina, aoprs = [];
@@ -8257,7 +8269,6 @@ var xmlJsonClass = {
                     }
                 }
                 ruleFieldSelect.append(str);
-
 
                 // create operator container
                 var ruleOperatorTd = $("<td class='operators'></td>");
@@ -10056,7 +10067,8 @@ var xmlJsonClass = {
 
                 function createData(rowid, obj, tb, maxcols) {
                     var nm, hc, trdata, cnt = 0, tmp, dc, retpos = [], ind = false, i,
-                        tdtmpl = "<td class='CaptionTD form-view-label ui-widget-content' width='" + p.labelswidth + "'>&#160;</td><td class='DataTD form-view-data ui-helper-reset ui-widget-content'>&#160;</td>", tmpl = "",
+                        tdtmpl = "<td class='CaptionTD form-view-label ui-widget-content' width='" + p.labelswidth + "'>&#160;</td><td class='DataTD form-view-data ui-helper-reset ui-widget-content'>&#160;</td>",
+                        tmpl = "",
                         tdtmpl2 = "<td class='CaptionTD form-view-label ui-widget-content'>&#160;</td><td class='DataTD form-view-data ui-widget-content'>&#160;</td>",
                         fmtnum = ['integer', 'number', 'currency'], max1 = 0, max2 = 0, maxw, setme, viewfld;
                     for (i = 1; i <= maxcols; i++) {
@@ -10218,7 +10230,7 @@ var xmlJsonClass = {
                 var rtlb = $t.p.direction === "rtl" ? true : false,
                     bp = rtlb ? "nData" : "pData",
                     bn = rtlb ? "pData" : "nData",
-                // buttons at footer
+                    // buttons at footer
                     bP = "<a id='" + bp + "' class='fm-button ui-state-default ui-corner-left'><span class='ui-icon ui-icon-triangle-1-w'></span></a>",
                     bN = "<a id='" + bn + "' class='fm-button ui-state-default ui-corner-right'><span class='ui-icon ui-icon-triangle-1-e'></span></a>",
                     bC = "<a id='cData' class='fm-button ui-state-default ui-corner-all'>" + p.bClose + "</a>";
@@ -10572,7 +10584,6 @@ var xmlJsonClass = {
                                     }
                                 }
                             }, $.jgrid.ajaxOptions, rp_ge[$t.p.id].ajaxDelOptions);
-
 
                             if (!ajaxOptions.url && !rp_ge[$t.p.id].useDataProxy) {
                                 if ($.isFunction($t.p.dataProxy)) {
@@ -12842,7 +12853,6 @@ var xmlJsonClass = {
                     twrap = "<div class='tree-wrap tree-wrap-" + $t.p.direction + "' style='width:" + (ident * 18) + "px;'>";
                     twrap += "<div style='" + ($t.p.direction === "rtl" ? "right:" : "left:") + (lftpos * 18) + "px;' class='ui-icon ";
 
-
                     if (ldat[loaded] !== undefined) {
                         if (ldat[loaded] === "true" || ldat[loaded] === true) {
                             ldat[loaded] = true;
@@ -13008,7 +13018,7 @@ var xmlJsonClass = {
                     return;
                 }
                 var childern = $($t).jqGrid("getNodeChildren", record),
-                //if ($($t).jqGrid("isVisibleNode",record)) {
+                    //if ($($t).jqGrid("isVisibleNode",record)) {
                     expanded = $t.p.treeReader.expanded_field;
                 $(childern).each(function () {
                     var id = $t.p.idPrefix + $.jgrid.getAccessor(this, $t.p.localReader.id);
@@ -13097,7 +13107,8 @@ var xmlJsonClass = {
                         var lftc = $t.p.treeReader.left_field,
                             rgtc = $t.p.treeReader.right_field,
                             levelc = $t.p.treeReader.level_field,
-                            lft = parseInt(rc[lftc], 10), rgt = parseInt(rc[rgtc], 10), level = parseInt(rc[levelc], 10);
+                            lft = parseInt(rc[lftc], 10), rgt = parseInt(rc[rgtc], 10),
+                            level = parseInt(rc[levelc], 10);
                         $(this.p.data).each(function () {
                             if (parseInt(this[levelc], 10) === level - 1 && parseInt(this[lftc], 10) < lft && parseInt(this[rgtc], 10) > rgt) {
                                 result = this;
@@ -13131,7 +13142,8 @@ var xmlJsonClass = {
                         var lftc = $t.p.treeReader.left_field,
                             rgtc = $t.p.treeReader.right_field,
                             levelc = $t.p.treeReader.level_field,
-                            lft = parseInt(rc[lftc], 10), rgt = parseInt(rc[rgtc], 10), level = parseInt(rc[levelc], 10);
+                            lft = parseInt(rc[lftc], 10), rgt = parseInt(rc[rgtc], 10),
+                            level = parseInt(rc[levelc], 10);
                         $(this.p.data).each(function () {
                             if (parseInt(this[levelc], 10) === level + 1 && parseInt(this[lftc], 10) > lft && parseInt(this[rgtc], 10) < rgt) {
                                 result.push(this);
@@ -13163,7 +13175,8 @@ var xmlJsonClass = {
                         var lftc = $t.p.treeReader.left_field,
                             rgtc = $t.p.treeReader.right_field,
                             levelc = $t.p.treeReader.level_field,
-                            lft = parseInt(rc[lftc], 10), rgt = parseInt(rc[rgtc], 10), level = parseInt(rc[levelc], 10);
+                            lft = parseInt(rc[lftc], 10), rgt = parseInt(rc[rgtc], 10),
+                            level = parseInt(rc[levelc], 10);
                         $(this.p.data).each(function () {
                             if (parseInt(this[levelc], 10) >= level && parseInt(this[lftc], 10) >= lft && parseInt(this[lftc], 10) <= rgt) {
                                 result.push(this);
@@ -13431,7 +13444,7 @@ var xmlJsonClass = {
                 var expanded = $t.p.treeReader.expanded_field,
                     isLeaf = $t.p.treeReader.leaf_field,
                     level = $t.p.treeReader.level_field,
-                //icon = $t.p.treeReader.icon_field,
+                    //icon = $t.p.treeReader.icon_field,
                     parent = $t.p.treeReader.parent_id_field,
                     left = $t.p.treeReader.left_field,
                     right = $t.p.treeReader.right_field,
@@ -13910,7 +13923,8 @@ var xmlJsonClass = {
             return this.each(function () {
                 var $t = this,
                     grp = $t.p.groupingView,
-                    str = "", icon = "", hid, clid, pmrtl = grp.groupCollapse ? grp.plusicon : grp.minusicon, gv, cp = [], len = grp.groupField.length;
+                    str = "", icon = "", hid, clid, pmrtl = grp.groupCollapse ? grp.plusicon : grp.minusicon, gv,
+                    cp = [], len = grp.groupField.length;
                 pmrtl += " tree-wrap-" + $t.p.direction;
                 $.each($t.p.colModel, function (i, n) {
                     var ii;

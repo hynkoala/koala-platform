@@ -21,7 +21,7 @@
     </style>
 
     <script>
-        $(function(){
+        $(function () {
             showPhoto(null, 'manager');
         })
     </script>

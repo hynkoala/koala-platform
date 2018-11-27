@@ -1,53 +1,57 @@
 ﻿@charset "utf-8";
 /* CSS Document */
-body{
-	background-image: url("/koala-platform/static/img/content-bg.png");
+body {
+    background-image: url("/koala-platform/static/img/content-bg.png");
 }
+
 #out-box {
-	width:1024px;
-	height:768px;
-	position:relative;
-	margin-top:8px;
-	margin:0 auto;
-	border: 1px solid rgb(36, 66, 92);
+    width: 1024px;
+    height: 768px;
+    position: relative;
+    margin-top: 8px;
+    margin: 0 auto;
+    border: 1px solid rgb(36, 66, 92);
 }
-#content{
-	background-image: url("../img/welcome.jpg");
-	background-repeat: no-repeat;
+
+#content {
+    background-image: url("../img/welcome.jpg");
+    background-repeat: no-repeat;
 }
-img.welcome{
-	display: block;
-	position: absolute;
-	left: 725px;
-	top: 67px;
-	height: 416px;
-	width: 297px;
+
+img.welcome {
+    display: block;
+    position: absolute;
+    left: 725px;
+    top: 67px;
+    height: 416px;
+    width: 297px;
 }
+
 #dongtai {
-	width: 500px;
-	position: absolute;
-	margin-top: 200px;
+    width: 500px;
+    position: absolute;
+    margin-top: 200px;
 }
 
 h4.biaoti {
-	width: 100px;
-	height: 30px;
-	color: #FF0;
-	background: rgb(36,66,92);
-	text-align: center;
-	line-height: 30px;
-	margin-top:10px;
-	margin-bottom: 20px;
-	
+    width: 100px;
+    height: 30px;
+    color: #FF0;
+    background: rgb(36, 66, 92);
+    text-align: center;
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
 }
 
 li.diary-title {
-	text-align: left;
-	margin: 10px 20px;
-	margin-left: 50px;
-	font-size: 16px;
-	background-color: #d8eee8;
-	padding: 0.5px 10px;
+    text-align: left;
+    margin: 10px 20px;
+    margin-left: 50px;
+    font-size: 16px;
+    background-color: #d8eee8;
+    padding: 0.5px 10px;
 }
 
 

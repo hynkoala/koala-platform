@@ -1,20 +1,20 @@
 <%@ page language="java" pageEncoding="utf-8" %>
 <script>
     window.onload = function () {
-        $("div.main-menu").mouseover(function(){
-            $(this).css("border-top","2px solid red");
+        $("div.main-menu").mouseover(function () {
+            $(this).css("border-top", "2px solid red");
             /*$(this).children("a.dropdown-toggle").click();*/
             /*$(this).children("ul.dropdown-menu").removeClass("hidden");*/
         });
-        $("div.main-menu").mouseout(function(){
-            $(this).css("border-top","none");
-           /* $(this).children("ul.dropdown-menu").addClass("hidden");*/
+        $("div.main-menu").mouseout(function () {
+            $(this).css("border-top", "none");
+            /* $(this).children("ul.dropdown-menu").addClass("hidden");*/
         });
-        $("li.sec-menu").mouseover(function(){
-            $(this).css("color","rgb(220,220,220)");
+        $("li.sec-menu").mouseover(function () {
+            $(this).css("color", "rgb(220,220,220)");
         });
-        $("li.sec-menu").mouseout(function(){
-            $(this).css("color","rgb(180,180,180)");
+        $("li.sec-menu").mouseout(function () {
+            $(this).css("color", "rgb(180,180,180)");
         });
         $('.dropdown-toggle').dropdown()
     }
@@ -44,7 +44,7 @@
         <div id="about" class="dropdown main-menu">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">关于</a>
             <ul class="dropdown-menu" role="menu">
-                <li class="sec-menu" >关于网站</li>
+                <li class="sec-menu">关于网站</li>
                 <li class="sec-menu">关于我们</li>
                 <li class="sec-menu">E-mail</li>
             </ul>

@@ -26,12 +26,12 @@ public interface UserMapper {
     void insertUser(User user);
 
     /**
-     *@Author: hanyaning
-     *@Email: hynkoala@163.com
-     *@Date: 2018.09.17
-     *@Param: [userName]
-     *@Return: cn.koala.platform.model.User
-     *@Description: 通过用户名查询用户操作
+     * @Author: hanyaning
+     * @Email: hynkoala@163.com
+     * @Date: 2018.09.17
+     * @Param: [userName]
+     * @Return: cn.koala.platform.model.User
+     * @Description: 通过用户名查询用户操作
      */
     User queryUserByUserName(String userName);
 
@@ -40,12 +40,12 @@ public interface UserMapper {
     List<User> queryUsers(Map map);
 
     /**
-     *@Author: hanyaning
-     *@Email: hynkoala@163.com
-     *@Date: 2018.09.17
-     *@Param: [user]
-     *@Return: void
-     *@Description: 通过user对象更新用户错作
+     * @Author: hanyaning
+     * @Email: hynkoala@163.com
+     * @Date: 2018.09.17
+     * @Param: [user]
+     * @Return: void
+     * @Description: 通过user对象更新用户错作
      */
     void updateUser(User user);
 

@@ -151,7 +151,7 @@ jQuery.extend({
         }
 
         /*jQuery('#' + frameId).load(uploadCallback);*/
-        jQuery('#' + frameId).on("load",uploadCallback);
+        jQuery('#' + frameId).on("load", uploadCallback);
         return {
             abort: function () {
             }

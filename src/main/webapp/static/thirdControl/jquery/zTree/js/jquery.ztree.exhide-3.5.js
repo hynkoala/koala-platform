@@ -17,10 +17,10 @@
             n.isHidden = !!n.isHidden;
             data.initHideForExCheck(setting, n);
         },
-    //add dom for check
+        //add dom for check
         _beforeA = function (setting, node, html) {
         },
-    //update zTreeObj, add method of exLib
+        //update zTreeObj, add method of exLib
         _zTreeTools = function (setting, zTreeTools) {
             zTreeTools.showNodes = function (nodes, options) {
                 view.showNodes(setting, nodes, options);
@@ -51,7 +51,7 @@
                 }
             }
         },
-    //method of operate data
+        //method of operate data
         _data = {
             initHideForExCheck: function (setting, n) {
                 if (n.isHidden && setting.check && setting.check.enable) {
@@ -81,7 +81,7 @@
                 }
             }
         },
-    //method of operate ztree dom
+        //method of operate ztree dom
         _view = {
             clearOldFirstNode: function (setting, node) {
                 var n = node.getNextNode();

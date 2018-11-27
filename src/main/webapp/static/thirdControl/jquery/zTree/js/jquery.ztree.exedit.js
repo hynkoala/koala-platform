@@ -23,7 +23,7 @@
                 TMPTARGET_NODE: "tmpTargetNode"
             }
         },
-    //default setting of exedit
+        //default setting of exedit
         _setting = {
             edit: {
                 enable: false,
@@ -61,7 +61,7 @@
                 onRename: null
             }
         },
-    //default root of exedit
+        //default root of exedit
         _initRoot = function (setting) {
             var r = data.getRoot(setting);
             r.curEditNode = null;
@@ -72,10 +72,10 @@
             r.dragMaskList = [];
             r.showHoverDom = true;
         },
-    //default cache of exedit
+        //default cache of exedit
         _initCache = function (treeId) {
         },
-    //default bind event of exedit
+        //default bind event of exedit
         _bindEvent = function (setting) {
             var o = setting.treeObj;
             var c = consts.event;
@@ -103,7 +103,7 @@
             o.unbind(c.DRAG);
             o.unbind(c.DROP);
         },
-    //default event proxy of exedit
+        //default event proxy of exedit
         _eventProxy = function (e) {
             var target = e.target,
                 setting = data.getSetting(e.data.treeId),
@@ -156,13 +156,13 @@
             };
             return proxyResult
         },
-    //default init node of exedit
+        //default init node of exedit
         _initNode = function (setting, level, n, parentNode, isFirstNode, isLastNode, openFlag) {
             if (!n) return;
             n.isHover = false;
             n.editNameFlag = false;
         },
-    //update zTreeObj, add method of edit
+        //update zTreeObj, add method of edit
         _zTreeTools = function (setting, zTreeTools) {
             zTreeTools.cancelEditName = function (newName) {
                 var root = data.getRoot(setting),
@@ -225,7 +225,7 @@
                 return this.refresh();
             }
         },
-    //method of operate data
+        //method of operate data
         _data = {
             setSonNodeLevel: function (setting, parentNode, node) {
                 if (!node) return;
@@ -237,9 +237,9 @@
                 }
             }
         },
-    //method of event proxy
+        //method of event proxy
         _event = {},
-    //method of event handler
+        //method of event handler
         _handler = {
             onHoverOverNode: function (event, node) {
                 var setting = data.getSetting(event.data.treeId),
@@ -286,7 +286,6 @@
 
                 view.editNodeBlur = true;
                 view.cancelCurEditNode(setting, null, true);
-
 
                 var doc = $(document), curNode, tmpArrow, tmpTarget,
                     isOtherTree = false,
@@ -705,7 +704,7 @@
                 return true;
             }
         },
-    //method of tools for zTree
+        //method of tools for zTree
         _tools = {
             getAbs: function (obj) {
                 var oRect = obj.getBoundingClientRect();
@@ -755,7 +754,7 @@
                 }
             }
         },
-    //method of operate ztree dom
+        //method of operate ztree dom
         _view = {
             addEditBtn: function (setting, node) {
                 if (node.editNameFlag || $("#" + node.tId + consts.id.EDIT).length > 0) {

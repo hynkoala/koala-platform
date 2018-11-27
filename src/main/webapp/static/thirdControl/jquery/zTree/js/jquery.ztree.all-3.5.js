@@ -12,7 +12,7 @@
  */
 (function ($) {
     var settings = {}, roots = {}, caches = {},
-    //default consts of core
+        //default consts of core
         _consts = {
             className: {
                 BUTTON: "button",
@@ -53,7 +53,7 @@
                 CURSELECTED: "curSelectedNode"
             }
         },
-    //default setting of core
+        //default setting of core
         _setting = {
             treeId: "",
             treeObj: null,
@@ -122,8 +122,8 @@
                 onRemove: null
             }
         },
-    //default root of core
-    //zTree use root to save full data
+        //default root of core
+        //zTree use root to save full data
         _initRoot = function (setting) {
             var r = data.getRoot(setting);
             if (!r) {
@@ -138,7 +138,7 @@
             r.zId = 0;
             r._ver = (new Date()).getTime();
         },
-    //default cache of core
+        //default cache of core
         _initCache = function (setting) {
             var c = data.getCache(setting);
             if (!c) {
@@ -148,7 +148,7 @@
             c.nodes = [];
             c.doms = [];
         },
-    //default bindEvent of core
+        //default bindEvent of core
         _bindEvent = function (setting) {
             var o = setting.treeObj,
                 c = consts.event;
@@ -191,7 +191,7 @@
                 .unbind(c.ASYNC_ERROR)
                 .unbind(c.REMOVE);
         },
-    //default event proxy of core
+        //default event proxy of core
         _eventProxy = function (event) {
             var target = event.target,
                 setting = data.getSetting(event.data.treeId),
@@ -275,7 +275,7 @@
             };
             return proxyResult
         },
-    //default init node of core
+        //default init node of core
         _initNode = function (setting, level, n, parentNode, isFirstNode, isLastNode, openFlag) {
             if (!n) return;
             var r = data.getRoot(setting),
@@ -319,7 +319,7 @@
             innerAfterA: [],
             zTreeTools: []
         },
-    //method of operate data
+        //method of operate data
         data = {
             addNodeCache: function (setting, node) {
                 data.getCache(setting).nodes[data.getNodeCacheId(node.tId)] = node;
@@ -624,7 +624,7 @@
                 }
             }
         },
-    //method of event proxy
+        //method of event proxy
         event = {
             bindEvent: function (setting) {
                 for (var i = 0, j = _init.bind.length; i < j; i++) {
@@ -699,7 +699,7 @@
                 return r;
             }
         },
-    //method of event handler
+        //method of event handler
         handler = {
             onSwitchNode: function (event, node) {
                 var setting = data.getSetting(event.data.treeId);
@@ -755,7 +755,7 @@
                 return (typeof setting.callback.onRightClick) != "function";
             }
         },
-    //method of tools for zTree
+        //method of tools for zTree
         tools = {
             apply: function (fun, param, defaultValue) {
                 if ((typeof fun) == "function") {
@@ -814,7 +814,7 @@
                 return true;
             }
         },
-    //method of operate ztree dom
+        //method of operate ztree dom
         view = {
             addNodes: function (setting, parentNode, newNodes, isSilent) {
                 if (setting.data.keep.leaf && parentNode && !parentNode.isParent) {
@@ -1755,7 +1755,7 @@
                 TYPE_LEVEL: "level"
             }
         },
-    //default setting of excheck
+        //default setting of excheck
         _setting = {
             check: {
                 enable: false,
@@ -1779,15 +1779,15 @@
                 onCheck: null
             }
         },
-    //default root of excheck
+        //default root of excheck
         _initRoot = function (setting) {
             var r = data.getRoot(setting);
             r.radioCheckedList = [];
         },
-    //default cache of excheck
+        //default cache of excheck
         _initCache = function (treeId) {
         },
-    //default bind event of excheck
+        //default bind event of excheck
         _bindEvent = function (setting) {
             var o = setting.treeObj,
                 c = consts.event;
@@ -1801,7 +1801,7 @@
                 c = consts.event;
             o.unbind(c.CHECK);
         },
-    //default event proxy of excheck
+        //default event proxy of excheck
         _eventProxy = function (e) {
             var target = e.target,
                 setting = data.getSetting(e.data.treeId),
@@ -1849,7 +1849,7 @@
             };
             return proxyResult
         },
-    //default init node of excheck
+        //default init node of excheck
         _initNode = function (setting, level, n, parentNode, isFirstNode, isLastNode, openFlag) {
             if (!n) return;
             var checkedKey = setting.data.key.checked;
@@ -1873,7 +1873,7 @@
                 r.radioCheckedList.push(n);
             }
         },
-    //add dom for check
+        //add dom for check
         _beforeA = function (setting, node, html) {
             var checkedKey = setting.data.key.checked;
             if (setting.check.enable) {
@@ -1881,7 +1881,7 @@
                 html.push("<span ID='", node.tId, consts.id.CHECK, "' class='", view.makeChkClass(setting, node), "' treeNode", consts.id.CHECK, (node.nocheck === true ? " style='display:none;'" : ""), "></span>");
             }
         },
-    //update zTreeObj, add method of check
+        //update zTreeObj, add method of check
         _zTreeTools = function (setting, zTreeTools) {
             zTreeTools.checkNode = function (node, checked, checkTypeFlag, callbackFlag) {
                 var checkedKey = this.setting.data.key.checked;
@@ -1944,7 +1944,7 @@
                 }
             }
         },
-    //method of operate data
+        //method of operate data
         _data = {
             getRadioCheckedList: function (setting) {
                 var checkedList = data.getRoot(setting).radioCheckedList;
@@ -2052,9 +2052,9 @@
                 node.check_Child_State = chkFlag;
             }
         },
-    //method of event proxy
+        //method of event proxy
         _event = {},
-    //method of event handler
+        //method of event handler
         _handler = {
             onCheckNode: function (event, node) {
                 if (node.chkDisabled === true) return false;
@@ -2086,9 +2086,9 @@
                 return true;
             }
         },
-    //method of tools for zTree
+        //method of tools for zTree
         _tools = {},
-    //method of operate ztree dom
+        //method of operate ztree dom
         _view = {
             checkNodeRelation: function (setting, node) {
                 var pNode, i, l,
@@ -2387,7 +2387,7 @@
                 TMPTARGET_NODE: "tmpTargetNode"
             }
         },
-    //default setting of exedit
+        //default setting of exedit
         _setting = {
             edit: {
                 enable: false,
@@ -2426,7 +2426,7 @@
                 onRename: null
             }
         },
-    //default root of exedit
+        //default root of exedit
         _initRoot = function (setting) {
             var r = data.getRoot(setting), rs = data.getRoots();
             r.curEditNode = null;
@@ -2437,10 +2437,10 @@
             r.dragMaskList = [];
             rs.showHoverDom = true;
         },
-    //default cache of exedit
+        //default cache of exedit
         _initCache = function (treeId) {
         },
-    //default bind event of exedit
+        //default bind event of exedit
         _bindEvent = function (setting) {
             var o = setting.treeObj;
             var c = consts.event;
@@ -2468,7 +2468,7 @@
             o.unbind(c.DRAGMOVE);
             o.unbind(c.DROP);
         },
-    //default event proxy of exedit
+        //default event proxy of exedit
         _eventProxy = function (e) {
             var target = e.target,
                 setting = data.getSetting(e.data.treeId),
@@ -2521,13 +2521,13 @@
             };
             return proxyResult
         },
-    //default init node of exedit
+        //default init node of exedit
         _initNode = function (setting, level, n, parentNode, isFirstNode, isLastNode, openFlag) {
             if (!n) return;
             n.isHover = false;
             n.editNameFlag = false;
         },
-    //update zTreeObj, add method of edit
+        //update zTreeObj, add method of edit
         _zTreeTools = function (setting, zTreeTools) {
             zTreeTools.cancelEditName = function (newName) {
                 var root = data.getRoot(this.setting);
@@ -2591,7 +2591,7 @@
                 return this.refresh();
             }
         },
-    //method of operate data
+        //method of operate data
         _data = {
             setSonNodeLevel: function (setting, parentNode, node) {
                 if (!node) return;
@@ -2603,9 +2603,9 @@
                 }
             }
         },
-    //method of event proxy
+        //method of event proxy
         _event = {},
-    //method of event handler
+        //method of event handler
         _handler = {
             onHoverOverNode: function (event, node) {
                 var setting = data.getSetting(event.data.treeId),
@@ -3073,7 +3073,7 @@
                 return true;
             }
         },
-    //method of tools for zTree
+        //method of tools for zTree
         _tools = {
             getAbs: function (obj) {
                 var oRect = obj.getBoundingClientRect(),
@@ -3125,7 +3125,7 @@
                 }
             }
         },
-    //method of operate ztree dom
+        //method of operate ztree dom
         _view = {
             addEditBtn: function (setting, node) {
                 if (node.editNameFlag || $$(node, consts.id.EDIT, setting).length > 0) {

@@ -1,15 +1,16 @@
 /* CSS Document */
 @charset "utf-8";
-body{
+body {
     padding-top: 12%;
     background-image: url("/koala-platform/static/img/login-bg.jpg");
 }
-.out-box{
+
+.out-box {
     font-size: 15px;
     width: 380px;
-    height:330px;
-    margin:0 auto;
-    position:relative;
+    height: 330px;
+    margin: 0 auto;
+    position: relative;
     padding-top: 16px;
     box-shadow: -6px -6px 16px 6px #761c19;
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="utf-8" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>日志</title>
     <jsp:include page="alluse/autoImport.jsp"/>
     <style>

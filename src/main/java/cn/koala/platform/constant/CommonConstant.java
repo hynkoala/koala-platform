@@ -8,10 +8,10 @@ package cn.koala.platform.constant;
  * Description:
  */
 public class CommonConstant {
-    public static final String STR_SUCCESS="success";
-    public static final String STR_ERROR="error";
-    public static final String STR_TRUE="true";
-    public static final String STR_FALSE="false";
-    public static final String UNM_0="0";
-    public static final String UNM_1="1";
+    public static final String STR_SUCCESS = "success";
+    public static final String STR_ERROR = "error";
+    public static final String STR_TRUE = "true";
+    public static final String STR_FALSE = "false";
+    public static final String UNM_0 = "0";
+    public static final String UNM_1 = "1";
 }

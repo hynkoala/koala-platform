@@ -1,19 +1,19 @@
 /* CSS Document */
 @charset "utf-8";
-#footer{
-	position: absolute;
-	margin-left: 0;
-	height: 53px;
-	width: 100%;
-	background:url(../img/footer-bg.png);
+#footer {
+    position: absolute;
+    margin-left: 0;
+    height: 53px;
+    width: 100%;
+    background: url(../img/footer-bg.png);
 
 }
 
-p#shengming{
-	position: absolute;
-	font-size:16px;
-	left: 0;
-	right: 0;
-	top: 10px;
-	color: rgb(200, 200, 200);
+p#shengming {
+    position: absolute;
+    font-size: 16px;
+    left: 0;
+    right: 0;
+    top: 10px;
+    color: rgb(200, 200, 200);
 }

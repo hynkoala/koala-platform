@@ -20,8 +20,11 @@ public class Goods {
     private String goodsUsage;//
     private Date produceDate;//
     private Date expiryDate;//
+    private Date createTime;//
+    private Date updateTime;//
     private String guaranteePeriod;//
     private String doHave;//
+    private String goodsModel;
 
     public String getGoodsId() {
         return goodsId;
@@ -103,6 +106,22 @@ public class Goods {
         this.expiryDate = expiryDate;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
     public String getGuaranteePeriod() {
         return guaranteePeriod;
     }
@@ -118,4 +137,33 @@ public class Goods {
     public void setDoHave(String doHave) {
         this.doHave = doHave;
     }
+
+    public String getGoodsModel() {
+        return goodsModel;
+    }
+
+    public void setGoodsModel(String goodsModel) {
+        this.goodsModel = goodsModel;
+    }
+
+    public String getGoodsBrand() {
+        return goodsBrand;
+    }
+
+    public void setGoodsBrand(String goodsBrand) {
+        this.goodsBrand = goodsBrand;
+    }
+
+    public String getSurplus() {
+        return surplus;
+    }
+
+    public void setSurplus(String surplus) {
+        this.surplus = surplus;
+    }
+
+    private String goodsBrand;
+    private String surplus;
+
+
 }

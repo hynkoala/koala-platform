@@ -3,6 +3,9 @@ package cn.koala.platform.mapper;
 import cn.koala.platform.model.Goods;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by hanyaning
  * Email:hynkoala@163.com
@@ -13,4 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GoodsMapper {
     void insertGoods(Goods goods);
+
+    List<Goods> getGoodsList(Map map);
 }

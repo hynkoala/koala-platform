@@ -3,6 +3,9 @@
  */
 var userName = getUserNameByUrl();
 var homeUrl = "/koala-platform";
+var platformUrl = "/koala-platform";
+var accountUrl = "/koala-platform/account";
+var goodsUrl = "/koala-platform/goods";
 /*window.onload=function(){
  var enabled=0;
  var today=new Date();

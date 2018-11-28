@@ -7,27 +7,37 @@
         <id property="goodsId" column="goods_id" jdbcType="VARCHAR"/>
         <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
         <result property="goodsUnit" column="goods_unit" jdbcType="VARCHAR"/>
-        <result property="goodsType" column="goods_type" jdbcType="TIMESTAMP"/>
-        <result property="goodsBigType" column="goods_big_type" jdbcType="TIMESTAMP"/>
+        <result property="goodsType" column="goods_type" jdbcType="VARCHAR"/>
+        <result property="goodsModel" column="goods_model" jdbcType="VARCHAR"/>
+        <result property="goodsBrand" column="goods_brand" jdbcType="VARCHAR"/>
+        <result property="goodsBigType" column="goods_big_type" jdbcType="VARCHAR"/>
         <result property="goodsInPrice" column="goods_in_prise" jdbcType="NUMERIC"/>
         <result property="goodsFixedPrice" column="goods_fixed_price" jdbcType="NUMERIC"/>
         <result property="goodsUsage" column="goods_usage" jdbcType="VARCHAR"/>
         <result property="produceDate" column="produce_date" jdbcType="TIMESTAMP"/>
         <result property="expiryDate" column="expiry_date" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="guaranteePeriod" column="guarantee_period" jdbcType="VARCHAR"/>
         <result property="doHave" column="do_have" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insertGoods" parameterType="cn.koala.platform.model.User">
         insert into goods_list (goods_id, goods_name,goods_unit,goods_type,goods_big_type,goods_in_price,
-        goods_fixed_price,goods_usage, produce_date, expiry_date, guarantee_period,do_have)
+        goods_fixed_price,goods_usage, produce_date, expiry_date, guarantee_period,do_have,goods_brand,
+        goods_model,create_time,update_time)
         VALUES(#{goodsId,jdbcType=VARCHAR},#{goodsName,jdbcType=VARCHAR},
         #{goodsUnit,jdbcType=VARCHAR},#{goodsType,jdbcType=VARCHAR},
         #{goodsBigType,jdbcType=VARCHAR},#{goodsInPrice,jdbcType=NUMERIC},
         #{goodsFixedPrice,jdbcType=NUMERIC},#{goodsUsage,jdbcType=VARCHAR},
         #{produceDate,jdbcType=TIMESTAMP},#{expiryDate,jdbcType=TIMESTAMP},
-        #{guaranteePeriod,jdbcType=VARCHAR},#{doHave,jdbcType=VARCHAR})
+        #{guaranteePeriod,jdbcType=VARCHAR},#{doHave,jdbcType=VARCHAR},
+        #{goodsBrand,jdbcType=VARCHAR},#{goodsModel,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
     </insert>
+    <select id="getGoodsList" parameterType="map" resultType="cn.koala.platform.model.Goods" resultMap="goods">
+        select t.* from goods_list t order by t.create_time desc
+    </select>
 
     <!--<update id="updateUser" parameterType="cn.koala.platform.model.User">
         UPDATE koala_user

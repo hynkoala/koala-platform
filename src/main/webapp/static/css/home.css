@@ -6,32 +6,16 @@
     margin: 10px auto;
     min-height: 600px;
     /*padding:20px 50px;*/
-    border-left: 1px solid red;
-    border-right: 1px solid red;
+    /*border-left: 1px solid red;
+    border-right: 1px solid red;*/
     font-size: 18px;
     /*box-shadow: ;*/
 }
 
-button.btn-default-dark {
+.btn-default-dark {
     background-color: #461846;
     padding: 4px 8px;
-    color: #b6b2be;
-    border: none;
-    border-radius: 6px;
-}
-
-input.btn-default-dark {
-    background-color: #461846;
-    padding: 4px 8px;
-    color: #b6b2be;
-    border: none;
-    border-radius: 6px;
-}
-
-a.btn-default-dark {
-    background-color: #461846;
-    padding: 4px 8px;
-    color: #b6b2be;
+    color: whitesmoke;
     border: none;
     border-radius: 6px;
 }

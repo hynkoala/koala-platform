@@ -57,8 +57,11 @@
                     /*,{field: 'goodsBrand', title: '品牌', width: 80, sort: true}*/
                     , {field: 'goodsInPrice', title: '进价', width: 80, sort: true}
                     , {field: 'doHave', title: '存量', width: 80, sort: true}
+                    , {field: 'createTime', title: '录入时间', width: 120, sort: true, templet: timeFomatter(e)}
+                    , {field: 'updateTime', title: '更新时间', width: 120, sort: true, templet: timeFomatter(e)}
                     , {fixed: 'right', align: 'center', toolbar: 'default'}
                 ]],
+
                 page: true,
                 limit: 10,
                 limits: [10, 30, 50],
@@ -75,3 +78,4 @@
 
 </body>
 </html>
+

@@ -36,7 +36,15 @@
         #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
     </insert>
     <select id="getGoodsList" parameterType="map" resultType="cn.koala.platform.model.Goods" resultMap="goods">
-        select t.* from goods_list t order by t.create_time desc
+        select t.* from goods_list t order by t.update_time desc
+    </select>
+    <select id="getBigTypeList" resultType="java.util.Map">
+        SELECT t.* from goods_zd_bigtype t
+    </select>
+    <select id="getTypesByBigtype" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT t.* from goods_zd_type t
+        where t.father_mc=#{type}
+        or t.father_dm=#{type}
     </select>
 
     <!--<update id="updateUser" parameterType="cn.koala.platform.model.User">

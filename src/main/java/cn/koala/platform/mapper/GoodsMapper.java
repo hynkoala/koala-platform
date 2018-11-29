@@ -18,4 +18,8 @@ public interface GoodsMapper {
     void insertGoods(Goods goods);
 
     List<Goods> getGoodsList(Map map);
+
+    List<Map> getBigTypeList();
+
+    List<Map> getTypesByBigtype(Map map);
 }

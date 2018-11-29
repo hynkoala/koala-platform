@@ -70,4 +70,22 @@ public class GoodsController {
         resultMap.put("count", goodsList.size());
         return resultMap;
     }
+
+    @ResponseBody
+    @RequestMapping("getBigTypes")
+    public List getGoodsBigType() {
+        List<Map> map = goodsMapper.getBigTypeList();
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("getSmallTypes")
+    public List getSmallTypes(String type) {
+        Map map = new HashMap();
+        map.put("type", type);
+        List<Map> resultMap = goodsMapper.getTypesByBigtype(map);
+
+        return resultMap;
+    }
 }

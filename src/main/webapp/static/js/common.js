@@ -97,6 +97,25 @@ function dateFormatter(fmt, date) {
     return fmt;
 }
 
+function timeFomatter(cellvalue, n) {
+    if (cellvalue) {
+        var time = new Date(cellvalue).toLocaleString().replace(/\/|年|月/g, "-").replace(/日/g, " ").replace(/下午|上午/g, "");
+        if (n) {
+            var year = time.split(" ")[0];
+            switch (n) {
+                case 1:
+                    return time;
+                case 2:
+                    return year;
+                default:
+                    return year;
+            }
+        }
+    } else {
+        return '';
+    }
+}
+
 function getFileName(prefix, suffix) {
     var d = new Date();
     var curYear = d.getYear();

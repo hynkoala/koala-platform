@@ -68,6 +68,12 @@
         display: none
     }
 
+    .half-width {
+        width: 50% !important;
+        float: left;
+
+    }
+
 </style>
 <script>
     $(function () {
@@ -96,11 +102,24 @@
                 /*,{field: 'goodsBrand', title: '品牌', width: 80, sort: true}*/
                 , {field: 'goodsInPrice', title: '进价', width: 80, sort: true}
                 , {field: 'doHave', title: '存量', width: 80, sort: true}
+                , {
+                    field: 'createTime', title: '录入时间', width: 200, sort: true, templet: function (d) {
+                        return timeFomatter(d.createTime, 1);
+                    }
+                }
+                , {
+                    field: 'updateTime', title: '更新时间', width: 150, sort: true, templet: function (d) {
+                        return timeFomatter(d.createTime, 2);
+                    }
+                }
                 , {fixed: 'right', align: 'center', toolbar: 'default'}
             ]],
             title: "货物清单"
         })
-    })
+
+        var initType = initGoodsType();
+        initType = getGoodsSmallType();
+    });
     function saveGoods() {
         var data = $("#form").serialize();
         var url = "/koala-platform/goods/saveGoods";
@@ -115,6 +134,40 @@
                 }
             }
         })
+
+    }
+    var initGoodsType = function () {
+        var url = goodsUrl + "/getBigTypes";
+        $.ajax({
+            url: url,
+            type: "post",
+            async: false,
+            success: function (data) {
+                data.forEach(function (e) {
+                    $("#goods-big-type").append('<option value="' + e.DM + '"onclick="getGoodsSmallType()">' + e.MC + '</option>');
+                });
+                return true;
+            }
+        })
+    };
+    function getGoodsSmallType() {
+        var bigType = $('#goods-big-type').val();
+        $("#goods-type").empty();
+        var url = goodsUrl + "/getSmallTypes";
+        $.ajax({
+            url: url,
+            data: {type: bigType},
+            type: "post",
+            success: function (data) {
+                data.forEach(function (e) {
+                    $("#goods-type").append('<option value="' + e.DM + '">' + e.MC + '</option>');
+                });
+                return true;
+            }
+        })
+    };
+
+    function goodsUnitDropdown() {
 
     }
 
@@ -138,7 +191,9 @@
                     </td>
                     <td class="td-field">单位</td>
                     <td class="td-value">
-                        <select type="text" name="goodsUnit" id="goods-unit">
+                        <input type="text" name="goodsUnit" class="dropdown-input" onclick="goodsUnitDropdown()">
+                        <select type="text" name="goodsUnit" id="goods-unit" class="editable-select" value=""
+                                hidden="hidden">
                             <option value="个">个</option>
                             <option value="盒">盒</option>
                             <option value="箱">箱</option>
@@ -156,8 +211,11 @@
                     </td>
                     <td class="td-field">类别</td>
                     <td class="td-value">
-                        <select id="goodsType">
+                        <select name="goodsBigType" id="goods-big-type" class="half-width"
+                                onchange="getGoodsSmallType()">
                         </select>
+                        <select name="goodsType" id="goods-type" class="half-width"></select>
+
                     </td>
                     <td class="td-field">品牌</td>
                     <td class="td-value">

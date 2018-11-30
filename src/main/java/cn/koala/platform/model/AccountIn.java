@@ -13,16 +13,17 @@ public class AccountIn {
     private String inId;//
     private String inName;//
     private Date inTime;//
-    private String billId;//
-    private String goodsId;//
-    private String goodsName;//
-    private String goodsUnit;//
-    private Integer goodsCount;//
     private String goodsType;//
-    private Integer goodsInPrice;//
-    private Integer goodsFixedPrice;//
-    private String goodsSupplier;//
-    private String userName;//
+    private String inBh;//
+    private String other_comment;//
+    private Double sum_money;//
+    private String supplier;//
+    private String supplierPhone;//
+    private String supplierAddress;//
+    private String contactPerson;//
+    private String operatePerson;//
+    private Date createTime;//
+    private Date updateTime;//
 
     public String getInId() {
         return inId;
@@ -48,46 +49,6 @@ public class AccountIn {
         this.inTime = inTime;
     }
 
-    public String getBillId() {
-        return billId;
-    }
-
-    public void setBillId(String billId) {
-        this.billId = billId;
-    }
-
-    public String getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(String goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
-    }
-
-    public String getGoodsUnit() {
-        return goodsUnit;
-    }
-
-    public void setGoodsUnit(String goodsUnit) {
-        this.goodsUnit = goodsUnit;
-    }
-
-    public Integer getGoodsCount() {
-        return goodsCount;
-    }
-
-    public void setGoodsCount(Integer goodsCount) {
-        this.goodsCount = goodsCount;
-    }
-
     public String getGoodsType() {
         return goodsType;
     }
@@ -96,35 +57,83 @@ public class AccountIn {
         this.goodsType = goodsType;
     }
 
-    public Integer getGoodsInPrice() {
-        return goodsInPrice;
+    public String getInBh() {
+        return inBh;
     }
 
-    public void setGoodsInPrice(Integer goodsInPrice) {
-        this.goodsInPrice = goodsInPrice;
+    public void setInBh(String inBh) {
+        this.inBh = inBh;
     }
 
-    public Integer getGoodsFixedPrice() {
-        return goodsFixedPrice;
+    public String getOther_comment() {
+        return other_comment;
     }
 
-    public void setGoodsFixedPrice(Integer goodsFixedPrice) {
-        this.goodsFixedPrice = goodsFixedPrice;
+    public void setOther_comment(String other_comment) {
+        this.other_comment = other_comment;
     }
 
-    public String getGoodsSupplier() {
-        return goodsSupplier;
+    public Double getSum_money() {
+        return sum_money;
     }
 
-    public void setGoodsSupplier(String goodsSupplier) {
-        this.goodsSupplier = goodsSupplier;
+    public void setSum_money(Double sum_money) {
+        this.sum_money = sum_money;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getSupplier() {
+        return supplier;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public String getSupplierPhone() {
+        return supplierPhone;
+    }
+
+    public void setSupplierPhone(String supplierPhone) {
+        this.supplierPhone = supplierPhone;
+    }
+
+    public String getSupplierAddress() {
+        return supplierAddress;
+    }
+
+    public void setSupplierAddress(String supplierAddress) {
+        this.supplierAddress = supplierAddress;
+    }
+
+    public String getContactPerson() {
+        return contactPerson;
+    }
+
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    public String getOperatePerson() {
+        return operatePerson;
+    }
+
+    public void setOperatePerson(String operatePerson) {
+        this.operatePerson = operatePerson;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

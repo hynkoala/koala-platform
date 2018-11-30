@@ -70,12 +70,6 @@
         display: none
     }
 
-    .half-width {
-        width: 50% !important;
-        float: left;
-
-    }
-
 </style>
 <body>
 <div id="main-content">

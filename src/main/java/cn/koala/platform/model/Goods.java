@@ -15,8 +15,8 @@ public class Goods {
     private String goodsUnit;//
     private String goodsType;//
     private String goodsBigType;//
-    private Integer goodsInPrice;//
-    private Integer goodsFixedPrice;//
+    private Double goodsInPrice;//
+    private Double goodsFixedPrice;//
     private String goodsUsage;//
     private Date produceDate;//
     private Date expiryDate;//
@@ -25,6 +25,8 @@ public class Goods {
     private String guaranteePeriod;//
     private String doHave;//
     private String goodsModel;
+    private String goodsBrand;
+    private String surplus;
 
     public String getGoodsId() {
         return goodsId;
@@ -66,19 +68,19 @@ public class Goods {
         this.goodsBigType = goodsBigType;
     }
 
-    public Integer getGoodsInPrice() {
+    public Double getGoodsInPrice() {
         return goodsInPrice;
     }
 
-    public void setGoodsInPrice(Integer goodsInPrice) {
+    public void setGoodsInPrice(Double goodsInPrice) {
         this.goodsInPrice = goodsInPrice;
     }
 
-    public Integer getGoodsFixedPrice() {
+    public Double getGoodsFixedPrice() {
         return goodsFixedPrice;
     }
 
-    public void setGoodsFixedPrice(Integer goodsFixedPrice) {
+    public void setGoodsFixedPrice(Double goodsFixedPrice) {
         this.goodsFixedPrice = goodsFixedPrice;
     }
 
@@ -161,9 +163,4 @@ public class Goods {
     public void setSurplus(String surplus) {
         this.surplus = surplus;
     }
-
-    private String goodsBrand;
-    private String surplus;
-
-
 }

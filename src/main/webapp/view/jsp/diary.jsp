@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>日志</title>
-    <jsp:include page="alluse/autoImport.jsp"/>
+    <jsp:include page="alluse/importCss.jsp"/>
     <style>
         #content {
             padding: 20px 50px;
@@ -17,34 +17,7 @@
             height: 260px;
         }
     </style>
-    <script>
-        var diaryTitle;
-        var diaryContent;
-        function submitDiary() {
-            diaryTitle = $("#diary-title").val();
-            diaryContent = $("#diary-content").val();
-            if (isNullOrNot(diaryTitle) || isNullOrNot(diaryContent)) {
-                makeBlockTime("请先输入！");
-                return;
-            }
-            var data = {diaryTitle: diaryTitle, diaryContent: diaryContent};
-            var url = homeUrl + "/diary/addDiary";
-            $.ajax({
-                url: url,
-                data: data,
-                type: "post",
-                crossDomain: true,
-                async: false,
-                success: function (data) {
-                    makeBlockTime(data);
-                    window.location.reload();
-                },
-                error: function (e) {
-                    alert("未知错误！" + e);
-                }
-            })
-        }
-    </script>
+
 </head>
 
 <body>
@@ -64,5 +37,34 @@
 
     <jsp:include page="alluse/footer.jsp"/>
 </div>
+<jsp:include page="alluse/importJs.jsp"></jsp:include>
+<script>
+    var diaryTitle;
+    var diaryContent;
+    function submitDiary() {
+        diaryTitle = $("#diary-title").val();
+        diaryContent = $("#diary-content").val();
+        if (isNullOrNot(diaryTitle) || isNullOrNot(diaryContent)) {
+            makeBlockTime("请先输入！");
+            return;
+        }
+        var data = {diaryTitle: diaryTitle, diaryContent: diaryContent};
+        var url = homeUrl + "/diary/addDiary";
+        $.ajax({
+            url: url,
+            data: data,
+            type: "post",
+            crossDomain: true,
+            async: false,
+            success: function (data) {
+                makeBlockTime(data);
+                window.location.reload();
+            },
+            error: function (e) {
+                alert("未知错误！" + e);
+            }
+        })
+    }
+</script>
 </body>
 </html>

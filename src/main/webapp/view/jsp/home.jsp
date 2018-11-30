@@ -3,17 +3,9 @@
 <html>
 <head>
     <title>koala之家</title>
-    <jsp:include page="alluse/autoImport.jsp"/>
+    <jsp:include page="alluse/importCss.jsp"/>
     <link rel="stylesheet" type="text/css" href="/koala-platform/static/css/homepage.css"/>
-    <script>
-        var user;
-        var diaryAraay;
-        $(function () {
-            user =${user};
-            diaryAraay =${diaryList};
 
-        })
-    </script>
 </head>
 <body>
 
@@ -32,6 +24,16 @@
     </div>
     <jsp:include page="alluse/footer.jsp"/>
 </div>
+<jsp:include page="alluse/importJs.jsp"></jsp:include>
+<script>
+    var user;
+    var diaryAraay;
+    $(function () {
+        user =${user};
+        diaryAraay =${diaryList};
+
+    })
+</script>
 </body>
 </html>
 

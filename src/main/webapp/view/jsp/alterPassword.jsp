@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>修改密码</title>
-    <jsp:include page="alluse/autoImport.jsp"/>
+    <jsp:include page="alluse/importCss.jsp"/>
     <link rel="stylesheet" type="text/css" href="../../static/css/alterPassword.css"/>
     <script>
         var userName = getUserNameByUrl();
@@ -54,5 +54,7 @@
         <button id="to-register" onclick="closeWindow()" class="btn btn-default">关闭</button>
     </div>
 </div>
+<jsp:include page="alluse/importJs.jsp"></jsp:include>
+
 </body>
 </html>

@@ -3,10 +3,9 @@
 #footer {
     position: absolute;
     margin-left: 0;
-    height: 53px;
+    height: 80px;
     width: 100%;
     background: url(../img/footer-bg.png);
-
 }
 
 p#shengming {

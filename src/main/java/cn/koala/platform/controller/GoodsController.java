@@ -3,6 +3,8 @@ package cn.koala.platform.controller;
 import cn.koala.platform.constant.CommonConstant;
 import cn.koala.platform.mapper.GoodsMapper;
 import cn.koala.platform.model.Goods;
+import cn.koala.platform.service.common.DataManagerService;
+import cn.koala.platform.service.common.DataOrganizeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,10 @@ import java.util.*;
 public class GoodsController {
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    DataManagerService dataManagerService;
+    @Autowired
+    DataOrganizeService dataOrganizeService;
     @RequestMapping("toAddGoods")
     public String toAddGoods(Model model) {
 
@@ -58,16 +64,13 @@ public class GoodsController {
         Map resultMap = new HashMap<>();
         Map map = new HashMap<>();
         List<Goods> goodsList = goodsMapper.getGoodsList(map);
-        int start = limit * (page - 1);
-        int end = limit * (page);
-        if (end > goodsList.size()) {
-            end = goodsList.size();
-        }
-        List returnList = goodsList.subList(start, end);
-        resultMap.put("code", "0");
-        resultMap.put("msg", "success");
-        resultMap.put("data", returnList);
-        resultMap.put("count", goodsList.size());
+        Map inputMap = new HashMap();
+        inputMap.put("data", goodsList);
+        inputMap.put("limit", limit);
+        inputMap.put("page", page);
+        dataOrganizeService = dataManagerService.getDataOranizeService("layui");
+        resultMap = dataOrganizeService.tableDataOrganize(inputMap);
+
         return resultMap;
     }
 

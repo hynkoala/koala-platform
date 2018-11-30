@@ -9,8 +9,7 @@
 <html>
 <head>
     <title>图片管理</title>
-    <jsp:include page="alluse/autoImport.jsp"></jsp:include>
-    <script src="/koala-platform/static/js/photo.js"></script>
+    <jsp:include page="alluse/importCss.jsp"></jsp:include>
 
     <style>
         img {
@@ -19,12 +18,6 @@
             margin: 5px 5px;
         }
     </style>
-
-    <script>
-        $(function () {
-            showPhoto(null, 'manager');
-        })
-    </script>
 </head>
 <body>
 <div id="out-box">
@@ -39,5 +32,12 @@
     </div>
     <jsp:include page="alluse/footer.jsp"></jsp:include>
 </div>
+<jsp:include page="alluse/importJs.jsp"></jsp:include>
+<script src="/koala-platform/static/js/photo.js"></script>
+<script>
+    $(function () {
+        showPhoto(null, 'manager');
+    })
+</script>
 </body>
 </html>

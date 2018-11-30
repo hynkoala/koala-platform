@@ -9,9 +9,8 @@
 <html>
 <head>
     <title>留言</title>
-    <jsp:include page="alluse/autoImport.jsp"/>
+    <jsp:include page="alluse/importCss.jsp"/>
     <link rel="stylesheet" type="text/css" href="../../static/css/visiterBook.css"/>
-    <script src="../../static/js/visiterBook.js"></script>
 
     <script>
 
@@ -38,5 +37,8 @@
     <jsp:include page="alluse/footer.jsp"/>
 
 </div>
+<jsp:include page="alluse/importJs.jsp"></jsp:include>
+<script src="../../static/js/visiterBook.js"></script>
+
 </body>
 </html>

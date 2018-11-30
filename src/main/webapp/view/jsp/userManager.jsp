@@ -9,13 +9,11 @@
 <html>
 <head>
     <title>用户管理系统</title>
-    <jsp:include page="alluse/autoImport.jsp"></jsp:include>
+    <jsp:include page="alluse/importCss.jsp"></jsp:include>
     <link rel="stylesheet" href="/koala-platform/static/thirdControl/jqgrid/css/ui.jqgrid.css"/>
     <link rel="stylesheet" href="/koala-platform/static/thirdControl/jquery/css/jquery-ui.theme.min.css"/>
     <link type="text/css" rel="stylesheet" href="/koala-platform/static/css/userManager.css"/>
-    <script type="text/javascript" src="/koala-platform/static/thirdControl/jqgrid/js/jquery.jqGrid.src.js"></script>
-    <script type="text/javascript" src="/koala-platform/static/thirdControl/jqgrid/js/i18n/grid.locale-cn.js"></script>
-    <script type="text/javascript" src="/koala-platform/static/js/userManager.js"></script>
+
 </head>
 <body>
 <div id="select-area">
@@ -35,5 +33,9 @@
 </div>
 <table id="grid-table"></table>
 <div id="grid-pager"></div>
+
+<script type="text/javascript" src="/koala-platform/static/thirdControl/jqgrid/js/jquery.jqGrid.src.js"></script>
+<script type="text/javascript" src="/koala-platform/static/thirdControl/jqgrid/js/i18n/grid.locale-cn.js"></script>
+<script type="text/javascript" src="/koala-platform/static/js/userManager.js"></script>
 </body>
 </html>

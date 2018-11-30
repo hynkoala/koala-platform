@@ -10,9 +10,8 @@
 <html>
 <head>
     <title>相册</title>
-    <jsp:include page="alluse/autoImport.jsp"/>
-    <script src="../../static/thirdControl/jquery/plugins/ajaxfileupload.js"></script>
-    <script src="/koala-platform/static/js/photo.js"></script>
+    <jsp:include page="alluse/importCss.jsp"/>
+
 
     <style>
         #see-photo img {
@@ -40,17 +39,7 @@
             background-color: yellow;
         }
     </style>
-    <script>
-        $(function () {
-            showPhoto(8, "download");
-        });
 
-        function photoManager() {
-            var url = "/koala-platform/view/jsp/photoManager.jsp";
-            window.open(url);
-        }
-
-    </script>
 </head>
 <body>
 <div id="out-box">
@@ -73,6 +62,20 @@
         <div id="see-photo"></div>
     </div>
     <jsp:include page="alluse/footer.jsp"/>
+    <jsp:include page="alluse/importJs.jsp"></jsp:include>
+    <script src="../../static/thirdControl/jquery/plugins/ajaxfileupload.js"></script>
+    <script src="/koala-platform/static/js/photo.js"></script>
+    <script>
+        $(function () {
+            showPhoto(8, "download");
+        });
+
+        function photoManager() {
+            var url = "/koala-platform/view/jsp/photoManager.jsp";
+            window.open(url);
+        }
+
+    </script>
 </div>
 </body>
 </html>

@@ -1,6 +1,36 @@
 /**
  * Created by user on 2018/9/25.
  */
+/*页面初始化方法*/
+$(function () {
+    /*页面初始化设置的最小高度*/
+    var winHeight = window.innerHeight;
+    var winWidth = window.innerWidth;
+    var headerHeight = $("#header").outerHeight(true);
+    var footerHeight = $("#footer").outerHeight(true);
+    var height = winHeight - headerHeight - footerHeight;
+    var width = 0.8 * winWidth;
+    if (winHeight < 480) {
+        height = 480;
+    }
+    if (winWidth < 1280) {
+        width = 1280;
+    }
+    /*$("body").css({"min-height": winHeight});*/
+    $("#main-content,#footer,#header").css({
+        "min-width": width
+    })
+
+    $("#main-content").css({
+        "min-width": width,
+        "min-height": height
+    })
+    /*$("body").css({
+     "max-width":1920,
+     })*/
+
+    $("#footer").show()
+});
 var userName = getUserNameByUrl();
 var homeUrl = "/koala-platform";
 var platformUrl = "/koala-platform";
@@ -39,12 +69,6 @@ function exitLogin() {
     $.blockUI({message: "<h4>" + "记得再回来噢" + "</h4>"});
     setTimeout($.unblockUI, 1000);
     window.location.href = "/koala-platform/view/jsp/login.jsp";
-}
-function loadingShow() {
-    $.blockUI({message: '<h1> loading...</h1>'});
-}
-function loadingHide() {
-    setTimeout($.unblockUI, 1000);
 }
 function makeBlockTime(message, time) {
     if (isNullOrNot(time)) {
@@ -96,21 +120,40 @@ function dateFormatter(fmt, date) {
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
-
-function timeFomatter(cellvalue, n) {
+/*method
+ 格式化时间
+ */
+function timeFomatter(cellvalue, type) {
     if (cellvalue) {
         var time = new Date(cellvalue).toLocaleString().replace(/\/|年|月/g, "-").replace(/日/g, " ").replace(/下午|上午/g, "");
-        if (n) {
-            var year = time.split(" ")[0];
-            switch (n) {
-                case 1:
-                    return time;
-                case 2:
+        if (type) {
+            var year = time.split("-")[0];
+            var yyMMdd = time.split(" ")[0];
+            var MMdd = yyMMdd.split("-")[1] + "-" + yyMMdd.split("-")[2];
+            var hhmmss = time.split(" ")[1];
+            var MMddhhmm = MMdd + " " + hhmmss.split(":")[0] + ":" + hhmmss.split(":")[1];
+            var hhmm = hhmmss.split(":")[0] + ":" + hhmmss.split(":")[1];
+            var yyMMddhhmm = yyMMdd + " " + hhmm;
+            switch (type) {
+                case 'yy':
                     return year;
+                case 'yyMMdd':
+                    return yyMMdd;
+                case 'MMdd':
+                    return MMdd;
+                case 'hhmmss':
+                    return hhmmss;
+                case 'MMddhhmm':
+                    return MMddhhmm;
+                case 'hhmm':
+                    return hhmm;
+                case 'yyMMddhhmm':
+                    return yyMMddhhmm;
                 default:
-                    return year;
+                    return yyMMdd;
             }
         }
+        return time;
     } else {
         return '';
     }
@@ -118,7 +161,7 @@ function timeFomatter(cellvalue, n) {
 
 function getFileName(prefix, suffix) {
     var d = new Date();
-    var curYear = d.getYear();
+    var curYear = d.getYear() + 1900;
     var curMonth = "" + (d.getMonth() + 1);
     var curDate = "" + d.getDate();
     var curHour = "" + d.getHours();
@@ -149,6 +192,36 @@ function isNullOrNot(str) {
     }
     return false;
 }
+function getBhFromTime() {
+    var d = new Date();
+    var curYear = d.getYear() + 1900;
+    var curMonth = "" + (d.getMonth() + 1);
+    var curDate = "" + d.getDate();
+    var curHour = "" + d.getHours();
+    var curMinute = "" + d.getMinutes();
+    var curSecond = "" + d.getSeconds();
+    if (curMonth.length == 1) {
+        curMonth = "0" + curMonth;
+    }
+    if (curDate.length == 1) {
+        curDate = "0" + curDate;
+    }
+    if (curHour.length == 1) {
+        curHour = "0" + curHour;
+    }
+    if (curMinute.length == 1) {
+        curMinute = "0" + curMinute;
+    }
+    if (curSecond.length == 1) {
+        curSecond = "0" + curSecond;
+    }
+    var bh = curYear + curMonth + curDate
+        + curHour + curMinute + curSecond
+    return bh;
+}
+
+
+
 
 
 

@@ -2,33 +2,9 @@
 <html>
 <head>
     <title>注册</title>
-    <jsp:include page="alluse/autoImport.jsp"/>
+    <jsp:include page="alluse/importCss.jsp"/>
     <link rel="stylesheet" type="text/css" href="/koala-platform/static/css/register.css"/>
-    <script>
-        function checkInputData() {
-            var userName = $("#register-userName").val();
-            var password = $("#password").val();
-            var email = $("#email").val();
-            var passwordHint = $("#password-hint").val();
-            $.ajax({
-                type: "post",
-                url: "/koala-platform/user/register",
-                data: {userName: userName, userPassword: password, userEmail: email, passwordHint: passwordHint},
-                success: function (data) {
-                    if (data == "验证通过！") {
-                        window.location.href = "/koala-platform/user/toHome?userName=" + userName;
-                        makeBlockTime("欢迎来到koala之家", 400);
-                    } else {
-                        makeBlockTime(data, 400);
-                    }
 
-                },
-                error: function () {
-                    makeBlockTime("发生未知错误！", 400);
-                }
-            })
-        }
-    </script>
 </head>
 <body>
 <div class="out-box">
@@ -52,5 +28,31 @@
         </div>
     </form>
 </div>
+<jsp:include page="alluse/importJs.jsp"></jsp:include>
+<script>
+    function checkInputData() {
+        var userName = $("#register-userName").val();
+        var password = $("#password").val();
+        var email = $("#email").val();
+        var passwordHint = $("#password-hint").val();
+        $.ajax({
+            type: "post",
+            url: "/koala-platform/user/register",
+            data: {userName: userName, userPassword: password, userEmail: email, passwordHint: passwordHint},
+            success: function (data) {
+                if (data == "验证通过！") {
+                    window.location.href = "/koala-platform/user/toHome?userName=" + userName;
+                    makeBlockTime("欢迎来到koala之家", 400);
+                } else {
+                    makeBlockTime(data, 400);
+                }
+
+            },
+            error: function () {
+                makeBlockTime("发生未知错误！", 400);
+            }
+        })
+    }
+</script>
 </body>
 </html>

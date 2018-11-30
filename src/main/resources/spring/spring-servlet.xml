@@ -115,7 +115,7 @@
     <mvc:resources location="/static/css/" mapping="/style/**"/>
 
     <mvc:default-servlet-handler/>
-
+    <import resource="spring-service.xml"></import>
     <import resource="spring-mybatis.xml"></import>
 
 </beans>

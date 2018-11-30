@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <jsp:include page="alluse/autoImport.jsp"/>
+    <jsp:include page="alluse/importCss.jsp"/>
 
     <style>
         #out-box {
@@ -30,77 +30,6 @@
             vertical-align: middle;
         }
     </style>
-
-    <script>
-        var user;
-        var userName = getUserNameByUrl();
-        $(function () {
-            var url = '/koala-platform/user/getUserInfo?userName=' + userName;
-            var xmlhttp = new XMLHttpRequest();
-            if (xmlhttp != null) {
-                xmlhttp.onreadystatechange = state_Change;
-                xmlhttp.open("GET", url, true);
-                xmlhttp.send(null);
-            }
-            function state_Change() {
-                if (xmlhttp.readyState == 4) {// 4 = "loaded"
-                    if (xmlhttp.status == 200) {// 200 = "OK"
-                        var str = xmlhttp.responseText;
-                        //var user = str.parseJSON();
-                        user = eval('(' + str + ')')[0];
-                        putdata(user);
-                    }
-                    else {
-                        makeBlockTime("Problem retrieving XML data:" + xmlhttp.statusText);
-                    }
-                }
-            }
-        });
-        function putdata(user) {
-            document.getElementById("user-name").innerHTML = user.userName;
-            document.getElementById("user-name-2").value = user.userName;
-            document.getElementById("user-true-name").value = user.userTrueName;
-            document.getElementById("email").value = user.userEmail;
-            document.getElementById("phone").value = user.userPhone;
-            document.getElementById("sex").value = user.userSex;
-            document.getElementById("age").value = user.userAge;
-            document.getElementById("user-name").innerHTML = user.userName;
-            document.getElementById("to-myspace").href = "/koala-platform/user/toMyspace?userName=" + user.userName;
-            document.getElementById("to-home").href = "/koala-platform/user/toHome?userName=" + user.userName;
-        }
-        function alterUserInfo() {
-            var userName = $("#user-name-2").val();
-            var userTrueName = $("#user-true-name").val();
-            var userSex = $("#sex").val();
-            var userAge = $("#age").val();
-            var userEmail = $("#email").val();
-            var userPhone = $("#phone").val();
-            $.ajax({
-                type: "post",
-                url: "/koala-platform/user/alterUserInfo",
-                data: {
-                    userName: userName,
-                    userTrueName: userTrueName,
-                    userSex: userSex,
-                    userAge: userAge,
-                    userEmail: userEmail,
-                    userPhone: userPhone
-                },
-                success: function () {
-                    makeBlockTime("更新成功！");
-                    window.location.reload();
-                },
-                error: function () {
-                    makeBlockTime("发生未知错误！");
-                }
-            })
-        }
-        function alterPassword() {
-            var url = "alterPassword.jsp?userName=" + userName;
-            var title = "修改密码";
-            window.open(url, title, "width=500px,height=400px,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no");
-        }
-    </script>
 </head>
 <body>
 <div id="out-box">
@@ -139,6 +68,76 @@
         <button class="btn btn-default" onclick="alterPassword()">修改密码</button>
     </div>
 </div>
-
+<jsp:include page="alluse/importJs.jsp"></jsp:include>
+<script>
+    var user;
+    var userName = getUserNameByUrl();
+    $(function () {
+        var url = '/koala-platform/user/getUserInfo?userName=' + userName;
+        var xmlhttp = new XMLHttpRequest();
+        if (xmlhttp != null) {
+            xmlhttp.onreadystatechange = state_Change;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send(null);
+        }
+        function state_Change() {
+            if (xmlhttp.readyState == 4) {// 4 = "loaded"
+                if (xmlhttp.status == 200) {// 200 = "OK"
+                    var str = xmlhttp.responseText;
+                    //var user = str.parseJSON();
+                    user = eval('(' + str + ')')[0];
+                    putdata(user);
+                }
+                else {
+                    makeBlockTime("Problem retrieving XML data:" + xmlhttp.statusText);
+                }
+            }
+        }
+    });
+    function putdata(user) {
+        document.getElementById("user-name").innerHTML = user.userName;
+        document.getElementById("user-name-2").value = user.userName;
+        document.getElementById("user-true-name").value = user.userTrueName;
+        document.getElementById("email").value = user.userEmail;
+        document.getElementById("phone").value = user.userPhone;
+        document.getElementById("sex").value = user.userSex;
+        document.getElementById("age").value = user.userAge;
+        document.getElementById("user-name").innerHTML = user.userName;
+        document.getElementById("to-myspace").href = "/koala-platform/user/toMyspace?userName=" + user.userName;
+        document.getElementById("to-home").href = "/koala-platform/user/toHome?userName=" + user.userName;
+    }
+    function alterUserInfo() {
+        var userName = $("#user-name-2").val();
+        var userTrueName = $("#user-true-name").val();
+        var userSex = $("#sex").val();
+        var userAge = $("#age").val();
+        var userEmail = $("#email").val();
+        var userPhone = $("#phone").val();
+        $.ajax({
+            type: "post",
+            url: "/koala-platform/user/alterUserInfo",
+            data: {
+                userName: userName,
+                userTrueName: userTrueName,
+                userSex: userSex,
+                userAge: userAge,
+                userEmail: userEmail,
+                userPhone: userPhone
+            },
+            success: function () {
+                makeBlockTime("更新成功！");
+                window.location.reload();
+            },
+            error: function () {
+                makeBlockTime("发生未知错误！");
+            }
+        })
+    }
+    function alterPassword() {
+        var url = "alterPassword.jsp?userName=" + userName;
+        var title = "修改密码";
+        window.open(url, title, "width=500px,height=400px,toolbar=no, menubar=no, scrollbars=no, resizable=yes,location=no, status=no");
+    }
+</script>
 </body>
 </html>

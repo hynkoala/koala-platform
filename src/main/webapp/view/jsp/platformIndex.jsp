@@ -10,13 +10,14 @@
 <head>
     <title>平台管理</title>
 </head>
-<jsp:include page="alluse/autoImport.jsp"></jsp:include>
+<jsp:include page="alluse/importCss.jsp"></jsp:include>
 <body>
 <jsp:include page="alluse/header.jsp"></jsp:include>
 <div id="main-content">
     <img style="width:1200px;height:800px;" src="/koala-platform/static/img/singleTree.jpg"/>
 </div>
 <jsp:include page="alluse/footer.jsp"></jsp:include>
+<jsp:include page="alluse/importJs.jsp"></jsp:include>
 
 </body>
 </html>

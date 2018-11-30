@@ -63,6 +63,7 @@
         width: inherit;
         height: inherit;
         border: 0.1px solid #cec1ce;
+        padding-left: 5px;
     }
 
     .tr-hide {
@@ -89,67 +90,22 @@
                     </td>
                 </tr>
                 <tr class="tr-field">
-                    <td class="td-field">货物名</td>
+                    <td class="td-field">入账编号</td>
                     <td class="td-value">
-                        <input type="text" name="goodsName">
+                        <input id="in-bh" type="text" name="inBh">
                     </td>
-                    <td class="td-field">单位</td>
+                    <td class="td-field">账单名</td>
                     <td class="td-value">
-                        <input type="text" name="goodsUnit" class="dropdown-input" onclick="goodsUnitDropdown()">
-                        <%--<select type="text" name="goodsUnit" id="goods-unit" class="editable-select" value=""
-                                hidden="hidden">
-                            <option value="个">个</option>
-                            <option value="盒">盒</option>
-                            <option value="箱">箱</option>
-                            <option value="把">把</option>
-                            <option value="件">件</option>
-                            <option value="支">支</option>
-                            <option value="张">张</option>
-                            <option value="本">本</option>
-                            <option value="块">块</option>
-                            <option value="条">条</option>
-                            <option value="袋">袋</option>
-                            <option value="根">根</option>
-                            <option value="片">片</option>
-                        </select>--%>
+                        <input type="text" name="accountName">
                     </td>
-                    <td class="td-field">类别</td>
+                </tr>
+                <tr>
+                    <td class="td-field">备注</td>
                     <td class="td-value">
-                        <select name="goodsBigType" id="goods-big-type" class="half-width"
-                                onchange="getGoodsSmallType()">
-                        </select>
-                        <select name="goodsType" id="goods-type" class="half-width"></select>
+                        <input type="text" name="accountName">
+                    </td>
+                </tr>
 
-                    </td>
-                    <td class="td-field">品牌</td>
-                    <td class="td-value">
-                        <input type="text" name="goodsBrand">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-field">型号</td>
-                    <td class="td-value">
-                        <input type="text" name="goodsModel" id="goods-model">
-                    </td>
-                    <td class="td-field">进价</td>
-                    <td class="td-value">
-                        <input type="text" name="goodsInPrice" id="goods-in-price">
-                    </td>
-                    <td class="td-field">售价</td>
-                    <td class="td-value">
-                        <input type="text" name="goodsOutPrice" id="goods-out-price">
-                    </td>
-                    <td class="td-field">用途</td>
-                    <td class="td-value">
-                        <input type="text" name="goodsUsage" id="goods-usage">
-                    </td>
-                </tr>
-                <tr>
-                    <%--<td class="td-field">厂商</td>
-                    <td class="td-value">
-                        <input type="text" name="goodsUsage" id="goods-usage">
-                    </td>--%>
-                </tr>
                 </tbody>
             </table>
 
@@ -170,6 +126,7 @@
 <jsp:include page="../alluse/importJs.jsp"></jsp:include>
 <script>
     $(function () {
+        $("#in-bh").val(getBhFromTime());
         var table = layui.table;
         var laypage = layui.laypage;
 

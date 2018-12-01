@@ -18,9 +18,7 @@
     }
 
     div#main-content {
-        width: 85%;
-        max-height: 1000px;
-        background-color: whitesmoke;
+        padding: 0 12%;
     }
 
     #operate-area {
@@ -28,7 +26,7 @@
     }
 
     #input-area {
-        width: 1280px;
+        width: 1315px;
         margin: 0 auto;
         top: 20px;
         padding: 20px 20px;
@@ -36,43 +34,7 @@
         height: 200px;
         margin-bottom: 40px;
         border: 5px white solid;
-    }
-
-    .key-value-table tr td {
-        font-size: 18px;
-        height: 30px;
-    }
-
-    .td-field {
-        background-color: #fdfffd;
-        text-align: right;
-        width: 100px;
-        border-top: 1px solid whitesmoke;
-        border-bottom: 1px solid whitesmoke;
-        padding-right: 8px;
-
-    }
-
-    .td-value {
-        text-align: left;
         background-color: whitesmoke;
-        width: 200px;
-    }
-
-    .key-value-table select, input {
-        width: inherit;
-        height: inherit;
-        border: 0.1px solid #cec1ce;
-    }
-
-    .tr-hide {
-        display: none
-    }
-
-    .half-width {
-        width: 50% !important;
-        float: left;
-
     }
 
 </style>
@@ -83,7 +45,7 @@
             <table class="key-value-table">
                 <thead></thead>
                 <tbody>
-                <tr class="tr-hide">
+                <tr class="tr-hide hidden">
                     <td>
                         <input name="goodsId" value="${goodsId}">
                     </td>
@@ -161,8 +123,9 @@
 
     </div>
 
-
-    <table class="layui-hide" id="goods-list"></table>
+    <div class="bg-white">
+        <table class="layui-hide" id="goods-list"></table>
+    </div>
 
 
 </div>

@@ -10,16 +10,14 @@
 <head>
     <title>记账系统</title>
     <jsp:include page="alluse/importCss.jsp"></jsp:include>
+    <link href="/koala-platform/static/css/account.css" rel="stylesheet">
+
 </head>
 <style>
-    #header {
-        background-image: url("/koala-platform/static/img/header-bg-account.png");
-    }
-
-    #main-content {
-        width: 90%;
-        padding-top: 60px;
-        height: 400px;
+    div#main-content {
+        background-color: transparent;
+        padding: 0 5%;
+        padding-top: 50px;
     }
     .account-tools {
         position: relative;
@@ -29,7 +27,6 @@
         height: 50px;
         margin-top: 30px;
         padding-top: 10px;
-
     }
 
     #operater-menu {
@@ -52,7 +49,7 @@
         color: #d65f71;
     }
 
-    .left-item-header {
+    .item-header {
         height: 50px;
         width: 100%;
         background-color: #d8eee8;
@@ -67,11 +64,11 @@
 <div id="main-content">
     <div id="left-show">
         <div id="accountInInfo" class="left-item">
-            <div class="left-item-header">近期入账单</div>
+            <div class="item-header">近期入账单</div>
             <table id="recent-account-in"></table>
         </div>
         <div id="accountOutInfo" class="left-item">
-            <div class="left-item-header">近期出账单</div>
+            <div class="item-header">近期出账单</div>
             <table id="recent-account-out"></table>
         </div>
     </div>

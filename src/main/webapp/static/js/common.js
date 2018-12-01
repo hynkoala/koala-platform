@@ -4,61 +4,25 @@
 /*页面初始化方法*/
 $(function () {
     /*页面初始化设置的最小高度*/
-    var winHeight = window.innerHeight;
-    var winWidth = window.innerWidth;
-    var headerHeight = $("#header").outerHeight(true);
-    var footerHeight = $("#footer").outerHeight(true);
-    var height = winHeight - headerHeight - footerHeight;
-    var width = 0.8 * winWidth;
-    if (winHeight < 480) {
-        height = 480;
-    }
-    if (winWidth < 1280) {
-        width = 1280;
-    }
-    /*$("body").css({"min-height": winHeight});*/
-    $("#main-content,#footer,#header").css({
-        "min-width": width
+    resetFrameCss();
+    /*table的宽度设置为它父元素的内宽度*/
+    $(".list-table").css({
+        "width": $(".list-table").parent().innerWidth()
     })
 
-    $("#main-content").css({
-        "min-width": width,
-        "min-height": height
-    })
-    /*$("body").css({
-     "max-width":1920,
-     })*/
 
     $("#footer").show()
+});
+/*窗口变化时调整*/
+$(window).resize(function () {
+    resetFrameCss();
 });
 var userName = getUserNameByUrl();
 var homeUrl = "/koala-platform";
 var platformUrl = "/koala-platform";
 var accountUrl = "/koala-platform/account";
 var goodsUrl = "/koala-platform/goods";
-/*window.onload=function(){
- var enabled=0;
- var today=new Date();
- var date;
- date=today.getFullYear()+"年"+(today.getMonth()+1)+"月"+today.getDate()+"日";
- //date2=day;
- document.write(date);
- document.write("<span id='clock'></span>");
- var now,hours,minutes,seconds,timeValue;
- function showtime(){
- now=new Date();
- hours=now.getHours();
- minutes=now.getMinutes();
- seconds=now.getSeconds();
- timeValue=(hours>=10)?"":"0";
- timeValue+=hours+":";
- timeValue+=((minutes<10)?"0":"")+minutes+":";
- timeValue+=((seconds<10)?"0":"")+seconds+"";
- clock.innerHTML=timeValue;
- setTimeout("showtime()",1000);
- }
- showtime();
- }*/
+
 function toRegister() {
     window.location.href = "/koala-platform/view/jsp/register.jsp";
 }
@@ -219,6 +183,55 @@ function getBhFromTime() {
         + curHour + curMinute + curSecond
     return bh;
 }
+function resetFrameCss() {
+    var winHeight = window.innerHeight;
+    var winWidth = window.innerWidth;
+    var width = winWidth;
+    var height = winHeight;
+    var headerHeight = $("#header").outerHeight(true);
+    var footerHeight = $("#footer").outerHeight(true);
+    if (isNullOrNot(headerHeight)) {
+        headerHeight = 0;
+    }
+    var height = winHeight - headerHeight - footerHeight;
+    if (winHeight < 680) {
+        height = 680;
+    }
+    if (1 == 1) {
+        width = 1440;
+    }
+    $("#header,#footer").css({
+        "min-width": width
+    })
+    $("#main-content").css({
+        "min-height": height,
+        "min-width": width
+    })
+}
+
+/*window.onload=function(){
+ var enabled=0;
+ var today=new Date();
+ var date;
+ date=today.getFullYear()+"年"+(today.getMonth()+1)+"月"+today.getDate()+"日";
+ //date2=day;
+ document.write(date);
+ document.write("<span id='clock'></span>");
+ var now,hours,minutes,seconds,timeValue;
+ function showtime(){
+ now=new Date();
+ hours=now.getHours();
+ minutes=now.getMinutes();
+ seconds=now.getSeconds();
+ timeValue=(hours>=10)?"":"0";
+ timeValue+=hours+":";
+ timeValue+=((minutes<10)?"0":"")+minutes+":";
+ timeValue+=((seconds<10)?"0":"")+seconds+"";
+ clock.innerHTML=timeValue;
+ setTimeout("showtime()",1000);
+ }
+ showtime();
+ }*/
 
 
 

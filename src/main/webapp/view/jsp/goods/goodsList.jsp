@@ -11,18 +11,15 @@
     <title>货物清单</title>
     <jsp:include page="../alluse/importCss.jsp"></jsp:include>
     <style>
-        div#main-content {
-            width: 85%;
-            max-height: 1000px;
-            background-color: whitesmoke;
-        }
 
     </style>
 
 </head>
 <body>
 <div id="main-content">
-    <table class="layui-hide" id="goods-list"></table>
+    <div class="bg-white">
+        <table class="layui-hide" id="goods-list"></table>
+    </div>
 </div>
 <jsp:include page="../alluse/importJs.jsp"></jsp:include>
 <script>

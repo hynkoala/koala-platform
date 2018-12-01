@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+    background-image: url("../img/content-bg.png");
+}
+
+#main-content {
+    position: relative;
+    margin: 10px auto;
+    font-size: 18px;
+    padding: 0 10%;
+}
+
+.btn-default-dark {
+    background-color: #461846;
+    padding: 4px 8px;
+    color: whitesmoke;
+    border: none;
+    border-radius: 6px;
+    width: auto;
+    height: auto;
+    font-size: 18px;
+    font-style: normal;
+}
+
+.right {
+    float: right;
+    right: 0;
+    margin-right: 0;
+}
+
+/*table*/
+/*key-value-table*/
+.key-value-table tr td {
+    font-size: 18px;
+    height: 30px;
+}
+
+.td-field {
+    background-color: #fdfffd;
+    text-align: right;
+    width: 100px;
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+    padding-right: 8px;
+
+}
+
+.td-value {
+    text-align: left;
+    background-color: whitesmoke;
+    width: 200px;
+}
+
+.key-value-table select, input, textarea {
+    width: inherit;
+    height: inherit;
+    border: 0.1px solid #cec1ce;
+}
+
+textarea {
+    height: 50px;
+}
+
+.half-width {
+    width: 50% !important;
+    float: left;
+
+}
+
+.item-header {
+    height: 50px;
+    width: 100%;
+    background-color: #d8eee8;
+    font-size: 24px;
+    font-style: italic;
+    padding-top: 6px;
+}
+
+th {
+    text-align: center;
+}
+
+.list-table {
+    background-color: #ecd2d7;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin: 0 30px;
+    width: 95% !important;
+}
+
+.list-table input, select {
+    height: 30px;
+    width: 100%;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.list-item {
+    margin-top: 5px;
+}
+
+.bg-white {
+    background-color: whitesmoke;
+}
+
+
+

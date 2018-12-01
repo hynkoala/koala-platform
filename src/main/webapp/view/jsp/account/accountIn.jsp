@@ -10,65 +10,9 @@
 <head>
     <title>添加货物</title>
     <jsp:include page="../alluse/importCss.jsp"></jsp:include>
+    <link href="/koala-platform/static/css/account.css" rel="stylesheet">
 </head>
 <style>
-    body {
-        font-size: 30px;
-        min-width: 1506px;
-    }
-
-    div#main-content {
-        width: 85%;
-        max-height: 1000px;
-        background-color: whitesmoke;
-    }
-
-    #operate-area {
-        margin-top: 20px;
-    }
-
-    #input-area {
-        width: 1280px;
-        margin: 0 auto;
-        top: 20px;
-        padding: 20px 20px;
-        position: relative;
-        height: 200px;
-        margin-bottom: 40px;
-        border: 5px white solid;
-    }
-
-    .key-value-table tr td {
-        font-size: 18px;
-        height: 30px;
-    }
-
-    .td-field {
-        background-color: #fdfffd;
-        text-align: right;
-        width: 100px;
-        border-top: 1px solid whitesmoke;
-        border-bottom: 1px solid whitesmoke;
-        padding-right: 8px;
-
-    }
-
-    .td-value {
-        text-align: left;
-        background-color: whitesmoke;
-        width: 200px;
-    }
-
-    .key-value-table select, input {
-        width: inherit;
-        height: inherit;
-        border: 0.1px solid #cec1ce;
-        padding-left: 5px;
-    }
-
-    .tr-hide {
-        display: none
-    }
 
 </style>
 <body>
@@ -78,11 +22,6 @@
             <table class="key-value-table">
                 <thead></thead>
                 <tbody>
-                <tr class="tr-hide">
-                    <td>
-                        <input name="goodsId" value="${goodsId}">
-                    </td>
-                </tr>
                 <tr class="tr-field">
                     <td class="td-field">入账编号</td>
                     <td class="td-value">
@@ -90,29 +29,110 @@
                     </td>
                     <td class="td-field">账单名</td>
                     <td class="td-value">
-                        <input type="text" name="accountName">
+                        <input type="text" name="inName">
+                    </td>
+                    <td class="td-field">类别</td>
+                    <td class="td-value">
+                        <select name="goodsBigType" id="goods-big-type" class="half-width"
+                                onchange="getGoodsSmallType()">
+                        </select>
+                        <select name="goodsType" id="goods-type" class="half-width"></select>
+
+                    </td>
+                    <td class="td-field">总额</td>
+                    <td class="td-value">
+                        <input type="text" name="sumMoney">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-field">供货商</td>
+                    <td class="td-value">
+                        <input type="text" name="supplier">
+                    </td>
+                    <td class="td-field">联系人</td>
+                    <td class="td-value">
+                        <input type="text" name="contactPerson">
+                    </td>
+                    <td class="td-field">电话</td>
+                    <td class="td-value">
+                        <input type="text" name="supplierPhone">
+                    </td>
+                    <td class="td-field">地址</td>
+                    <td class="td-value">
+                        <input type="text" name="supplierAddress">
                     </td>
                 </tr>
                 <tr>
                     <td class="td-field">备注</td>
-                    <td class="td-value">
-                        <input type="text" name="accountName">
+                    <td class="td-value" colspan="7">
+                        <textarea type="text" name="otherComment"
+                                  overflow="auto"></textarea>
                     </td>
                 </tr>
-
                 </tbody>
+
             </table>
-
-            <div id="operate-area">
-                <input type="button" value="保存" class="btn-default-dark" onclick="saveGoods()"/>
-                <input type="button" value="查看清单" class="btn-default-dark" onclick="toGoodsList()"/>
-            </div>
         </form>
-
+    </div>
+    <div id="operate-area">
+        <input type="button" value="保存" class="btn-default-dark" onclick="saveGoods()"/>
+        <input type="button" value="查看清单" class="btn-default-dark" onclick="toGoodsList()"/>
     </div>
 
+    <div id="account-details">
+        <div class="item-header">近期入账单 <input type="button" class="btn-default-dark right" onclick="initTableList(1)"
+                                              value="增加行"></div>
 
-    <table class="layui-hide" id="goods-list"></table>
+        <table id="recent-account-in" class="list-table">
+            <thead class="list-header">
+            <th class="col-header hidden"></th>
+            <th class="col-header">商品名</th>
+            <th class="col-header">类型</th>
+            <th class="col-header">单位</th>
+            <th class="col-header">规格</th>
+            <th class="col-header">品牌</th>
+            <th class="col-header">进价</th>
+            <th class="col-header">数量</th>
+            <th class="col-header">总价</th>
+            </thead>
+            <tbody class="list-body"></tbody>
+        </table>
+        <br>
+    </div>
+
+    <table class="hidden">
+        <tbody class="list-model" class="hidden" hidden="hidden">
+        <tr class="list-item">
+            <td class="list-value hidden">
+                <input name="tradeId">
+            </td>
+            <td class="list-value">
+                <input name="goodsName">
+            </td>
+            <td class="list-value">
+                <input name="goodsType">
+            </td>
+            <td class="list-value" style="width: 50px">
+                <input name="goodsUnit">
+            </td>
+            <td class="list-value" style="width: 100px">
+                <input name="goodsSize">
+            </td>
+            <td class="list-value">
+                <input name="goodsBrand">
+            </td>
+            <td class="list-value" style="width: 100px">
+                <input name="tradePrice">
+            </td>
+            <td class="list-value" style="width: 80px">
+                <input name="tradeNumber">
+            </td>
+            <td class="list-value">
+                <input name="sumPrice">
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 
 </div>
@@ -121,55 +141,16 @@
 <script>
     $(function () {
         $("#in-bh").val(getBhFromTime());
-        var table = layui.table;
-        var laypage = layui.laypage;
-
-        // 定义添加页面需要显示的条数
-        var limit = 12;
-        table.render({
-            id: "goodsId",
-            elem: "#goods-list",
-            url: goodsUrl + "/getGoodsList?limit=" + limit,
-            method: "post",
-            height: 600,
-            cols: [[ //表头
-                {
-                    field: '', title: '序号', width: 60, templet: function (d) {
-                    return d.LAY_INDEX;
-                }
-                }
-                /*{type: 'checkbox', fixed: 'left'}*/
-                , {field: 'goodsId', title: 'ID', width: 0, hide: true}
-                , {field: 'goodsName', title: '货物名', width: 200}
-                , {field: 'goodsUnit', title: '单位', width: 60}
-                , {field: 'goodsType', title: '类别', width: 100, sort: true}
-                , {field: 'goodsBrand', title: '品牌', width: 80, sort: true}
-                , {field: 'goodsInPrice', title: '进价', width: 80, sort: true}
-                , {field: 'doHave', title: '存量', width: 80, sort: true}
-                , {
-                    field: 'createTime', title: '录入时间', width: 200, sort: true, templet: function (d) {
-                        return timeFomatter(d.createTime, 1);
-                    }
-                }
-                , {
-                    field: 'updateTime', title: '更新时间', width: 150, sort: true, templet: function (d) {
-                        return timeFomatter(d.createTime, 2);
-                    }
-                }
-                , {fixed: 'right', align: 'center', toolbar: 'default'}
-            ]],
-            title: "货物清单"
-        });
-
-        $(".td-value input, select, option").mouseover(function () {
+        $(".td-value input, select, option,textarea").mouseover(function () {
             $(this).css("box-shadow", "0 0 2px 0.5px red inset");
         });
-        $(".td-value input, select, option").mouseout(function () {
+        $(".td-value input, select, option,textarea").mouseout(function () {
             $(this).css("box-shadow", "none");
         });
 
         var initType = initGoodsType();
         initType = getGoodsSmallType();
+        initTableList(11);
     });
     function saveGoods() {
         var data = $("#form").serialize();
@@ -225,6 +206,35 @@
     function toGoodsList() {
         var url = "/koala-platform/goods/toGoodsList";
         window.open(url);
+    }
+    function initTableList(n, modelId, tableId) {
+        /*获取行模板*/
+        var model;
+        if (!isNullOrNot(modelId)) {
+            model = $("#" + modelId);
+        } else {
+            model = $(".list-model");
+        }
+
+        if (isNullOrNot(model) || model.length > 1) {
+            return false;
+        }
+
+        var inner = model.children();
+        /*获取table对象*/
+        var table;
+        if (!isNullOrNot(tableId)) {
+            table = $("#" + tableId);
+        } else {
+            table = $(".list-body");
+        }
+        if (isNullOrNot(table) || table.length > 1) {
+            return false;
+        }
+        /*插入行*/
+        for (var i = 1; i <= n; i++) {
+            inner.clone().appendTo(table);
+        }
     }
 
 </script>

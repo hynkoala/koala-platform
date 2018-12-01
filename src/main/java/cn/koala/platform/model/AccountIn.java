@@ -15,8 +15,8 @@ public class AccountIn {
     private Date inTime;//
     private String goodsType;//
     private String inBh;//
-    private String other_comment;//
-    private Double sum_money;//
+    private String otherComment;//
+    private Double sumMoney;//
     private String supplier;//
     private String supplierPhone;//
     private String supplierAddress;//
@@ -65,20 +65,20 @@ public class AccountIn {
         this.inBh = inBh;
     }
 
-    public String getOther_comment() {
-        return other_comment;
+    public String getOtherComment() {
+        return otherComment;
     }
 
-    public void setOther_comment(String other_comment) {
-        this.other_comment = other_comment;
+    public void setOtherComment(String otherComment) {
+        this.otherComment = otherComment;
     }
 
-    public Double getSum_money() {
-        return sum_money;
+    public Double getSumMoney() {
+        return sumMoney;
     }
 
-    public void setSum_money(Double sum_money) {
-        this.sum_money = sum_money;
+    public void setSumMoney(Double sumMoney) {
+        this.sumMoney = sumMoney;
     }
 
     public String getSupplier() {

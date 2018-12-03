@@ -132,7 +132,7 @@ function deletePhoto() {
             if (data != "success") {
                 makeBlockTime(data, 300);
             } else {
-                refreshWindow();
+                window.location.reload();
             }
         },
         error: function () {

@@ -1,5 +1,8 @@
 package cn.koala.platform.service;
 
+import cn.koala.platform.model.Account;
+import cn.koala.platform.model.TradeInfo;
+
 /**
  * Created by 12732
  * Email:hynkoala@163.com
@@ -8,4 +11,7 @@ package cn.koala.platform.service;
  * Description:
  */
 public interface AccountService {
+    void saveAccount(Account account);
+
+    TradeInfo addTradeInfoFromAccount(Account account, TradeInfo tradeInfo);
 }

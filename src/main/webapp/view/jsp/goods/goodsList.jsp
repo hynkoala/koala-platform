@@ -26,19 +26,6 @@
     $(function () {
         var table = layui.table;
         var laypage = layui.laypage;
-
-        //执行一个laypage实例
-        /*laypage.render({
-         elem: 'layui-page'
-         ,limit:10
-         ,limits:[10,30,50]
-         });*/
-        /*$.ajax({
-         url:goodsUrl+"/getGoodsList",
-         success:function (data) {
-         console.info(data);
-         }
-         })*/
         table.render({
             id: "goodsId",
             elem: "#goods-list",

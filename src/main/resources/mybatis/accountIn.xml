@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.koala.platform.mapper.AccountInMapper">
+    <resultMap id="accountIn" type="cn.koala.platform.model.AccountIn">
+
+        <id property="accountId" column="in_id" jdbcType="VARCHAR"/>
+        <result property="accountBh" column="In_bh" jdbcType="VARCHAR"/>
+        <result property="accountName" column="In_Name" jdbcType="VARCHAR"/>
+        <result property="goodsType" column="goods_type" jdbcType="VARCHAR"/>
+        <result property="otherComment" column="other_comment" jdbcType="VARCHAR"/>
+        <result property="sumMoney" column="sum_money" jdbcType="NUMERIC"/>
+        <result property="tradeTarget" column="supplier" jdbcType="VARCHAR"/>
+        <result property="contactPerson" column="content_person" jdbcType="VARCHAR"/>
+        <result property="contactWay" column="contact_way" jdbcType="VARCHAR"/>
+        <result property="operatePerson" column="operate_person" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="newAccountIn" parameterType="cn.koala.platform.model.AccountIn">
+        insert into goods_list (In_id, In_name,In_bh,In_time,goods_type,sum_money,
+        other_comment,  supplier,contact_person,contact_way,operate_person
+        goods_model,create_time,update_time)
+        VALUES(#{accountId,jdbcType=VARCHAR},#{accountName,jdbcType=VARCHAR},
+        #{accountBh,jdbcType=VARCHAR},
+        #{goodType,jdbcType=VARCHAR},#{sumMoney,jdbcType=NUMERIC},
+        #{otherComment,jdbcType=VARCHAR},
+        #{tradeTarget,jdbcType=VARCHAR},
+        #{contactPerson,jdbcType=VARCHAR},#{contactWay,jdbcType=VARCHAR},
+        #{operatePerson,jdbcType=VARCHAR}
+        #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="getAccountInList" parameterType="java.util.Map" resultMap="accountIn">
+        select t.* from account_in t order by t.update_time desc
+    </select>
+
+</mapper>

@@ -2,38 +2,35 @@
  * Created by user on 2018/9/25.
  */
 /*页面初始化方法*/
-$(function () {
-    /*页面初始化设置的最小高度*/
-    resetFrameCss();
-    /*table的宽度设置为它父元素的内宽度*/
-    $(".list-table").css({
-        "width": $(".list-table").parent().innerWidth()
-    })
-
-
-    $("#footer").show()
-});
-/*窗口变化时调整*/
-$(window).resize(function () {
-    resetFrameCss();
-});
-var userName = getUserNameByUrl();
+var userName = getVarByUrl("userName");
 var homeUrl = "/koala-platform";
 var platformUrl = "/koala-platform";
 var accountUrl = "/koala-platform/account";
 var goodsUrl = "/koala-platform/goods";
+$(function () {
+    /*页面初始化设置的最小高度*/
+    resetFrameCss(1900, 680);
+    /*table的宽度设置为它父元素的内宽度*/
+    $(".list-table").css({
+        "width": $(this).parent().innerWidth()
+    })
+    $(".list-items").mouseover(function () {
+        $(this).css({
+            "background-color": "yellow"
+        })
+    })
 
-function toRegister() {
-    window.location.href = "/koala-platform/view/jsp/register.jsp";
-}
-function toLogin() {
-    window.location.href = "/koala-platform/view/jsp/login.jsp";
-}
-function exitLogin() {
-    $.blockUI({message: "<h4>" + "记得再回来噢" + "</h4>"});
-    setTimeout($.unblockUI, 1000);
-    window.location.href = "/koala-platform/view/jsp/login.jsp";
-}
+    $(".list-table tbody tr").mouseout(function () {
+        $(this).css({
+            "background-color": "inherit"
+        })
+    })
+});
+/*窗口变化时调整*/
+$(window).resize(function () {
+    resetFrameCss(1900, 680);
+});
+
 function makeBlockTime(message, time) {
     if (isNullOrNot(time)) {
         time = 300;
@@ -41,31 +38,20 @@ function makeBlockTime(message, time) {
     $.blockUI({message: "<h4>" + message + "</h4>"});
     setTimeout($.unblockUI, time);
 }
-/*刷新页面*/
-function refreshWindow() {
-    window.location.reload();
-}
-/*关闭窗口*/
-function closeWindow() {
-    window.close();
-}
 
-function getUserNameByUrl() {
+function getVarByUrl(str) {
+    var result;
     var url = location.search;
     var theRequest = {};
-    var userName;
     if (url.indexOf("?") != -1) {
-        var str = url.substr(1);
-        strs = str.split("&");
+        var urlstr = url.substr(1);
+        var strs = urlstr.split("&");
         for (var i = 0; i < strs.length; i++) {
             theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
         }
     }
-    userName = theRequest.userName;
-    if (userName == "undefined") {
-        userName = "guest";
-    }
-    return userName;
+    result = theRequest[str];
+    return result;
 }
 function dateFormatter(fmt, date) {
     var o = {
@@ -151,7 +137,7 @@ function getFileName(prefix, suffix) {
     return fileName;
 }
 function isNullOrNot(str) {
-    if (str == null || str == '' || str == "" || str == 'undefined') {
+    if (str == null || str == '' || str == "" || str == 'undefined' || str.length < 1) {
         return true;
     }
     return false;
@@ -180,10 +166,16 @@ function getBhFromTime() {
         curSecond = "0" + curSecond;
     }
     var bh = curYear + curMonth + curDate
-        + curHour + curMinute + curSecond
+        + curHour + curMinute + curSecond;
     return bh;
 }
-function resetFrameCss() {
+function resetFrameCss(minWidth, minHeigth) {
+    if (isNullOrNot(minWidth)) {
+        minWidth = 1900;
+    }
+    if (isNullOrNot(minHeigth)) {
+        minHeigth = 760;
+    }
     var winHeight = window.innerHeight;
     var winWidth = window.innerWidth;
     var width = winWidth;
@@ -194,11 +186,15 @@ function resetFrameCss() {
         headerHeight = 0;
     }
     var height = winHeight - headerHeight - footerHeight;
-    if (winHeight < 680) {
-        height = 680;
+    if (winHeight < minHeigth) {
+        height = minHeigth;
     }
-    if (1 == 1) {
-        width = 1440;
+    if (width < minWidth) {
+        width = minWidth;
+    }
+    var currentBodyWidth = $('body').width;
+    if (width < currentBodyWidth) {
+        width = currentBodyWidth;
     }
     $("#header,#footer").css({
         "min-width": width
@@ -207,6 +203,40 @@ function resetFrameCss() {
         "min-height": height,
         "min-width": width
     })
+    $("#footer").show()
+}
+
+function makeListFromTable(tableId, rowNums, colNums) {
+    var table = $(tableId);
+    var returnList = [];
+    if (table.length == 1) {
+        var listData = table.serializeArray();
+        var list = [];
+        if (isNullOrNot(rowNums)) {
+            rowNums = $(tableId + " tbody tr").length;
+        }
+        if (isNullOrNot(colNums)) {
+            colNums = listData.length / rowNums;
+        }
+        var start;
+        for (var i = 0; i < rowNums; i++) {
+            var row = [];
+            start = i * colNums;
+            for (var j = 0; j < colNums; j++) {
+                row.push(listData[start + j]);
+            }
+            list.push(row)
+        }
+        /*将form中name-value形式的值组织为k-value形式*/
+        for (var i = 0; i < list.length; i++) {
+            var jsonObj = {};
+            for (var j = 0; j < list[0].length; j++) {
+                jsonObj[list[i][j].name] = list[i][j].value;
+            }
+            returnList.push(jsonObj);
+        }
+    }
+    return returnList;
 }
 
 /*window.onload=function(){

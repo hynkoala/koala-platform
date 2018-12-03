@@ -1,5 +1,7 @@
 package cn.koala.platform.mapper;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * Created by hanyaning
  * Email:hynkoala@163.com
@@ -7,5 +9,6 @@ package cn.koala.platform.mapper;
  * Time:20:22
  * Description:
  */
+@Repository
 public interface AccountOutMapper {
 }

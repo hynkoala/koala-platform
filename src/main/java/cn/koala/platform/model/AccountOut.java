@@ -9,13 +9,12 @@ import java.util.Date;
  * Time:20:18
  * Description:
  */
-public class AccountOut {
-    private String outId;
-    private String outName;
-    private Date outTime;
-    private String outBh;
+public class AccountOut extends Account {
+    private String accountId;
+    private String accountName;
+    private String accountBh;
     private String goodsType;
-    private String targetUnit;
+    private String tradeTarget;
     private String contactPerson;
     private String contactWay;
     private String otherComment;
@@ -27,36 +26,28 @@ public class AccountOut {
     private Date createTime;
     private Date updateTime;
 
-    public String getOutId() {
-        return outId;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setOutId(String outId) {
-        this.outId = outId;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
-    public String getOutName() {
-        return outName;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setOutName(String outName) {
-        this.outName = outName;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
-    public Date getOutTime() {
-        return outTime;
+    public String getAccountBh() {
+        return accountBh;
     }
 
-    public void setOutTime(Date outTime) {
-        this.outTime = outTime;
-    }
-
-    public String getOutBh() {
-        return outBh;
-    }
-
-    public void setOutBh(String outBh) {
-        this.outBh = outBh;
+    public void setAccountBh(String accountBh) {
+        this.accountBh = accountBh;
     }
 
     public String getGoodsType() {
@@ -67,12 +58,12 @@ public class AccountOut {
         this.goodsType = goodsType;
     }
 
-    public String getTargetUnit() {
-        return targetUnit;
+    public String getTradeTarget() {
+        return tradeTarget;
     }
 
-    public void setTargetUnit(String targetUnit) {
-        this.targetUnit = targetUnit;
+    public void setTradeTarget(String tradeTarget) {
+        this.tradeTarget = tradeTarget;
     }
 
     public String getContactPerson() {

@@ -18,10 +18,11 @@
         background-color: transparent;
         padding: 0 5%;
         padding-top: 50px;
+        min-width: 1750px !important;
     }
     .account-tools {
         position: relative;
-        display: block;
+        display: inline-block;
         background-color: whitesmoke;
         width: 200px;
         height: 50px;
@@ -30,10 +31,16 @@
     }
 
     #operater-menu {
-        position: absolute;
-        right: 5%;
+        width: 200px;
+        position: relative;
+        margin-left: 60px;
+        float: left;
+        margin-top: 50px;
     }
 
+    #left-show {
+        float: left;
+    }
     .left-item {
         width: 600px;
         float: left;

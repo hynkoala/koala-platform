@@ -1,5 +1,8 @@
 package cn.koala.platform.service.impl;
 
+import cn.koala.platform.model.Account;
+import cn.koala.platform.model.TradeInfo;
+import cn.koala.platform.service.AccountService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,5 +13,15 @@ import org.springframework.stereotype.Service;
  * Description:
  */
 @Service
-public class AccountServiceImpl {
+public class AccountServiceImpl implements AccountService {
+    @Override
+    public TradeInfo addTradeInfoFromAccount(Account account, TradeInfo tradeInfo) {
+
+        return tradeInfo;
+    }
+
+    @Override
+    public void saveAccount(Account account) {
+
+    }
 }

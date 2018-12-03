@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 body {
-    background-image: url("../img/content-bg.png");
+    background-color: #4c4a4d;
 }
 
 #main-content {
@@ -11,6 +11,7 @@ body {
     padding: 0 10%;
 }
 
+/*自定义样式按钮*/
 .btn-default-dark {
     background-color: #461846;
     padding: 4px 8px;
@@ -31,9 +32,22 @@ body {
 
 /*table*/
 /*key-value-table*/
+.key-value-table {
+    border-collapse: collapse;
+    border-spacing: 2px 5px;
+}
 .key-value-table tr td {
     font-size: 18px;
     height: 30px;
+    border: 0.1px solid navajowhite;
+}
+
+.key-value-table select, input, textarea {
+    width: inherit;
+    height: inherit;
+    /*border: 0.1px solid #cec1ce;*/
+    border: none;
+    border-radius: 0;
 }
 
 .td-field {
@@ -50,12 +64,6 @@ body {
     text-align: left;
     background-color: whitesmoke;
     width: 200px;
-}
-
-.key-value-table select, input, textarea {
-    width: inherit;
-    height: inherit;
-    border: 0.1px solid #cec1ce;
 }
 
 textarea {
@@ -82,6 +90,8 @@ th {
 }
 
 .list-table {
+    border-collapse: separate;
+    border-spacing: 2px 5px;
     background-color: #ecd2d7;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -93,11 +103,15 @@ th {
     height: 30px;
     width: 100%;
     padding: 2px 5px;
-    border-radius: 5px;
+    border-radius: inherit;
 }
 
 .list-item {
-    margin-top: 5px;
+    border-radius: 2px;
+}
+
+.list-item td {
+    border-radius: inherit;
 }
 
 .bg-white {

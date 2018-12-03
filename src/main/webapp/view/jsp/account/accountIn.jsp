@@ -25,11 +25,11 @@
                 <tr class="tr-field">
                     <td class="td-field">入账编号</td>
                     <td class="td-value">
-                        <input id="in-bh" type="text" name="inBh">
+                        <input id="in-bh" type="text" name="accountBh">
                     </td>
                     <td class="td-field">账单名</td>
                     <td class="td-value">
-                        <input type="text" name="inName">
+                        <input type="text" name="accountName">
                     </td>
                     <td class="td-field">类别</td>
                     <td class="td-value">
@@ -75,28 +75,29 @@
         </form>
     </div>
     <div id="operate-area">
-        <input type="button" value="保存" class="btn-default-dark" onclick="saveGoods()"/>
+        <input type="button" value="保存" class="btn-default-dark" onclick="saveAccount()"/>
         <input type="button" value="查看清单" class="btn-default-dark" onclick="toGoodsList()"/>
     </div>
-
     <div id="account-details">
         <div class="item-header">近期入账单 <input type="button" class="btn-default-dark right" onclick="initTableList(1)"
                                               value="增加行"></div>
+        <form class="list-form" role="form" id="list-form">
 
-        <table id="recent-account-in" class="list-table">
-            <thead class="list-header">
-            <th class="col-header hidden"></th>
-            <th class="col-header">商品名</th>
-            <th class="col-header">类型</th>
-            <th class="col-header">单位</th>
-            <th class="col-header">规格</th>
-            <th class="col-header">品牌</th>
-            <th class="col-header">进价</th>
-            <th class="col-header">数量</th>
-            <th class="col-header">总价</th>
-            </thead>
-            <tbody class="list-body"></tbody>
-        </table>
+            <table id="recent-account-in" class="list-table">
+                <thead class="list-header">
+                <th class="col-header hidden"></th>
+                <th class="col-header">商品名</th>
+                <th class="col-header">类型</th>
+                <th class="col-header">单位</th>
+                <th class="col-header">规格</th>
+                <th class="col-header">品牌</th>
+                <th class="col-header">进价</th>
+                <th class="col-header">数量</th>
+                <th class="col-header">总价</th>
+                </thead>
+                <tbody class="list-body"></tbody>
+            </table>
+        </form>
         <br>
     </div>
 
@@ -152,17 +153,27 @@
         initType = getGoodsSmallType();
         initTableList(11);
     });
-    function saveGoods() {
-        var data = $("#form").serialize();
-        var url = "/koala-platform/goods/saveGoods";
+    function saveAccount() {
+        var listData = makeListFromTable(".list-form");
+        var accountInData = makeListFromTable("#form", 1);
+        //accountInData = JSON.stringify(accountInData);
+        //listData.push(accountInData[0]);
+        listData = JSON.stringify(listData);
+        var url = "/koala-platform/account/saveAccountIn?" + $("#form").serialize();
+        //data=JSON.stringify(list);
+        var data1 = $("#form").serialize();
+        var data2 = $("#list-form").serialize();
+        //var data = data1+data2;
         $.ajax({
             url: url,
-            type: "post",
-            data: data,
+            type: "POST",
+            dataType: "JSON",
+            data: listData,
+            contentType: 'application/json;charset=utf-8',
             success: function (data) {
                 if (data == "success") {
                     makeBlockTime("保存成功！");
-                    refreshWindow();
+                    window.location.reload();
                 }
             }
         })
@@ -207,36 +218,8 @@
         var url = "/koala-platform/goods/toGoodsList";
         window.open(url);
     }
-    function initTableList(n, modelId, tableId) {
-        /*获取行模板*/
-        var model;
-        if (!isNullOrNot(modelId)) {
-            model = $("#" + modelId);
-        } else {
-            model = $(".list-model");
-        }
-
-        if (isNullOrNot(model) || model.length > 1) {
-            return false;
-        }
-
-        var inner = model.children();
-        /*获取table对象*/
-        var table;
-        if (!isNullOrNot(tableId)) {
-            table = $("#" + tableId);
-        } else {
-            table = $(".list-body");
-        }
-        if (isNullOrNot(table) || table.length > 1) {
-            return false;
-        }
-        /*插入行*/
-        for (var i = 1; i <= n; i++) {
-            inner.clone().appendTo(table);
-        }
-    }
 
 </script>
+<script src="../static/js/table.js"></script>
 </body>
 </html>

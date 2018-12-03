@@ -5,23 +5,26 @@ import java.util.Date;
 /**
  * Created by hanyaning
  * Email:hynkoala@163.com
- * Date: 2018.11.27
- * Time:20:14
+ * Date: 2018.12.03
+ * Time:17:20
  * Description:
  */
-public class AccountIn extends Account {
-    private String accountId;//
-    private String accountName;//
-    private String goodsType;//
-    private String accountBh;//
-    private String otherComment;//
-    private Double sumMoney;//
-    private String tradeTarget;//
-    private String contactPerson;//
-    private String contactWay;//
-    private String operatePerson;//
-    private Date createTime;//
-    private Date updateTime;//
+public class Account {
+    private String accountId;
+    private String accountName;
+    private String accountBh;
+    private String goodsType;
+    private String tradeTarget;
+    private String contactPerson;
+    private String contactWay;
+    private String otherComment;
+    private Double sumMoney;
+    private String operatePerson;
+    private String doReceipt;
+    private Double taxRate;
+    private String doSettle;
+    private Date createTime;
+    private Date updateTime;
 
     public String getAccountId() {
         return accountId;
@@ -39,14 +42,6 @@ public class AccountIn extends Account {
         this.accountName = accountName;
     }
 
-    public String getGoodsType() {
-        return goodsType;
-    }
-
-    public void setGoodsType(String goodsType) {
-        this.goodsType = goodsType;
-    }
-
     public String getAccountBh() {
         return accountBh;
     }
@@ -55,20 +50,12 @@ public class AccountIn extends Account {
         this.accountBh = accountBh;
     }
 
-    public String getOtherComment() {
-        return otherComment;
+    public String getGoodsType() {
+        return goodsType;
     }
 
-    public void setOtherComment(String otherComment) {
-        this.otherComment = otherComment;
-    }
-
-    public Double getSumMoney() {
-        return sumMoney;
-    }
-
-    public void setSumMoney(Double sumMoney) {
-        this.sumMoney = sumMoney;
+    public void setGoodsType(String goodsType) {
+        this.goodsType = goodsType;
     }
 
     public String getTradeTarget() {
@@ -95,12 +82,52 @@ public class AccountIn extends Account {
         this.contactWay = contactWay;
     }
 
+    public String getOtherComment() {
+        return otherComment;
+    }
+
+    public void setOtherComment(String otherComment) {
+        this.otherComment = otherComment;
+    }
+
+    public Double getSumMoney() {
+        return sumMoney;
+    }
+
+    public void setSumMoney(Double sumMoney) {
+        this.sumMoney = sumMoney;
+    }
+
     public String getOperatePerson() {
         return operatePerson;
     }
 
     public void setOperatePerson(String operatePerson) {
         this.operatePerson = operatePerson;
+    }
+
+    public String getDoReceipt() {
+        return doReceipt;
+    }
+
+    public void setDoReceipt(String doReceipt) {
+        this.doReceipt = doReceipt;
+    }
+
+    public Double getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(Double taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    public String getDoSettle() {
+        return doSettle;
+    }
+
+    public void setDoSettle(String doSettle) {
+        this.doSettle = doSettle;
     }
 
     public Date getCreateTime() {

@@ -170,7 +170,7 @@
             success: function (data) {
                 if (data == "success") {
                     makeBlockTime("保存成功！");
-                    refreshWindow();
+                    window.location.reload();
                 }
             }
         })

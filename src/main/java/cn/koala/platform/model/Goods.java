@@ -24,7 +24,7 @@ public class Goods {
     private Date updateTime;//
     private String guaranteePeriod;//
     private String doHave;//
-    private String goodsModel;
+    private String goodsSize;
     private String goodsBrand;
     private String surplus;
 
@@ -140,12 +140,12 @@ public class Goods {
         this.doHave = doHave;
     }
 
-    public String getGoodsModel() {
-        return goodsModel;
+    public String getGoodsSize() {
+        return goodsSize;
     }
 
-    public void setGoodsModel(String goodsModel) {
-        this.goodsModel = goodsModel;
+    public void setGoodsSize(String goodsSize) {
+        this.goodsSize = goodsSize;
     }
 
     public String getGoodsBrand() {

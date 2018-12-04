@@ -8,7 +8,7 @@
         <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
         <result property="goodsUnit" column="goods_unit" jdbcType="VARCHAR"/>
         <result property="goodsType" column="goods_type" jdbcType="VARCHAR"/>
-        <result property="goodsModel" column="goods_model" jdbcType="VARCHAR"/>
+        <result property="goodsSize" column="goods_size" jdbcType="VARCHAR"/>
         <result property="goodsBrand" column="goods_brand" jdbcType="VARCHAR"/>
         <result property="goodsBigType" column="goods_big_type" jdbcType="VARCHAR"/>
         <result property="goodsInPrice" column="goods_in_prise" jdbcType="NUMERIC"/>

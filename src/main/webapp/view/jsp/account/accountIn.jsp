@@ -70,7 +70,10 @@
                     </td>
                 </tr>
                 </tbody>
-
+                <div class="hidden">
+                    <input name="accountId" id="account-id">
+                    <input name="accountType" value="1" id="account-type">
+                </div>
             </table>
         </form>
     </div>
@@ -85,6 +88,7 @@
 
             <table id="recent-account-in" class="list-table">
                 <thead class="list-header">
+                <th class="col-header hidden"></th>
                 <th class="col-header hidden"></th>
                 <th class="col-header">商品名</th>
                 <th class="col-header">类型</th>
@@ -106,6 +110,9 @@
         <tr class="list-item">
             <td class="list-value hidden">
                 <input name="tradeId">
+            </td>
+            <td class="list-value hidden">
+                <input name="goodsId">
             </td>
             <td class="list-value">
                 <input name="goodsName">
@@ -153,17 +160,11 @@
         initType = getGoodsSmallType();
         initTableList(11);
     });
+
     function saveAccount() {
         var listData = makeListFromTable(".list-form");
-        var accountInData = makeListFromTable("#form", 1);
-        //accountInData = JSON.stringify(accountInData);
-        //listData.push(accountInData[0]);
         listData = JSON.stringify(listData);
-        var url = "/koala-platform/account/saveAccountIn?" + $("#form").serialize();
-        //data=JSON.stringify(list);
-        var data1 = $("#form").serialize();
-        var data2 = $("#list-form").serialize();
-        //var data = data1+data2;
+        var url = "/koala-platform/account/saveAccount?" + $("#form").serialize();
         $.ajax({
             url: url,
             type: "POST",

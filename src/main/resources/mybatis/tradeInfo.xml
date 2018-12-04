@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.koala.platform.mapper.TradeInfoMapper">
+    <resultMap id="tradeInfo" type="cn.koala.platform.model.TradeInfo">
+
+        <id property="tradeId" column="trade_id" jdbcType="VARCHAR"/>
+        <result property="tradePrice" column="trade_price" jdbcType="VARCHAR"/>
+        <result property="tradeNumber" column="trade_number" jdbcType="VARCHAR"/>
+        <result property="tradeTime" column="trade_time" jdbcType="VARCHAR"/>
+        <result property="accountBh" column="account_bh" jdbcType="VARCHAR"/>
+        <result property="accountName" column="account_name" jdbcType="VARCHAR"/>
+        <result property="accountType" column="Account_type" jdbcType="VARCHAR"/>
+        <result property="goodsType" column="goods_type" jdbcType="VARCHAR"/>
+        <result property="otherComment" column="other_comment" jdbcType="VARCHAR"/>
+        <result property="tradeTarget" column="trade_target" jdbcType="VARCHAR"/>
+        <result property="contactPerson" column="contact_person" jdbcType="VARCHAR"/>
+        <result property="contactWay" column="contact_way" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
+        <result property="goodsUnit" column="goods_unit" jdbcType="VARCHAR"/>
+        <result property="goodsType" column="goods_type" jdbcType="VARCHAR"/>
+        <result property="goodsSize" column="goods_Size" jdbcType="VARCHAR"/>
+        <result property="goodsBrand" column="goods_brand" jdbcType="VARCHAR"/>
+        <result property="goodsBigType" column="goods_big_type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="saveTradeInfo" parameterType="cn.koala.platform.model.TradeInfo">
+        insert into Trade_Info (trade_id, goods_Id,goods_name,goods_unit,goods_size,goods_brand,
+        goods_type,goods_big_type,account_type,account_bh,account_id,
+        other_comment,trade_price,trade_number,trade_time,trade_target,contact_person,contact_way,
+        create_time,update_time)
+        VALUES(#{tradeId,jdbcType=VARCHAR},#{goodsId,jdbcType=VARCHAR},
+        #{goodsName,jdbcType=VARCHAR},#{goodsUnit,jdbcType=VARCHAR},
+        #{goodsSize,jdbcType=VARCHAR},#{goodsBrand,jdbcType=VARCHAR},
+        #{goodsType,jdbcType=VARCHAR},#{goodsBigType,jdbcType=VARCHAR},
+        #{accountType,jdbcType=VARCHAR},#{accountBh,jdbcType=VARCHAR},
+        #{accountId,jdbcType=VARCHAR},#{otherComment,jdbcType=VARCHAR},
+        #{tradePrice,jdbcType=NUMERIC},#{tradeNumber,jdbcType=NUMERIC},
+        #{tradeTime,jdbcType=TIMESTAMP},#{tradeTarget,jdbcType=VARCHAR},
+        #{contactPerson,jdbcType=VARCHAR},#{contactWay,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="getTradeInfo" parameterType="java.util.Map" resultMap="tradeInfo">
+        select t.* from trade_Info t
+        where 1=1
+        <if test="accountBh!=null and accountBh!=''">
+            and t.accountBh=#{accountBh}
+        </if>
+        order by t.update_time desc
+    </select>
+
+</mapper>

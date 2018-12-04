@@ -1,15 +1,15 @@
-package cn.koala.platform.model;
+package cn.koala.platform.model.project;
 
 import cn.koala.platform.model.parent.Account;
 
 /**
  * Created by hanyaning
  * Email:hynkoala@163.com
- * Date: 2018.11.27
- * Time:20:18
+ * Date: 2018.12.04
+ * Time:19:22
  * Description:
  */
-public class AccountOut extends Account {
+public class AccountProject extends Account {
     private String doReceipt;
     private Double taxRate;
     private String doSettle;
@@ -37,5 +37,4 @@ public class AccountOut extends Account {
     public void setDoSettle(String doSettle) {
         this.doSettle = doSettle;
     }
-
 }

@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Repository
 public interface AccountInMapper {
-    void newAccountIn(AccountIn accountIn);
+    void saveAccountIn(AccountIn accountIn);
 
     List<AccountIn> getAccountInList(Map map);
 

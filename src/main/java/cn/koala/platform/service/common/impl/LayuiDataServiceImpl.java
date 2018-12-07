@@ -1,6 +1,7 @@
 package cn.koala.platform.service.common.impl;
 
 import cn.koala.platform.service.common.DataOrganizeService;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -19,21 +20,32 @@ public class LayuiDataServiceImpl implements DataOrganizeService {
 
     @Override
     public Map tableDataOrganize(Map map) {
-        int limit = (int) map.get("limit");
-        int page = (int) map.get("page");
+        int limit;
+        int page;
         List dataList = (List) map.get("data");
-
         Map resultMap = new HashMap();
-        int start = limit * (page - 1);
-        int end = limit * (page);
-        if (end > dataList.size()) {
-            end = dataList.size();
+        if (CollectionUtils.isNotEmpty(dataList)) {
+            if (map.containsKey("limit")) {
+                limit = (int) map.get("limit");
+            } else {
+                limit = 0;
+            }
+            if (map.containsKey("page")) {
+                page = (int) map.get("page");
+            } else {
+                page = 1;
+            }
+            int start = limit * (page - 1);
+            int end = limit * (page);
+            if (end > dataList.size()) {
+                end = dataList.size();
+            }
+            List returnList = dataList.subList(start, end);
+            resultMap.put("code", "0");
+            resultMap.put("msg", "success");
+            resultMap.put("data", returnList);
+            resultMap.put("count", dataList.size());
         }
-        List returnList = dataList.subList(start, end);
-        resultMap.put("code", "0");
-        resultMap.put("msg", "success");
-        resultMap.put("data", returnList);
-        resultMap.put("count", dataList.size());
         return resultMap;
     }
 

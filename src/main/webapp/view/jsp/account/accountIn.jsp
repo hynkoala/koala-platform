@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加货物</title>
+    <title>入账单</title>
     <jsp:include page="../alluse/importCss.jsp"></jsp:include>
     <link href="/koala-platform/static/css/account.css" rel="stylesheet">
 </head>
@@ -16,6 +16,7 @@
 
 </style>
 <body>
+<div id="header" style="height: 50px;background-color: whitesmoke;background-image: none"></div>
 <div id="main-content">
     <div id="input-area">
         <form role="form" class="form-inline" id="form">
@@ -25,7 +26,7 @@
                 <tr class="tr-field">
                     <td class="td-field">入账编号</td>
                     <td class="td-value">
-                        <input id="in-bh" type="text" name="accountBh">
+                        <input id="account-bh" type="text" name="accountBh">
                     </td>
                     <td class="td-field">账单名</td>
                     <td class="td-value">
@@ -40,6 +41,7 @@
 
                     </td>
                     <td class="td-field">总额</td>
+                    ggb
                     <td class="td-value">
                         <input type="text" name="sumMoney">
                     </td>
@@ -47,7 +49,7 @@
                 <tr>
                     <td class="td-field">供货商</td>
                     <td class="td-value">
-                        <input type="text" name="supplier">
+                        <input type="text" name="tradeTarget">
                     </td>
                     <td class="td-field">联系人</td>
                     <td class="td-value">
@@ -55,7 +57,7 @@
                     </td>
                     <td class="td-field">电话</td>
                     <td class="td-value">
-                        <input type="text" name="supplierPhone">
+                        <input type="text" name="contactWay">
                     </td>
                     <td class="td-field">地址</td>
                     <td class="td-value">
@@ -77,13 +79,9 @@
             </table>
         </form>
     </div>
-    <div id="operate-area">
-        <input type="button" value="保存" class="btn-default-dark" onclick="saveAccount()"/>
-        <input type="button" value="查看清单" class="btn-default-dark" onclick="toGoodsList()"/>
-    </div>
+
     <div id="account-details">
-        <div class="item-header">近期入账单 <input type="button" class="btn-default-dark right" onclick="initTableList(1)"
-                                              value="增加行"></div>
+        <div class="item-header">入&nbsp;&nbsp;账&nbsp;&nbsp;单&nbsp;&nbsp;明&nbsp;&nbsp;细</div>
         <form class="list-form" role="form" id="list-form">
 
             <table id="recent-account-in" class="list-table">
@@ -91,17 +89,24 @@
                 <th class="col-header hidden"></th>
                 <th class="col-header hidden"></th>
                 <th class="col-header">商品名</th>
-                <th class="col-header">类型</th>
                 <th class="col-header">单位</th>
+                <th class="col-header">数量</th>
+                <th class="col-header">类型</th>
                 <th class="col-header">规格</th>
                 <th class="col-header">品牌</th>
                 <th class="col-header">进价</th>
-                <th class="col-header">数量</th>
                 <th class="col-header">总价</th>
                 </thead>
                 <tbody class="list-body"></tbody>
             </table>
         </form>
+        <br>
+        <input id="account-save" type="button" class="btn-default-light btn-save right account-btn"
+               onclick="saveAccount()"
+               value="保存">
+        <input type="button" class="btn-default-light right account-btn" onclick="initTableList(1)"
+               value="增加行">
+        <br>
         <br>
     </div>
 
@@ -117,11 +122,14 @@
             <td class="list-value">
                 <input name="goodsName">
             </td>
-            <td class="list-value">
-                <input name="goodsType">
-            </td>
             <td class="list-value" style="width: 50px">
                 <input name="goodsUnit">
+            </td>
+            <td class="list-value" style="width: 80px">
+                <input name="tradeNumber">
+            </td>
+            <td class="list-value">
+                <input name="goodsType">
             </td>
             <td class="list-value" style="width: 100px">
                 <input name="goodsSize">
@@ -131,9 +139,6 @@
             </td>
             <td class="list-value" style="width: 100px">
                 <input name="tradePrice">
-            </td>
-            <td class="list-value" style="width: 80px">
-                <input name="tradeNumber">
             </td>
             <td class="list-value">
                 <input name="sumPrice">
@@ -146,81 +151,7 @@
 </div>
 <jsp:include page="../alluse/footer.jsp"></jsp:include>
 <jsp:include page="../alluse/importJs.jsp"></jsp:include>
-<script>
-    $(function () {
-        $("#in-bh").val(getBhFromTime());
-        $(".td-value input, select, option,textarea").mouseover(function () {
-            $(this).css("box-shadow", "0 0 2px 0.5px red inset");
-        });
-        $(".td-value input, select, option,textarea").mouseout(function () {
-            $(this).css("box-shadow", "none");
-        });
-
-        var initType = initGoodsType();
-        initType = getGoodsSmallType();
-        initTableList(11);
-    });
-
-    function saveAccount() {
-        var listData = makeListFromTable(".list-form");
-        listData = JSON.stringify(listData);
-        var url = "/koala-platform/account/saveAccount?" + $("#form").serialize();
-        $.ajax({
-            url: url,
-            type: "POST",
-            dataType: "JSON",
-            data: listData,
-            contentType: 'application/json;charset=utf-8',
-            success: function (data) {
-                if (data == "success") {
-                    makeBlockTime("保存成功！");
-                    window.location.reload();
-                }
-            }
-        })
-
-    }
-    var initGoodsType = function () {
-        var url = goodsUrl + "/getBigTypes";
-        $.ajax({
-            url: url,
-            type: "post",
-            async: false,
-            success: function (data) {
-                data.forEach(function (e) {
-                    $("#goods-big-type").append('<option value="' + e.DM + '"onclick="getGoodsSmallType()">' + e.MC + '</option>');
-                });
-                return true;
-            }
-        })
-    };
-    function getGoodsSmallType() {
-        var bigType = $('#goods-big-type').val();
-        $("#goods-type").empty();
-        var url = goodsUrl + "/getSmallTypes";
-        $.ajax({
-            url: url,
-            data: {type: bigType},
-            type: "post",
-            success: function (data) {
-                data.forEach(function (e) {
-                    $("#goods-type").append('<option value="' + e.DM + '">' + e.MC + '</option>');
-                });
-                return true;
-            }
-        })
-    };
-
-    function goodsUnitDropdown() {
-
-    }
-
-    function toGoodsList() {
-        var url = "/koala-platform/goods/toGoodsList";
-        window.open(url);
-    }
-
-</script>
 <script src="../static/js/table.js"></script>
+<script src="/koala-platform/static/js/account.js"></script>
 </body>
 </html>

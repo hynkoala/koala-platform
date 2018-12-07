@@ -105,7 +105,7 @@ function timeFomatter(cellvalue, type) {
         }
         return time;
     } else {
-        return '';
+        return null;
     }
 }
 
@@ -178,7 +178,7 @@ function resetFrameCss(minWidth, minHeigth) {
     }
     var winHeight = window.innerHeight;
     var winWidth = window.innerWidth;
-    var width = winWidth;
+    var width = winWidth - 20;
     var height = winHeight;
     var headerHeight = $("#header").outerHeight(true);
     var footerHeight = $("#footer").outerHeight(true);

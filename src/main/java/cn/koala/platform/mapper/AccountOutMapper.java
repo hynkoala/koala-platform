@@ -1,5 +1,6 @@
 package cn.koala.platform.mapper;
 
+import cn.koala.platform.mapper.parent.AccountMapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,5 +11,6 @@ import org.springframework.stereotype.Repository;
  * Description:
  */
 @Repository
-public interface AccountOutMapper {
+public interface AccountOutMapper extends AccountMapper {
+
 }

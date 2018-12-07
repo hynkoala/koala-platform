@@ -2,19 +2,20 @@ package cn.koala.platform.service.impl;
 
 import cn.koala.platform.mapper.AccountInMapper;
 import cn.koala.platform.mapper.AccountOutMapper;
+import cn.koala.platform.mapper.parent.AccountMapper;
 import cn.koala.platform.model.AccountIn;
 import cn.koala.platform.model.AccountOut;
 import cn.koala.platform.model.TradeInfo;
 import cn.koala.platform.model.parent.Account;
 import cn.koala.platform.service.AccountService;
 import cn.koala.platform.service.core.AccountDto;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by 12732
@@ -55,21 +56,26 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDto makeSureAccountDto(Account account) {
+    public AccountDto makeSureAccountDto(Account account, String accountType) {
         AccountDto accountDto;
-        String accountType = account.getAccountType();
-        if (StringUtils.equals(accountType, "1")) {
-            AccountIn accountIn = new AccountIn();
-            BeanUtils.copyProperties(account, accountIn);
-            accountDto = accountIn;
-            return accountDto;
-        } else if (StringUtils.equals(accountType, "2")) {
-            AccountOut accountOut = new AccountOut();
-            BeanUtils.copyProperties(account, accountOut);
-            return accountOut;
+        if (account != null && StringUtils.isNotBlank(account.getAccountType())) {
+            accountType = account.getAccountType();
         } else {
-            return account;
+            account = new Account();
         }
+        if (StringUtils.isNotBlank(accountType)) {
+            if (StringUtils.equals(accountType, "1")) {
+                AccountIn accountIn = new AccountIn();
+                BeanUtils.copyProperties(account, accountIn);
+                accountDto = accountIn;
+                return accountDto;
+            } else if (StringUtils.equals(accountType, "2")) {
+                AccountOut accountOut = new AccountOut();
+                BeanUtils.copyProperties(account, accountOut);
+                return accountOut;
+            }
+        }
+        return account;
     }
 
     @Override
@@ -86,4 +92,43 @@ public class AccountServiceImpl implements AccountService {
         tradeInfo.setUpdateTime(account.getCreateTime());
         return tradeInfo;
     }
+
+    @Override
+    public List<AccountDto> getAccountDtos(String accountType, Map paraMap) {
+        List<AccountDto> accountDtos = null;
+        AccountMapper accountMapper;
+        switch (accountType) {
+            case "1": {
+                accountMapper = accountInMapper;
+                break;
+            }
+            case "2": {
+                accountMapper = accountOutMapper;
+                break;
+            }
+            default: {
+                accountMapper = null;
+            }
+        }
+        if (accountMapper != null) {
+            accountDtos = accountMapper.getAccountList(paraMap);
+        }
+        return accountDtos;
+    }
+
+    @Override
+    public AccountDto getAccountById(String accountId, String accountType) {
+        Map map = new HashMap();
+        map.put("accountId", accountId);
+        AccountDto accountDto;
+        List<AccountDto> accountDtos = getAccountDtos(accountType, map);
+        if (CollectionUtils.isNotEmpty(accountDtos)) {
+            accountDto = accountDtos.get(0);
+            if (accountDto != null) {
+                return accountDto;
+            }
+        }
+        return null;
+    }
+
 }

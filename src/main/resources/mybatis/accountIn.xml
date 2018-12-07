@@ -34,8 +34,13 @@
         #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
     </insert>
 
-    <select id="getAccountInList" parameterType="java.util.Map" resultMap="accountIn">
-        select t.* from account_in t order by t.update_time desc
+    <select id="getAccountList" parameterType="java.util.Map" resultMap="accountIn">
+        select t.* from account_in t
+        where 1=1
+        <if test="accountId!=null and accountId!=''">
+            and t.In_id = #{accountId}
+        </if>
+        order by t.update_time desc
     </select>
 
 </mapper>

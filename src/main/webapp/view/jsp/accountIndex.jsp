@@ -14,12 +14,17 @@
 
 </head>
 <style>
+    #header {
+        background-image: url("/koala-platform/static/img/header-bg-account.png");
+    }
+
     div#main-content {
-        background-color: transparent;
+        background-color: #646464;
         padding: 0 5%;
         padding-top: 50px;
         min-width: 1750px !important;
     }
+
     .account-tools {
         position: relative;
         display: inline-block;
@@ -41,28 +46,28 @@
     #left-show {
         float: left;
     }
+
     .left-item {
         width: 600px;
         float: left;
         margin-right: 40px;
-        height: 500px;
+        height: 490px;
         top: 0;
         bottom: 0;
         background-color: whitesmoke;
 
     }
 
+    .layui-table-view {
+        margin: 0 auto;
+    }
+
     .menu-bar {
         color: #d65f71;
     }
 
-    .item-header {
-        height: 50px;
+    .btn-table {
         width: 100%;
-        background-color: #d8eee8;
-        font-size: 24px;
-        font-style: italic;
-        padding-top: 6px;
     }
 </style>
 
@@ -105,6 +110,67 @@
 
 <script>
     $(function () {
+        var tableIn = layui.table;
+        var tableOut = layui.table;
+        tableIn.render({
+            id: 'accountId',
+            elem: "#recent-account-in",
+            method: "post",
+            url: "/koala-platform/account/getAccount?accountType=1",
+            height: 430,
+            cols: [[
+                {
+                    field: '', title: '序号', width: 60, fixed: 'left', templet: function (d) {
+                    return d.LAY_INDEX;
+                }
+                }
+                , {field: "accountId", hide: true}
+                , {field: 'accountName', title: "账单", width: 150}
+                , {field: 'tradeTarget', title: "交易对象", width: 200}
+                , {
+                    field: 'createTime', title: "入账时间", width: 100, templet: function (d) {
+                        return timeFomatter(d.createTime, "yyMMdd");
+                    }
+                }
+                , {
+                    field: '', title: "操作", templet: function (d) {
+                        return '<input type="button" class="btn-table" onclick="seeDetails(' + '"' + d.accountId + '"' + ')" value="明细">'
+                    }
+                }
+            ]]
+
+        });
+
+        tableOut.render({
+            id: 'accountId',
+            elem: "#recent-account-out",
+            method: "post",
+            url: "/koala-platform/account/getAccount?accountType=1",
+            height: 430,
+            cols: [[
+                {
+                    field: '', title: '序号', width: 60, fixed: 'left', templet: function (d) {
+                    return d.LAY_INDEX;
+                }
+                }
+                , {field: "accountId", hide: true}
+                , {field: 'accountName', title: "账单", width: 150}
+                , {field: 'tradeTarget', title: "交易对象", width: 200}
+                , {
+                    field: 'createTime', title: "入账时间", width: 100, templet: function (d) {
+                        return timeFomatter(d.createTime, "yyMMdd");
+                    }
+                }
+                , {
+                    field: '', title: "操作", templet: function (d) {
+                        return "<input type='button' class='btn-table' onclick='seeDetails(" + d.accountId + ")' value='明细'>"
+                    }
+                }
+            ]]
+
+        });
+    });
+    $(function () {
         $(".account-tools").mouseover(function () {
             $(this).css("background-color", "wheat");
         });
@@ -114,7 +180,6 @@
     });
     function addGoods() {
         var baseUrl = "/koala-platform/view/toTargetUrl?target=";
-        /*var urlComponent = encodeURIComponent("target="+"goods/addGoods");*/
         var target = "goods/addGoods";
         window.open(baseUrl + target);
     }
@@ -130,5 +195,20 @@
         var url = "/koala-platform/view/toTargetUrl?target=" + "account/accountOut";
         window.open(url);
     })
+
+    function seeDetails(id) {
+        var url = "/koala-platform/account/accountDetails?accountType=1&accountId=" + id;
+        window.open(url);
+
+        /*var data = {accountId:id,accountType:"1"};
+         $.ajax({
+         url:url,
+         data:data,
+         type:'post',
+         success:function(){
+         window.open()
+         }
+         })*/
+    }
 
 </script>

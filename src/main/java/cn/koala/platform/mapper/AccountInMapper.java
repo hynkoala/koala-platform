@@ -1,6 +1,8 @@
 package cn.koala.platform.mapper;
 
+import cn.koala.platform.mapper.parent.AccountMapper;
 import cn.koala.platform.model.AccountIn;
+import cn.koala.platform.service.core.AccountDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,9 +16,9 @@ import java.util.Map;
  * Description:
  */
 @Repository
-public interface AccountInMapper {
+public interface AccountInMapper extends AccountMapper {
     void saveAccountIn(AccountIn accountIn);
 
-    List<AccountIn> getAccountInList(Map map);
+    List<AccountDto> getAccountList(Map map);
 
 }

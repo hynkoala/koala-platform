@@ -17,5 +17,9 @@ import java.util.Map;
 public interface TradeInfoMapper {
     void saveTradeInfo(TradeInfo tradeInfo);
 
+    void updateTradeInfo(TradeInfo tradeInfo);
+
     List<TradeInfo> getTradeInfo(Map map);
+
+    List<TradeInfo> getTradeInfosByAccountId(String accountId);
 }

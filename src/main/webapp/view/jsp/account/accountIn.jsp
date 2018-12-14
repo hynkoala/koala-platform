@@ -16,7 +16,7 @@
 
 </style>
 <body>
-<div id="header" style="height: 50px;background-color: whitesmoke;background-image: none"></div>
+<div id="header"></div>
 <div id="main-content">
     <div id="input-area">
         <form role="form" class="form-inline" id="form">
@@ -26,11 +26,11 @@
                 <tr class="tr-field">
                     <td class="td-field">入账编号</td>
                     <td class="td-value">
-                        <input id="account-bh" type="text" name="accountBh">
+                        <input id="account-bh" type="text" name="accountBh" value="${account.accountBh}">
                     </td>
                     <td class="td-field">账单名</td>
                     <td class="td-value">
-                        <input type="text" name="accountName">
+                        <input type="text" name="accountName" value="${account.accountName}">
                     </td>
                     <td class="td-field">类别</td>
                     <td class="td-value">
@@ -41,7 +41,6 @@
 
                     </td>
                     <td class="td-field">总额</td>
-                    ggb
                     <td class="td-value">
                         <input type="text" name="sumMoney">
                     </td>
@@ -114,22 +113,22 @@
         <tbody class="list-model" class="hidden" hidden="hidden">
         <tr class="list-item">
             <td class="list-value hidden">
-                <input name="tradeId">
+                <input name="tradeId" value="${tradeInfo.tradeId}">
             </td>
             <td class="list-value hidden">
-                <input name="goodsId">
+                <input name="goodsId" value="${tradeInfo.goodsId}">
             </td>
             <td class="list-value">
-                <input name="goodsName">
+                <input name="goodsName" value="${tradeInfo.goodsName}">
             </td>
             <td class="list-value" style="width: 50px">
-                <input name="goodsUnit">
+                <input name="goodsUnit" value="${tradeInfo.goodsUnit}">
             </td>
             <td class="list-value" style="width: 80px">
-                <input name="tradeNumber">
+                <input name="tradeNumber" value="${tradeInfo.tradeNumber}">
             </td>
             <td class="list-value">
-                <input name="goodsType">
+                <input name="goodsType" value="${tradeInfo.goodsType}">
             </td>
             <td class="list-value" style="width: 100px">
                 <input name="goodsSize">

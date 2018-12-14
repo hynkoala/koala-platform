@@ -27,6 +27,15 @@ public class Goods {
     private String goodsSize;
     private String goodsBrand;
     private String surplus;
+    private String goodsBh;
+
+    public String getGoodsBh() {
+        return goodsBh;
+    }
+
+    public void setGoodsBh(String goodsBh) {
+        this.goodsBh = goodsBh;
+    }
 
     public String getGoodsId() {
         return goodsId;

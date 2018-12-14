@@ -1,5 +1,6 @@
 package cn.koala.platform.service;
 
+import cn.koala.platform.mapper.parent.AccountMapper;
 import cn.koala.platform.model.TradeInfo;
 import cn.koala.platform.model.parent.Account;
 import cn.koala.platform.service.core.AccountDto;
@@ -61,5 +62,11 @@ public interface AccountService {
     List<AccountDto> getAccountDtos(String accountType, Map map);
 
     AccountDto getAccountById(String id, String accountType);
+
+    AccountMapper getAccountMapper(String accountType);
+
+    void updateAccount(AccountDto accountDto);
+
+    void saveTradeInfo(TradeInfo tradeInfo);
 
 }

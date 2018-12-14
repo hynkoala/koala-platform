@@ -6,7 +6,7 @@ body {
 
 #main-content {
     position: relative;
-    margin: 10px auto;
+    margin: 0 auto;
     font-size: 18px;
     padding: 0 10%;
 }
@@ -25,7 +25,8 @@ body {
 }
 
 .btn-default-light {
-    background-color: #ccc8cd;
+    background-color: #e2dfdf;
+    text-align: center;
     padding: 4px 8px;
     color: black;
     border: none;
@@ -108,7 +109,6 @@ th {
 .list-table {
     border-collapse: separate;
     border-spacing: 2px 5px;
-    /*background-color: #ecd2d7;*/
     background-color: #ee9896;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -121,6 +121,7 @@ th {
     width: 100%;
     padding: 2px 5px;
     border-radius: inherit;
+    opacity: 0.9;
 }
 
 .list-item {

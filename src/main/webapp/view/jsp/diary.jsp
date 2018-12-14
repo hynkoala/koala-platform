@@ -44,7 +44,7 @@
     function submitDiary() {
         diaryTitle = $("#diary-title").val();
         diaryContent = $("#diary-content").val();
-        if (isNullOrNot(diaryTitle) || isNullOrNot(diaryContent)) {
+        if (thisIsNull(diaryTitle) || thisIsNull(diaryContent)) {
             makeBlockTime("请先输入！");
             return;
         }

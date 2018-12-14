@@ -45,6 +45,11 @@ public class LayuiDataServiceImpl implements DataOrganizeService {
             resultMap.put("msg", "success");
             resultMap.put("data", returnList);
             resultMap.put("count", dataList.size());
+        } else {
+            resultMap.put("code", "0");
+            resultMap.put("msg", "success");
+            resultMap.put("data", null);
+            resultMap.put("count", 0);
         }
         return resultMap;
     }

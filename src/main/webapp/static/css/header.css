@@ -8,6 +8,7 @@
     height: 180px;
     position: relative;
     padding-top: 10px;
+    min-height: 160px;
 }
 
 #banner {

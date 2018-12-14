@@ -10,12 +10,12 @@
 <head>
     <title>记账系统</title>
     <jsp:include page="alluse/importCss.jsp"></jsp:include>
-    <link href="/koala-platform/static/css/account.css" rel="stylesheet">
 
 </head>
 <style>
     #header {
         background-image: url("/koala-platform/static/img/header-bg-account.png");
+        height: 160px;
     }
 
     div#main-content {
@@ -55,7 +55,7 @@
         top: 0;
         bottom: 0;
         background-color: whitesmoke;
-
+        box-shadow: 3px 1px 10px #d8cfcf;
     }
 
     .layui-table-view {
@@ -66,8 +66,11 @@
         color: #d65f71;
     }
 
-    .btn-table {
+    .btn-default-light {
         width: 100%;
+        height: 100%;
+        font-size: 14px;
+        line-height: 0;
     }
 </style>
 
@@ -128,13 +131,13 @@
                 , {field: 'accountName', title: "账单", width: 150}
                 , {field: 'tradeTarget', title: "交易对象", width: 200}
                 , {
-                    field: 'createTime', title: "入账时间", width: 100, templet: function (d) {
+                    field: 'createTime', title: "入账时间", width: 110, templet: function (d) {
                         return timeFomatter(d.createTime, "yyMMdd");
                     }
                 }
                 , {
                     field: '', title: "操作", templet: function (d) {
-                        return '<input type="button" class="btn-table" onclick="seeDetails(' + '"' + d.accountId + '"' + ')" value="明细">'
+                        return "<input type='button' class='btn-default-light' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='明细'>";
                     }
                 }
             ]]
@@ -145,7 +148,7 @@
             id: 'accountId',
             elem: "#recent-account-out",
             method: "post",
-            url: "/koala-platform/account/getAccount?accountType=1",
+            url: "/koala-platform/account/getAccount?accountType=2",
             height: 430,
             cols: [[
                 {
@@ -157,13 +160,13 @@
                 , {field: 'accountName', title: "账单", width: 150}
                 , {field: 'tradeTarget', title: "交易对象", width: 200}
                 , {
-                    field: 'createTime', title: "入账时间", width: 100, templet: function (d) {
+                    field: 'createTime', title: "入账时间", width: 110, templet: function (d) {
                         return timeFomatter(d.createTime, "yyMMdd");
                     }
                 }
                 , {
                     field: '', title: "操作", templet: function (d) {
-                        return "<input type='button' class='btn-table' onclick='seeDetails(" + d.accountId + ")' value='明细'>"
+                        return "<input type='button' class='btn-default-light' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='明细'>"
                     }
                 }
             ]]
@@ -196,8 +199,8 @@
         window.open(url);
     })
 
-    function seeDetails(id) {
-        var url = "/koala-platform/account/accountDetails?accountType=1&accountId=" + id;
+    function seeDetails(id, accountType) {
+        var url = "/koala-platform/account/accountDetails?accountType=" + accountType + "&accountId=" + id;
         window.open(url);
 
         /*var data = {accountId:id,accountType:"1"};

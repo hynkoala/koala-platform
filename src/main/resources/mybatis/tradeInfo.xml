@@ -43,6 +43,28 @@
         #{contactPerson,jdbcType=VARCHAR},#{contactWay,jdbcType=VARCHAR},
         #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
     </insert>
+    <update id="updateTradeInfo" parameterType="cn.koala.platform.model.TradeInfo">
+        UPDATE Trade_info
+        SET
+        <if test="accountBh!=null">Account_bh = #{accountBh,jdbcType=NUMERIC},</if>
+        <if test="accountType!=null">Account_type = #{accountType,jdbcType=VARCHAR},</if>
+        <if test="accountName!=null">Account_Name = #{accountName,jdbcType=VARCHAR},</if>
+        <if test="otherComment!=null">other_comment = #{otherComment,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="tradeTarget!=null">trade_target=#{tradeTarget,jdbcType=VARCHAR},</if>
+        <if test="contactPerson!=null">contact_person = #{contactPerson,jdbcType=VARCHAR},</if>
+        <if test="contactWay!=null">contact_way = #{contactWay,jdbcType=VARCHAR},</if>
+        <if test="operatePerson!=null">operate_person = #{operatePerson,jdbcType=VARCHAR},</if>
+        <if test="goodsId!=null">goods_id = #{goodsId,jdbcType=VARCHAR},</if>
+        <if test="goodsName!=null">goods_name = #{goodsName,jdbcType=VARCHAR},</if>
+        <if test="goodsType!=null">goods_type = #{goodsType,jdbcType=VARCHAR},</if>
+        <if test="goodsBigType!=null">goods_big_type = #{goodsBigType,jdbcType=VARCHAR},</if>
+        <if test="goodsUnit!=null">goods_unit = #{goodsUnit,jdbcType=VARCHAR},</if>
+        <if test="goodsSize!=null">goods_size = #{goodsSize,jdbcType=VARCHAR},</if>
+        <if test="goodsBrand!=null">goods_Brand = #{goodsBrand,jdbcType=VARCHAR},</if>
+        <if test="tradeId!=null">trade_Id = #{tradeId,jdbcType=VARCHAR}</if>
+        where trade_id = #{tradeId,jdbcType=VARCHAR}
+    </update>
 
     <select id="getTradeInfo" parameterType="java.util.Map" resultMap="tradeInfo">
         select t.* from trade_Info t
@@ -52,5 +74,10 @@
         </if>
         order by t.update_time desc
     </select>
+    <select id="getTradeInfosByAccountId" resultType="cn.koala.platform.model.TradeInfo" resultMap="tradeInfo">
+        select t.* from Trade_info t where t.account_Id=#{accountId}
+        order by t.create_time asc
+    </select>
+
 
 </mapper>

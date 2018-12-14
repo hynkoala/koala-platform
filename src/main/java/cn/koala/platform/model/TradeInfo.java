@@ -29,8 +29,17 @@ public class TradeInfo {
     private String goodsBrand;
     private String goodsType;
     private String goodsBigType;
+    private String operatePerson;
     private Date createTime;
     private Date updateTime;
+
+    public String getOperatePerson() {
+        return operatePerson;
+    }
+
+    public void setOperatePerson(String operatePerson) {
+        this.operatePerson = operatePerson;
+    }
 
     public String getTradeId() {
         return tradeId;

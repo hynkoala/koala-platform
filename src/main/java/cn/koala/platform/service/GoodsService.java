@@ -1,5 +1,8 @@
 package cn.koala.platform.service;
 
+import cn.koala.platform.model.Goods;
+import cn.koala.platform.model.TradeInfo;
+
 /**
  * Created by 12732
  * Email:hynkoala@163.com
@@ -8,5 +11,6 @@ package cn.koala.platform.service;
  * Description:
  */
 public interface GoodsService {
+    Goods initGoodsFromTradeInfo(TradeInfo tradeInfo);
 
 }

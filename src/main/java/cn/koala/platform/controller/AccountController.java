@@ -9,6 +9,7 @@ import cn.koala.platform.service.AccountService;
 import cn.koala.platform.service.GoodsService;
 import cn.koala.platform.service.common.DataManagerService;
 import cn.koala.platform.service.common.DataOrganizeService;
+import cn.koala.platform.service.common.ViewManagerService;
 import cn.koala.platform.service.core.AccountDto;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -46,6 +47,9 @@ public class AccountController {
     DataManagerService dataManagerService;
     @Autowired
     DataOrganizeService dataOrganizeService;
+    @Autowired
+    ViewManagerService viewManagerService;
+
     @RequestMapping("")
     public String toAccountIndex(Model model) {
         String path = "accountIndex";
@@ -58,14 +62,22 @@ public class AccountController {
                                @RequestBody(required = false) List<TradeInfo> tradeInfoList) {
         AccountDto accountDto = accountService.makeSureAccountDto(account, null);
         if (accountDto != null) {
-            accountDto = accountService.initAccountInfo(accountDto);
-            accountService.saveAccount(accountDto);
+            // 通过账单id是否存在判断是新建账单还是更新账单
+            if (StringUtils.isBlank(accountDto.getAccountId())) {
+                accountDto = accountService.initAccountInfo(accountDto);
+                accountService.saveAccount(accountDto);
+            } else {
+                accountService.updateAccount(accountDto);
+            }
+
         }
         if (CollectionUtils.isNotEmpty(tradeInfoList) && account != null) {
             for (TradeInfo tradeInfo : tradeInfoList) {
+                // 如果商品名为空值，则认为传过来的是空行，不予保存
                 if (StringUtils.isNotBlank(tradeInfo.getGoodsName())) {
                     tradeInfo = accountService.initTradeInfoFromAccount(tradeInfo, accountDto);
-                    tradeInfoMapper.saveTradeInfo(tradeInfo);
+
+                    accountService.saveTradeInfo(tradeInfo);
                 }
             }
         }
@@ -76,7 +88,6 @@ public class AccountController {
     @RequestMapping("getAccount")
     public Map getAccount(@RequestParam(required = false) String accountType) {
         List<AccountDto> accountDtos = null;
-        //accountService.makeSureAccountDto(null,accountType);
         if (StringUtils.isNotBlank(accountType)) {
             accountDtos = accountService.getAccountDtos(accountType, null);
         }
@@ -90,14 +101,25 @@ public class AccountController {
     }
 
     @RequestMapping("accountDetails")
-    public String seeAccountInfo(@RequestParam String accountType, @RequestParam(required = false) String accountId) {
-        if (StringUtils.isNotBlank(accountType)) {
-            AccountDto accountDto;
+    public String seeAccountInfo(Model model, @RequestParam String accountType, @RequestParam(required = false) String accountId) {
+        AccountDto accountDto;
+        List<TradeInfo> tradeInfoList;
+        //获取账单信息
+
+        String path = "500";
+        if (StringUtils.isNotBlank(accountType) && StringUtils.isNotBlank(accountId)) {
             accountDto = accountService.getAccountById(accountId, accountType);
-
+            if (accountDto != null) {
+                tradeInfoList = tradeInfoMapper.getTradeInfosByAccountId(accountDto.getAccountId());
+                if (CollectionUtils.isNotEmpty(tradeInfoList)) {
+                    model.addAttribute("tradeInfoSize", tradeInfoList.size());
+                }
+                model.addAttribute("tradeInfoList", tradeInfoList);
+                model.addAttribute("account", accountDto);
+                path = viewManagerService.accountPathGenerate("account/", accountType);
+            }
         }
-
-        return null;
+        return path;
     }
 
 }

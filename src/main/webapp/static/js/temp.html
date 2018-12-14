@@ -212,25 +212,25 @@ To change this template use File | Settings | File Templates.
     /*function initTableList(n, modelId, tableId) {
      /!*获取行模板*!/
      var model;
-     if (!isNullOrNot(modelId)) {
+     if (!thisIsNull(modelId)) {
      model = $("#" + modelId);
      } else {
      model = $(".list-model");
      }
 
-     if (isNullOrNot(model) || model.length > 1) {
+     if (thisIsNull(model) || model.length > 1) {
      return false;
      }
 
      var inner = model.children();
      /!*获取table对象*!/
      var table;
-     if (!isNullOrNot(tableId)) {
+     if (!thisIsNull(tableId)) {
      table = $("#" + tableId);
      } else {
      table = $(".list-body");
      }
-     if (isNullOrNot(table) || table.length > 1) {
+     if (thisIsNull(table) || table.length > 1) {
      return false;
      }
      /!*插入行*!/

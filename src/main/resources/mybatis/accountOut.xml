@@ -2,17 +2,16 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.koala.platform.mapper.AccountInMapper">
-    <resultMap id="accountIn" type="cn.koala.platform.model.AccountIn">
-
-        <id property="accountId" column="in_id" jdbcType="VARCHAR"/>
-        <result property="accountBh" column="In_bh" jdbcType="VARCHAR"/>
-        <result property="accountName" column="In_Name" jdbcType="VARCHAR"/>
+<mapper namespace="cn.koala.platform.mapper.AccountOutMapper">
+    <resultMap id="accountOut" type="cn.koala.platform.model.AccountOut">
+        <id property="accountId" column="Out_id" jdbcType="VARCHAR"/>
+        <result property="accountBh" column="Out_bh" jdbcType="VARCHAR"/>
+        <result property="accountName" column="Out_Name" jdbcType="VARCHAR"/>
         <result property="accountType" column="Account_type" jdbcType="VARCHAR"/>
         <result property="goodsType" column="goods_type" jdbcType="VARCHAR"/>
         <result property="otherComment" column="other_comment" jdbcType="VARCHAR"/>
         <result property="sumMoney" column="sum_money" jdbcType="NUMERIC"/>
-        <result property="tradeTarget" column="supplier" jdbcType="VARCHAR"/>
+        <result property="tradeTarget" column="trade_target" jdbcType="VARCHAR"/>
         <result property="contactPerson" column="contact_person" jdbcType="VARCHAR"/>
         <result property="contactWay" column="contact_way" jdbcType="VARCHAR"/>
         <result property="operatePerson" column="operate_person" jdbcType="VARCHAR"/>
@@ -20,9 +19,9 @@
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <insert id="saveAccount" parameterType="cn.koala.platform.model.AccountIn">
-        insert into account_in (In_id, In_name,In_bh,Account_type,goods_type,sum_money,
-        other_comment,supplier,contact_person,contact_way,operate_person,
+    <insert id="saveAccount" parameterType="cn.koala.platform.model.AccountOut">
+        insert into account_out (Out_id, Out_name,Out_bh,Account_type,goods_type,sum_money,
+        other_comment,trade_target,contact_person,contact_way,operate_person,
         create_time,update_time)
         VALUES(#{accountId,jdbcType=VARCHAR},#{accountName,jdbcType=VARCHAR},
         #{accountBh,jdbcType=VARCHAR},#{accountType,jdbcType=VARCHAR},
@@ -34,28 +33,28 @@
         #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
     </insert>
 
-    <select id="getAccountList" parameterType="java.util.Map" resultMap="accountIn">
-        select t.* from account_in t
+    <select id="getAccountList" parameterType="java.util.Map" resultMap="accountOut">
+        select t.* from account_Out t
         where 1=1
         <if test="accountId!=null and accountId!=''">
-            and t.In_id = #{accountId}
+            and t.out_id = #{accountId}
         </if>
         order by t.update_time desc
     </select>
 
-    <update id="updateAccount" parameterType="cn.koala.platform.model.AccountIn">
-        UPDATE Account_in
+    <update id="updateAccount" parameterType="cn.koala.platform.model.AccountOut">
+        UPDATE Account_Out
         SET
-        <if test="accountBh!=null">In_bh = #{accountBh,jdbcType=NUMERIC},</if>
+        <if test="accountBh!=null">Out_bh = #{accountBh,jdbcType=NUMERIC},</if>
         <if test="accountType!=null">account_type = #{accountType,jdbcType=VARCHAR},</if>
-        <if test="accountName!=null">In_Name = #{accountName,jdbcType=VARCHAR},</if>
+        <if test="accountName!=null">out_Name = #{accountName,jdbcType=VARCHAR},</if>
         <if test="otherComment!=null">other_comment = #{otherComment,jdbcType=VARCHAR},</if>
         <if test="updateTime!=null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
-        <if test="tradeTarget!=null">supplier=#{tradeTarget,jdbcType=VARCHAR},</if>
+        <if test="tradeTarget!=null">trade_target=#{tradeTarget,jdbcType=VARCHAR},</if>
         <if test="contactPerson!=null">contact_person = #{contactPerson,jdbcType=VARCHAR},</if>
         <if test="contactWay!=null">contact_way = #{contactWay,jdbcType=VARCHAR},</if>
         <if test="operatePerson!=null">operate_person = #{operatePerson,jdbcType=VARCHAR},</if>
-        <if test="accountId!=null">In_id = #{accountId,jdbcType=VARCHAR}</if>
+        <if test="accountId!=null">out_id = #{accountId,jdbcType=VARCHAR}</if>
         where out_id = #{accountId,jdbcType=VARCHAR}
     </update>
 

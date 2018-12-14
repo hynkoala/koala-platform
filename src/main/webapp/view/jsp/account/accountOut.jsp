@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 12732
@@ -16,7 +17,7 @@
 
 </style>
 <body>
-<div id="header" style="height: 50px;background-color: whitesmoke;background-image: none"></div>
+<div id="header"></div>
 <div id="main-content">
     <div id="input-area">
         <form role="form" class="form-inline" id="form">
@@ -26,11 +27,11 @@
                 <tr class="tr-field">
                     <td class="td-field">出账编号</td>
                     <td class="td-value">
-                        <input id="in-bh" type="text" name="inBh">
+                        <input id="account-bh" type="text" name="accountBh" value="${account.accountBh}">
                     </td>
                     <td class="td-field">账单名</td>
                     <td class="td-value">
-                        <input type="text" name="inName">
+                        <input type="text" name="accountName" value="${account.accountName}">
                     </td>
                     <td class="td-field">类别</td>
                     <td class="td-value">
@@ -48,7 +49,7 @@
                 <tr>
                     <td class="td-field">出售方</td>
                     <td class="td-value">
-                        <input type="text" name="supplier">
+                        <input type="text" name="tradeTarget">
                     </td>
                     <td class="td-field">联系人</td>
                     <td class="td-value">
@@ -56,11 +57,11 @@
                     </td>
                     <td class="td-field">电话</td>
                     <td class="td-value">
-                        <input type="text" name="supplierPhone">
+                        <input type="text" name="contactWay">
                     </td>
                     <td class="td-field">是否开税</td>
                     <td class="td-value">
-                        <span class="half-width"><input type="checkbox" name="supplierAddress"
+                        <span class="half-width"><input type="checkbox" name="doSelie"
                                                         class="input-checkbox"></span>
                         <input type="text" placeholder="税率" class="half-width">
                     </td>
@@ -73,13 +74,17 @@
                     </td>
                 </tr>
                 </tbody>
-
+                <%--账单内容隐藏项--%>
+                <div class="hidden">
+                    <input name="accountId" id="account-id" value="${account.accountId}">
+                    <input name="accountType" value="2" id="account-type">
+                </div>
             </table>
         </form>
     </div>
 
     <div id="account-details">
-        <div class="item-header">入&nbsp;&nbsp;账&nbsp;&nbsp;单&nbsp;&nbsp;明&nbsp;&nbsp;细</div>
+        <div class="item-header">出&nbsp;&nbsp;账&nbsp;&nbsp;单&nbsp;&nbsp;明&nbsp;&nbsp;细</div>
         <form class="list-form" role="form" id="list-form">
 
             <table id="recent-account-in" class="list-table">
@@ -95,7 +100,43 @@
                 <th class="col-header">品牌</th>
                 <th class="col-header">总价</th>
                 </thead>
-                <tbody class="list-body"></tbody>
+                <tbody class="list-body">
+                <c:forEach var="tradeInfo" items="${tradeInfoList}">
+                    <tr class="list-item">
+                        <td class="list-value hidden">
+                            <input name="tradeId" value="${tradeInfo.tradeId}">
+                        </td>
+                        <td class="list-value hidden">
+                            <input name="goodsId" value="${tradeInfo.goodsId}">
+                        </td>
+                        <td class="list-value">
+                            <input name="goodsName" value="${tradeInfo.goodsName}">
+                        </td>
+                        <td class="list-value" style="width: 50px">
+                            <input name="goodsUnit" value="${tradeInfo.goodsUnit}">
+                        </td>
+                        <td class="list-value" style="width: 80px">
+                            <input name="tradeNumber" value="${tradeInfo.tradeNumber}">
+                        </td>
+                        <td class="list-value" style="width: 100px">
+                            <input name="tradePrice" value="${tradeInfo.tradePrice}">
+                        </td>
+                        <td class="list-value">
+                            <input name="goodsType" value="${tradeInfo.goodsType}">
+                        </td>
+                        <td class="list-value" style="width: 100px">
+                            <input name="goodsSize" value="${tradeInfo.goodsSize}">
+                        </td>
+                        <td class="list-value">
+                            <input name="goodsBrand" value="${tradeInfo.goodsBrand}">
+                        </td>
+
+                        <td class="list-value">
+                            <input name="sumPrice">
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </form>
         <br>
@@ -148,6 +189,9 @@
     </table>
 
 
+</div>
+<div class="hidden">
+    <input type="text" id="tradeInfoSize" value="${tradeInfoSize}">
 </div>
 <jsp:include page="../alluse/footer.jsp"></jsp:include>
 <jsp:include page="../alluse/importJs.jsp"></jsp:include>

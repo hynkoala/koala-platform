@@ -1,5 +1,8 @@
 $(function () {
-    $("#account-bh").val(getBhFromTime());
+
+    if (thisIsNull($("#account-bh").val())) {
+        $("#account-bh").val(getBhFromTime());
+    }
     $(".td-value input, select, option,textarea").mouseover(function () {
         $(this).css("box-shadow", "0 0 2px 0.5px red inset");
     });
@@ -9,7 +12,11 @@ $(function () {
 
     var initType = initGoodsType();
     initType = getGoodsSmallType();
-    initTableList(10);
+    // 初始化交易商品明细表格
+    var rows = 10;
+    if (thisIsNull($("#tradeInfoSize").val())) {
+        initTableList(rows);
+    }
 });
 
 function saveAccount() {
@@ -19,7 +26,6 @@ function saveAccount() {
     $.ajax({
         url: url,
         type: "POST",
-        /*dataType: "text",*/
         data: listData,
         async: true,
         contentType: 'application/json;charset=utf-8',
@@ -37,7 +43,7 @@ function saveAccount() {
 
 }
 var initGoodsType = function () {
-    var url = goodsUrl + "/getBigTypes";
+    var url = goodsUrl + "/";
     $.ajax({
         url: url,
         type: "post",

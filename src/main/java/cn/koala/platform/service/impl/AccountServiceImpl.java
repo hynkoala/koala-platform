@@ -1,16 +1,22 @@
 package cn.koala.platform.service.impl;
 
+import cn.koala.platform.constant.AccountConstant;
 import cn.koala.platform.mapper.AccountInMapper;
 import cn.koala.platform.mapper.AccountOutMapper;
+import cn.koala.platform.mapper.GoodsMapper;
+import cn.koala.platform.mapper.TradeInfoMapper;
 import cn.koala.platform.mapper.parent.AccountMapper;
 import cn.koala.platform.model.AccountIn;
 import cn.koala.platform.model.AccountOut;
+import cn.koala.platform.model.Goods;
 import cn.koala.platform.model.TradeInfo;
 import cn.koala.platform.model.parent.Account;
 import cn.koala.platform.service.AccountService;
+import cn.koala.platform.service.GoodsService;
 import cn.koala.platform.service.core.AccountDto;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,18 +32,27 @@ import java.util.*;
  */
 @Service
 public class AccountServiceImpl implements AccountService {
+    private final Logger logger = Logger.getLogger(this.getClass());
     @Autowired
     AccountInMapper accountInMapper;
     @Autowired
     AccountOutMapper accountOutMapper;
+    @Autowired
+    TradeInfoMapper tradeInfoMapper;
+    @Autowired
+    GoodsService goodsService;
+    @Autowired
+    GoodsMapper goodsMapper;
 
     @Override
     public void saveAccount(AccountDto accountDto) {
         accountDto.setUpdateTime(new Date());
-        if (accountDto instanceof AccountIn) {
-            accountInMapper.saveAccountIn((AccountIn) accountDto);
-        } else if (accountDto instanceof AccountOut) {
+        if (StringUtils.isNotBlank(accountDto.getAccountType())) {
+            AccountMapper accountMapper = getAccountMapper(accountDto.getAccountType());
+            accountMapper.saveAccount(accountDto);
+            logger.info("*****账单保存完成，编号为：" + accountDto.getAccountBh());
         }
+
     }
 
     @Override
@@ -80,7 +95,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public TradeInfo initTradeInfoFromAccount(TradeInfo tradeInfo, AccountDto account) {
-        tradeInfo.setTradeId(UUID.randomUUID().toString().replace("-", "1"));
         tradeInfo.setAccountBh(account.getAccountBh());
         tradeInfo.setAccountName(account.getAccountName());
         tradeInfo.setAccountId(account.getAccountId());
@@ -96,20 +110,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<AccountDto> getAccountDtos(String accountType, Map paraMap) {
         List<AccountDto> accountDtos = null;
-        AccountMapper accountMapper;
-        switch (accountType) {
-            case "1": {
-                accountMapper = accountInMapper;
-                break;
-            }
-            case "2": {
-                accountMapper = accountOutMapper;
-                break;
-            }
-            default: {
-                accountMapper = null;
-            }
-        }
+        AccountMapper accountMapper = getAccountMapper(accountType);
         if (accountMapper != null) {
             accountDtos = accountMapper.getAccountList(paraMap);
         }
@@ -129,6 +130,46 @@ public class AccountServiceImpl implements AccountService {
             }
         }
         return null;
+    }
+
+    @Override
+    public AccountMapper getAccountMapper(String accountType) {
+        AccountMapper accountMapper;
+        if (StringUtils.equals(accountType, AccountConstant.ACCOUNT_TYPE_IN)) {
+            return accountInMapper;
+        } else if (StringUtils.equals(accountType, AccountConstant.ACCOUNT_TYPE_OUT)) {
+            return accountOutMapper;
+        }
+        return null;
+    }
+
+    @Override
+    public void updateAccount(AccountDto accountDto) {
+        accountDto.setUpdateTime(new Date());
+        if (StringUtils.isNotBlank(accountDto.getAccountType())) {
+            AccountMapper accountMapper = getAccountMapper(accountDto.getAccountType());
+            accountMapper.updateAccount(accountDto);
+            logger.info("*****账单" + accountDto.getAccountBh() + "更新成功");
+        }
+    }
+
+    @Override
+    public void saveTradeInfo(TradeInfo tradeInfo) {
+        // 先更新货物仓库，goodsId为空表示仓库还没有的货物，插入仓库，如果是已有货物，更新部分信息
+        if (StringUtils.isBlank(tradeInfo.getGoodsId())) {
+            Goods goods = goodsService.initGoodsFromTradeInfo(tradeInfo);
+            tradeInfo.setGoodsId(goods.getGoodsId());
+        }
+        if (StringUtils.isBlank(tradeInfo.getTradeId())) {
+            tradeInfo.setTradeId(UUID.randomUUID().toString().replace("-", "1"));
+            tradeInfo.setCreateTime(new Date());
+            tradeInfo.setUpdateTime(new Date());
+            tradeInfoMapper.saveTradeInfo(tradeInfo);
+        } else {
+            tradeInfo.setUpdateTime(new Date());
+            tradeInfoMapper.updateTradeInfo(tradeInfo);
+        }
+
     }
 
 }

@@ -10,21 +10,6 @@ var goodsUrl = "/koala-platform/goods";
 $(function () {
     /*页面初始化设置的最小高度*/
     resetFrameCss(1900, 680);
-    /*table的宽度设置为它父元素的内宽度*/
-    $(".list-table").css({
-        "width": $(this).parent().innerWidth()
-    })
-    $(".list-items").mouseover(function () {
-        $(this).css({
-            "background-color": "yellow"
-        })
-    })
-
-    $(".list-table tbody tr").mouseout(function () {
-        $(this).css({
-            "background-color": "inherit"
-        })
-    })
 });
 /*窗口变化时调整*/
 $(window).resize(function () {
@@ -32,7 +17,7 @@ $(window).resize(function () {
 });
 
 function makeBlockTime(message, time) {
-    if (isNullOrNot(time)) {
+    if (thisIsNull(time)) {
         time = 300;
     }
     $.blockUI({message: "<h4>" + message + "</h4>"});
@@ -136,7 +121,7 @@ function getFileName(prefix, suffix) {
         + curHour + curMinute + curSecond + "." + suffix;
     return fileName;
 }
-function isNullOrNot(str) {
+function thisIsNull(str) {
     if (str == null || str == '' || str == "" || str == 'undefined' || str.length < 1) {
         return true;
     }
@@ -170,10 +155,10 @@ function getBhFromTime() {
     return bh;
 }
 function resetFrameCss(minWidth, minHeigth) {
-    if (isNullOrNot(minWidth)) {
+    if (thisIsNull(minWidth)) {
         minWidth = 1900;
     }
-    if (isNullOrNot(minHeigth)) {
+    if (thisIsNull(minHeigth)) {
         minHeigth = 760;
     }
     var winHeight = window.innerHeight;
@@ -182,11 +167,12 @@ function resetFrameCss(minWidth, minHeigth) {
     var height = winHeight;
     var headerHeight = $("#header").outerHeight(true);
     var footerHeight = $("#footer").outerHeight(true);
-    if (isNullOrNot(headerHeight)) {
+    var mainContentHeight = $("#main-content").outerHeight(true);
+    if (thisIsNull(headerHeight)) {
         headerHeight = 0;
     }
     var height = winHeight - headerHeight - footerHeight;
-    if (winHeight < minHeigth) {
+    if (height < minHeigth) {
         height = minHeigth;
     }
     if (width < minWidth) {
@@ -202,7 +188,15 @@ function resetFrameCss(minWidth, minHeigth) {
     $("#main-content").css({
         "min-height": height,
         "min-width": width
-    })
+    });
+    headerHeight = $("#header").outerHeight(true);
+    footerHeight = $("#footer").outerHeight(true);
+    mainContentHeight = $("#main-content").outerHeight(true);
+    if (winHeight > headerHeight + footerHeight + mainContentHeight) {
+        $("#footer").css({
+            "bottom": "0",
+        })
+    }
     $("#footer").show()
 }
 
@@ -212,10 +206,10 @@ function makeListFromTable(tableId, rowNums, colNums) {
     if (table.length == 1) {
         var listData = table.serializeArray();
         var list = [];
-        if (isNullOrNot(rowNums)) {
+        if (thisIsNull(rowNums)) {
             rowNums = $(tableId + " tbody tr").length;
         }
-        if (isNullOrNot(colNums)) {
+        if (thisIsNull(colNums)) {
             colNums = listData.length / rowNums;
         }
         var start;

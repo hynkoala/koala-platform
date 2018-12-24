@@ -5,6 +5,9 @@
 function initTableList(n, modelId, tableId) {
     /*获取行模板*/
     var model;
+    if (n <= 0) {
+        return;
+    }
     if (!thisIsNull(modelId)) {
         model = $("#" + modelId);
     } else {
@@ -33,13 +36,13 @@ function initTableList(n, modelId, tableId) {
     /*设置行的鼠标移上去和移除事件*/
     $(".list-item").mouseover(function () {
         $(this).css({
-            "opacity": "0.8"
+            "background-color": "rgba(50,220,220,1)"
         })
     })
 
     $(".list-item").mouseout(function () {
         $(this).css({
-            "opacity": "1"
+            "background-color": "#ee9896"
         })
     })
 }

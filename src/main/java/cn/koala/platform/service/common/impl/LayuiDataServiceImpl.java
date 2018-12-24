@@ -28,7 +28,7 @@ public class LayuiDataServiceImpl implements DataOrganizeService {
             if (map.containsKey("limit")) {
                 limit = (int) map.get("limit");
             } else {
-                limit = 0;
+                limit = 5;
             }
             if (map.containsKey("page")) {
                 page = (int) map.get("page");

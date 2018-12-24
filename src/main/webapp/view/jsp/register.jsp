@@ -22,9 +22,9 @@
             <input class="form-control" type="text" name="passwordHint" id="password-hint" placeholder="密码提示"/>
         </div>
         <div class="btn-group">
-            <button class="btn-default-dark" onclick="checkInputData();return false">确定</button>
-            <button class="btn-default-dark" type="reset" id="reset">重置</button>
-            <a class="btn-default-dark" href="/koala-platform/view/jsp/login.jsp">返回登陆</a>
+            <button class="btn-default btn-default-dark" onclick="checkInputData();return false">确定</button>
+            <button class="btn-default btn-default-dark" type="reset" id="reset">重置</button>
+            <a class="btn-default btn-default-dark" href="/koala-platform/view/jsp/login.jsp">返回登陆</a>
         </div>
     </form>
 </div>

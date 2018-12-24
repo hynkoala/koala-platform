@@ -17,8 +17,10 @@
             <input class="form-control" type="password" id="password" placeholder="密码"/>
         </div>
         <div class="btn-group">
-            <button id="submit-login" onclick="checkUser();return false" class="btn-default-dark">登陆</button>
-            <button id="to-register" onclick="toRegister();return false" class="btn-default-dark">注册</button>
+            <button id="submit-login" onclick="checkUser();return false" class="btn-default btn-default-dark">登陆
+            </button>
+            <button id="to-register" onclick="toRegister();return false" class="btn-default btn-default-dark">注册
+            </button>
         </div>
     </form>
 </div>

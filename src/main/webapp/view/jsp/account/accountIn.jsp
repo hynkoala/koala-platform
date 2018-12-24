@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 12732
@@ -16,6 +17,8 @@
 
 </style>
 <body>
+<div class="hidden">
+</div>
 <div id="header"></div>
 <div id="main-content">
     <div id="input-area">
@@ -72,7 +75,7 @@
                 </tr>
                 </tbody>
                 <div class="hidden">
-                    <input name="accountId" id="account-id">
+                    <input name="accountId" id="account-id" value="${account.accountId}">
                     <input name="accountType" value="1" id="account-type">
                 </div>
             </table>
@@ -96,14 +99,50 @@
                 <th class="col-header">进价</th>
                 <th class="col-header">总价</th>
                 </thead>
-                <tbody class="list-body"></tbody>
+                <tbody class="list-body">
+                <c:forEach var="tradeInfo" items="${tradeInfoList}">
+                    <tr class="list-item tradeInfo-list">
+                        <td class="list-value hidden">
+                            <input name="tradeId" value="${tradeInfo.tradeId}">
+                        </td>
+                        <td class="list-value hidden">
+                            <input name="goodsId" value="${tradeInfo.goodsId}">
+                        </td>
+                        <td class="list-value" style="width: 251px">
+                            <input name="goodsName" value="${tradeInfo.goodsName}">
+                            <ul class="dropdown-toggle"></ul>
+                        </td>
+                        <td class="list-value" style="width: 50px">
+                            <input name="goodsUnit" value="${tradeInfo.goodsUnit}">
+                        </td>
+                        <td class="list-value" style="width: 80px">
+                            <input name="tradeNumber" value="${tradeInfo.tradeNumber}">
+                        </td>
+                        <td class="list-value">
+                            <input name="goodsType" value="${tradeInfo.goodsType}">
+                        </td>
+                        <td class="list-value" style="width: 100px">
+                            <input name="goodsSize">
+                        </td>
+                        <td class="list-value">
+                            <input name="goodsBrand">
+                        </td>
+                        <td class="list-value" style="width: 100px">
+                            <input name="tradePrice">
+                        </td>
+                        <td class="list-value">
+                            <input name="sumPrice">
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </form>
         <br>
-        <input id="account-save" type="button" class="btn-default-light btn-save right account-btn"
+        <input id="account-save" type="button" class="btn-default btn-default-light btn-save right account-btn"
                onclick="saveAccount()"
                value="保存">
-        <input type="button" class="btn-default-light right account-btn" onclick="initTableList(1)"
+        <input type="button" class="btn-default btn-default-light right account-btn" onclick="initTableList(1)"
                value="增加行">
         <br>
         <br>
@@ -113,22 +152,23 @@
         <tbody class="list-model" class="hidden" hidden="hidden">
         <tr class="list-item">
             <td class="list-value hidden">
-                <input name="tradeId" value="${tradeInfo.tradeId}">
+                <input name="tradeId">
             </td>
             <td class="list-value hidden">
-                <input name="goodsId" value="${tradeInfo.goodsId}">
+                <input name="goodsId">
             </td>
-            <td class="list-value">
-                <input name="goodsName" value="${tradeInfo.goodsName}">
+            <td class="list-value" style="width: 251px">
+                <input name="goodsName" class="goods-name">
+                <ul class="dropdown-ul" style="position: absolute;z-index: 1000" ;></ul>
             </td>
             <td class="list-value" style="width: 50px">
-                <input name="goodsUnit" value="${tradeInfo.goodsUnit}">
+                <input name="goodsUnit">
             </td>
             <td class="list-value" style="width: 80px">
-                <input name="tradeNumber" value="${tradeInfo.tradeNumber}">
+                <input name="tradeNumber">
             </td>
             <td class="list-value">
-                <input name="goodsType" value="${tradeInfo.goodsType}">
+                <input name="goodsType">
             </td>
             <td class="list-value" style="width: 100px">
                 <input name="goodsSize">
@@ -145,9 +185,8 @@
         </tr>
         </tbody>
     </table>
-
-
 </div>
+
 <jsp:include page="../alluse/footer.jsp"></jsp:include>
 <jsp:include page="../alluse/importJs.jsp"></jsp:include>
 <script src="../static/js/table.js"></script>

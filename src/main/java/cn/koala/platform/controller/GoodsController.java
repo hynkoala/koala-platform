@@ -5,6 +5,7 @@ import cn.koala.platform.mapper.GoodsMapper;
 import cn.koala.platform.model.Goods;
 import cn.koala.platform.service.common.DataManagerService;
 import cn.koala.platform.service.common.DataOrganizeService;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,7 +71,6 @@ public class GoodsController {
         inputMap.put("page", page);
         dataOrganizeService = dataManagerService.getDataOranizeService("layui");
         resultMap = dataOrganizeService.tableDataOrganize(inputMap);
-
         return resultMap;
     }
 
@@ -90,5 +90,14 @@ public class GoodsController {
         List<Map> resultMap = goodsMapper.getTypesByBigtype(map);
 
         return resultMap;
+    }
+
+    @ResponseBody
+    @RequestMapping("getGoodsInfo")
+    public List<Goods> getGoodsInfo(@RequestParam(required = false) String goodsName) {
+        Map map = new HashedMap();
+        map.put("goodsName", goodsName);
+        List<Goods> goodsList = goodsMapper.getGoodsList(map);
+        return goodsList;
     }
 }

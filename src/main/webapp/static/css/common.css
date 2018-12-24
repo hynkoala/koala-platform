@@ -12,29 +12,31 @@ body {
 }
 
 /*自定义样式按钮*/
-.btn-default-dark {
-    background-color: #461846;
+.btn-default {
+    margin-right: 2px;
     padding: 4px 8px;
-    color: whitesmoke;
-    border: none;
-    border-radius: 2px;
     width: auto;
     height: auto;
-    font-size: 18px;
+    border-radius: 1px;
+    font-size: 14px;
     font-style: normal;
+    border: none;
+    text-align: center;
+}
+
+.btn-default-dark {
+    background-color: #461846;
+    color: whitesmoke;
 }
 
 .btn-default-light {
     background-color: #e2dfdf;
-    text-align: center;
-    padding: 4px 8px;
     color: black;
-    border: none;
-    border-radius: 1px;
-    width: auto;
-    height: auto;
-    font-size: 18px;
-    font-style: normal;
+}
+
+.btn-default-delete {
+    background-color: #d17f79;
+    color: whitesmoke;
 }
 
 .btn-save {
@@ -135,6 +137,45 @@ th {
 .bg-white {
     background-color: whitesmoke;
 }
+
+.dropdown-ul {
+    background-color: #b6b6bb;
+    color: #eeeef4;
+    border-left: 1px solid #d8d5dd;
+    border-right: 1px solid #d8d5dd;
+    border-radius: 5px;
+}
+
+.dropdown-ul > li {
+    border-bottom: 1px solid #d8d5dd;
+    cursor: hand;
+    line-height: 25px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.query-input {
+    width: 400px;
+    height: 30px;
+    font-size: 16px;
+    float: left;
+    border-radius: 2px;
+    margin: 0 10px;
+    background-color: whitesmoke;
+}
+
+/*layui样式修改*/
+.layui-table-view {
+    margin: 0;
+    height: auto;
+}
+
+.layui-table-body .layui-table-main {
+    height: auto;
+    max-height: 800px;
+}
+
+
 
 
 

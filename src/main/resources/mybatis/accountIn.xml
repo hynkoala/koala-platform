@@ -40,6 +40,9 @@
         <if test="accountId!=null and accountId!=''">
             and t.In_id = #{accountId}
         </if>
+        <if test="input!=null and input!=''">
+            and t.in_bh like '%'||#{input}||'%'
+        </if>
         order by t.update_time desc
     </select>
 
@@ -56,7 +59,7 @@
         <if test="contactWay!=null">contact_way = #{contactWay,jdbcType=VARCHAR},</if>
         <if test="operatePerson!=null">operate_person = #{operatePerson,jdbcType=VARCHAR},</if>
         <if test="accountId!=null">In_id = #{accountId,jdbcType=VARCHAR}</if>
-        where out_id = #{accountId,jdbcType=VARCHAR}
+        where IN_id = #{accountId,jdbcType=VARCHAR}
     </update>
 
 </mapper>

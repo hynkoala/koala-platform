@@ -100,7 +100,7 @@
         <div id="goods-list" class="account-tools" onclick="goodsList()">
             <label class="menu-bar">货物清单</label>
         </div>
-        <div id="query-system" class="account-tools">
+        <div id="query-system" class="account-tools" onclick="querySystem()">
             <label class="menu-bar">查询系统</label>
         </div>
     </div>
@@ -137,7 +137,7 @@
                 }
                 , {
                     field: '', title: "操作", templet: function (d) {
-                        return "<input type='button' class='btn-default-light' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='明细'>";
+                        return "<input type='button' class='btn-default btn-default-light' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='明细'>";
                     }
                 }
             ]]
@@ -166,7 +166,7 @@
                 }
                 , {
                     field: '', title: "操作", templet: function (d) {
-                        return "<input type='button' class='btn-default-light' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='明细'>"
+                        return "<input type='button' class='btn-default btn-default-light' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='明细'>"
                     }
                 }
             ]]
@@ -196,6 +196,10 @@
     })
     $("#account-out").click(function () {
         var url = "/koala-platform/view/toTargetUrl?target=" + "account/accountOut";
+        window.open(url);
+    })
+    $("#query-system").click(function () {
+        var url = "/koala-platform/view/toTargetUrl?target=" + "query/queryIndex";
         window.open(url);
     })
 

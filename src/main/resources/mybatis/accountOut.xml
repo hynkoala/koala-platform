@@ -39,6 +39,9 @@
         <if test="accountId!=null and accountId!=''">
             and t.out_id = #{accountId}
         </if>
+        <if test="input!=null and input!=''">
+            and t.out_bh like '%'||#{input}||'%'
+        </if>
         order by t.update_time desc
     </select>
 

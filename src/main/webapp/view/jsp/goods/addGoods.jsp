@@ -116,8 +116,8 @@
             </table>
 
             <div id="operate-area">
-                <input type="button" value="保存" class="btn-default-dark" onclick="saveGoods()"/>
-                <input type="button" value="查看清单" class="btn-default-dark" onclick="toGoodsList()"/>
+                <input type="button" value="保存" class="btn-default btn-default-dark" onclick="saveGoods()"/>
+                <input type="button" value="查看清单" class="btn-default btn-default-dark" onclick="toGoodsList()"/>
             </div>
         </form>
 

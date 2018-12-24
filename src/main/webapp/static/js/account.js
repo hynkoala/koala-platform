@@ -14,9 +14,15 @@ $(function () {
     initType = getGoodsSmallType();
     // 初始化交易商品明细表格
     var rows = 10;
-    if (thisIsNull($("#tradeInfoSize").val())) {
+    rows = 10 - $(".tradeInfo-list").length;
+    if (rows > 0) {
         initTableList(rows);
     }
+    $("input.goods-name").bind("input propertychange", function () {
+        $("input").removeClass("active");
+        $(this).addClass("active");
+        getGoodsInfo($(this).val());
+    });
 });
 
 function saveAccount() {
@@ -52,6 +58,7 @@ var initGoodsType = function () {
             data.forEach(function (e) {
                 $("#goods-big-type").append('<option value="' + e.DM + '"onclick="getGoodsSmallType()">' + e.MC + '</option>');
             });
+            $("#itemlist option").click(putInGoodsInfo());
             return true;
         }
     })
@@ -81,3 +88,38 @@ function toGoodsList() {
     var url = "/koala-platform/goods/toGoodsList";
     window.open(url);
 }
+
+function getGoodsInfo(goodsName) {
+    var currentInput = $("input.active");
+    currentInput.parent().find("ul").empty();
+    var url = goodsUrl + "/getGoodsInfo?goodsName=" + goodsName;
+    $.ajax({
+        url: encodeURI(url),
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+            $("#itemlist").empty();
+            $.each(data, function (e) {
+                currentInput.parent().find("ul").append('<li id="' + data[e].goodsId + '" onclick=putInGoodsInfo(' + JSON.stringify(data[e]) + ')>' + data[e].goodsName + '</li>')
+            })
+        }
+    })
+}
+
+function putInGoodsInfo(goods) {
+    var currentInput = $("input.active");
+    var rowInput = currentInput.parent().parent().find("input");
+    $.each(rowInput, function (i) {
+        if (this.name == 'goodsId') {
+            $(this).val(goods.goodsId);
+        }
+        if (this.name == 'goodsName') {
+            $(this).val(goods.goodsName);
+        }
+        if (this.name == 'goodsUnit') {
+            $(this).val(goods.goodsUnit);
+        }
+    });
+    currentInput.parent().find("ul").empty();
+}
+

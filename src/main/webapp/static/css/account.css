@@ -37,7 +37,8 @@ div#main-content {
     margin: 0 auto;
     display: block;
     right: 0;
-    top: 10px;
+    position: relative;
+    top: 5px;
 }
 
 #account-details {
@@ -61,4 +62,21 @@ div#main-content {
 
 #account-save {
     margin-right: 50px;
+}
+
+.td-value {
+    background-color: white;
+}
+
+input.auto-width {
+    width: 85%;
+    float: right;
+}
+
+span.auto-width {
+    float: right;
+}
+
+.dropdown-ul {
+    width: 251px;
 }

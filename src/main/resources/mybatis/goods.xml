@@ -38,7 +38,15 @@
         #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
     </insert>
     <select id="getGoodsList" parameterType="map" resultType="cn.koala.platform.model.Goods" resultMap="goods">
-        select t.* from goods_list t order by t.update_time desc
+        select t.* from goods_list t
+        WHERE 1=1
+        <if test="goodsName!=null and goodsName!=''">
+            and instr(t.goods_name,#{goodsName})>0
+        </if>
+        <if test="goodsName!=null and goodsName!=''">
+            order by utl_match.edit_distance_similarity(t.goods_Name,#{goodsName})
+        </if>
+
     </select>
     <select id="getBigTypeList" resultType="java.util.Map">
         SELECT t.* from goods_zd_bigtype t

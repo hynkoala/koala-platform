@@ -61,9 +61,9 @@
                     </td>
                     <td class="td-field">是否开税</td>
                     <td class="td-value">
-                        <span class="half-width"><input type="checkbox" name="doSelie"
+                        <input type="text" placeholder="税率:" class="auto-width">
+                        <span class="auto-width"><input type="checkbox" name="doSelie"
                                                         class="input-checkbox"></span>
-                        <input type="text" placeholder="税率" class="half-width">
                     </td>
                 </tr>
                 <tr>
@@ -102,7 +102,7 @@
                 </thead>
                 <tbody class="list-body">
                 <c:forEach var="tradeInfo" items="${tradeInfoList}">
-                    <tr class="list-item">
+                    <tr class="list-item tradeInfo-list">
                         <td class="list-value hidden">
                             <input name="tradeId" value="${tradeInfo.tradeId}">
                         </td>
@@ -140,10 +140,10 @@
             </table>
         </form>
         <br>
-        <input id="account-save" type="button" class="btn-default-light btn-save right account-btn"
+        <input id="account-save" type="button" class="btn-default btn-default-light btn-save right account-btn"
                onclick="saveAccount()"
                value="保存">
-        <input type="button" class="btn-default-light right account-btn" onclick="initTableList(1)"
+        <input type="button" class="btn-default btn-default-light right account-btn" onclick="initTableList(1)"
                value="增加行">
         <br>
         <br>

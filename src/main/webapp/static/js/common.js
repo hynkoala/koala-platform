@@ -17,6 +17,9 @@ $(window).resize(function () {
 });
 
 function makeBlockTime(message, time) {
+    if (thisIsNull(message)) {
+        message = 'loading...';
+    }
     if (thisIsNull(time)) {
         time = 300;
     }
@@ -83,6 +86,8 @@ function timeFomatter(cellvalue, type) {
                 case 'hhmm':
                     return hhmm;
                 case 'yyMMddhhmm':
+                    return time;
+                case 'yyMMddhhmmss':
                     return yyMMddhhmm;
                 default:
                     return yyMMdd;

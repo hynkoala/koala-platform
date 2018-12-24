@@ -2,7 +2,9 @@ package cn.koala.platform.controller;
 
 import cn.koala.platform.constant.CommonConstant;
 import cn.koala.platform.mapper.AccountInMapper;
+import cn.koala.platform.mapper.GoodsMapper;
 import cn.koala.platform.mapper.TradeInfoMapper;
+import cn.koala.platform.model.Goods;
 import cn.koala.platform.model.TradeInfo;
 import cn.koala.platform.model.project.AccountProject;
 import cn.koala.platform.service.AccountService;
@@ -49,6 +51,8 @@ public class AccountController {
     DataOrganizeService dataOrganizeService;
     @Autowired
     ViewManagerService viewManagerService;
+    @Autowired
+    GoodsMapper goodsMapper;
 
     @RequestMapping("")
     public String toAccountIndex(Model model) {
@@ -86,14 +90,28 @@ public class AccountController {
 
     @ResponseBody
     @RequestMapping("getAccount")
-    public Map getAccount(@RequestParam(required = false) String accountType) {
+    public Map getAccount(@RequestParam(required = false) String accountType, int limit, int page, String input) {
         List<AccountDto> accountDtos = null;
         if (StringUtils.isNotBlank(accountType)) {
-            accountDtos = accountService.getAccountDtos(accountType, null);
+            Map queryMap = new HashMap();
+            if (StringUtils.isNotBlank(input)) {
+                input = StringUtils.deleteWhitespace(input);
+                queryMap.put("input", input);
+            }
+            accountDtos = accountService.getAccountDtos(accountType, queryMap);
         }
         Map map = new HashMap();
         map.put("data", accountDtos);
-        map.put("limit", 10);
+        if (limit == 0) {
+            map.put("limit", 10);
+        } else {
+            map.put("limit", limit);
+        }
+        if (page != 0) {
+            map.put("page", page);
+        } else {
+            map.put("page", 1);
+        }
         Map resultMap = dataOrganizeService.tableDataOrganize(map);
 
         return resultMap;
@@ -104,6 +122,7 @@ public class AccountController {
     public String seeAccountInfo(Model model, @RequestParam String accountType, @RequestParam(required = false) String accountId) {
         AccountDto accountDto;
         List<TradeInfo> tradeInfoList;
+        Map map = new HashMap();
         //获取账单信息
 
         String path = "500";
@@ -118,8 +137,39 @@ public class AccountController {
                 model.addAttribute("account", accountDto);
                 path = viewManagerService.accountPathGenerate("account/", accountType);
             }
+            // 获取货物信息，以便方便选择货物
+            map.clear();
+            List<Goods> goodsList = goodsMapper.getGoodsList(map);
+            model.addAttribute("goodsList", goodsList);
         }
         return path;
+    }
+
+    @ResponseBody
+    @RequestMapping("queryAccountFlow")
+    public Map queryAccounntFlow(int limit, int page, String input) {
+        Map resultMap = new HashMap();
+        Map queryMap = new HashMap();
+        if (StringUtils.isNotBlank(input)) {
+            input = StringUtils.deleteWhitespace(input);
+            queryMap.put("input", input);
+        }
+        List<TradeInfo> flowList = tradeInfoMapper.getTradeInfo(queryMap);
+
+        Map map = new HashMap();
+        map.put("data", flowList);
+        if (limit == 0) {
+            map.put("limit", 10);
+        } else {
+            map.put("limit", limit);
+        }
+        if (page != 0) {
+            map.put("page", page);
+        } else {
+            map.put("page", 1);
+        }
+        resultMap = dataOrganizeService.tableDataOrganize(map);
+        return resultMap;
     }
 
 }

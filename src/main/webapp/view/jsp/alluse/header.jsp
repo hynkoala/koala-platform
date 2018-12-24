@@ -28,9 +28,9 @@
 <div id="header">
     <div id="banner">
         <div id="action-area">
-            <input type="button" class="btn-default-dark" onclick="toLogin()" value="登录">
-            <input type="button" class="btn-default-dark" value="注册" onclick="toRegister()">
-            <input type="button" class="btn-default-dark" value="退出" onclick="exitLogin()">
+            <input type="button" class="btn-default btn-default-dark" onclick="toLogin()" value="登录">
+            <input type="button" class="btn-default btn-default-dark" value="注册" onclick="toRegister()">
+            <input type="button" class="btn-default btn-default-dark" value="退出" onclick="exitLogin()">
         </div>
         <div id="platform-function" class="dropdown main-menu">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">平台功能</a>

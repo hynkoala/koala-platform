@@ -72,6 +72,9 @@
         <if test="accountBh!=null and accountBh!=''">
             and t.accountBh=#{accountBh}
         </if>
+        <if test="input!=null and input!=''">
+            and t.accountBh like '%'||#{input}||'%'
+        </if>
         order by t.update_time desc
     </select>
     <select id="getTradeInfosByAccountId" resultType="cn.koala.platform.model.TradeInfo" resultMap="tradeInfo">

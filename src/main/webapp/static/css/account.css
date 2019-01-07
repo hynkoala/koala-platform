@@ -25,30 +25,22 @@ div#main-content {
     padding: 30px 50px;
     position: relative;
     height: 240px;
-    margin: 0 50px;
+    margin: 0 auto;
     border: 2px #ee9896 solid;
     box-shadow: inset 0px 5px 15px 1px #ec434a;
     width: 1422px;
 }
 
-.input-checkbox {
-    width: 20px;
-    height: 20px;
-    margin: 0 auto;
-    display: block;
-    right: 0;
-    position: relative;
-    top: 5px;
-}
 
 #account-details {
-    margin: 0 50px;
+    background-color: #ee9896;
+    margin: 0 auto;
     width: 1422px;
 
 }
 
-#account-details {
-    background-color: #ee9896;
+.td-value input {
+    height: 100%;
 }
 
 .td-value textarea {
@@ -69,12 +61,14 @@ div#main-content {
 }
 
 input.auto-width {
-    width: 85%;
+    width: 80%;
     float: right;
+    border-left: 1px solid #ee9896;
 }
 
 span.auto-width {
     float: right;
+    height: 100%;
 }
 
 .dropdown-ul {

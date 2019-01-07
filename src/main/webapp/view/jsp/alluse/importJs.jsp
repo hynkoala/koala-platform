@@ -4,4 +4,7 @@
 <script src="/koala-platform/static/thirdControl/jquery/js/blockUI.js"></script>
 <script src="/koala-platform/static/thirdControl/layui/layui.js"></script>
 <script src="/koala-platform/static/thirdControl/layui/layui.all.js"></script>
+<script src="/koala-platform/static/thirdControl/eChart/build/dist/echarts.js"></script>
+<%--<script src="/koala-platform/static/thirdControl/eChart/build/dist/echarts-all.js"></script>--%>
+
 <script src="/koala-platform/static/js/common.js"></script>

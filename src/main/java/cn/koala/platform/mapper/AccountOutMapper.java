@@ -3,6 +3,9 @@ package cn.koala.platform.mapper;
 import cn.koala.platform.mapper.parent.AccountMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by hanyaning
  * Email:hynkoala@163.com
@@ -12,5 +15,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AccountOutMapper extends AccountMapper {
-
+    List<Map> getUnitsUseAmount(Map inMap);
+    Double getTimeSeriesSum(Map inMap);
 }

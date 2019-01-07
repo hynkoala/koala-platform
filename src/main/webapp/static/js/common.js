@@ -7,9 +7,27 @@ var homeUrl = "/koala-platform";
 var platformUrl = "/koala-platform";
 var accountUrl = "/koala-platform/account";
 var goodsUrl = "/koala-platform/goods";
+var queryUrl = "/koala-platform/query";
+// eChart路径配置
+require.config({
+    paths: {
+        //echarts: 'http://echarts.baidu.com/build/dist'
+        echarts: platformUrl+'/static/thirdControl/eChart/build/dist'
+
+    }
+});
+var table = layui.table;
 $(function () {
     /*页面初始化设置的最小高度*/
     resetFrameCss(1900, 680);
+    $(":checkbox").click(function () {
+        if($(this)[0].checked == true){
+            $(this).val("1");
+        }else {
+            $(this).val("0");
+        }
+    })
+    initCheckBox();
 });
 /*窗口变化时调整*/
 $(window).resize(function () {
@@ -238,29 +256,14 @@ function makeListFromTable(tableId, rowNums, colNums) {
     return returnList;
 }
 
-/*window.onload=function(){
- var enabled=0;
- var today=new Date();
- var date;
- date=today.getFullYear()+"年"+(today.getMonth()+1)+"月"+today.getDate()+"日";
- //date2=day;
- document.write(date);
- document.write("<span id='clock'></span>");
- var now,hours,minutes,seconds,timeValue;
- function showtime(){
- now=new Date();
- hours=now.getHours();
- minutes=now.getMinutes();
- seconds=now.getSeconds();
- timeValue=(hours>=10)?"":"0";
- timeValue+=hours+":";
- timeValue+=((minutes<10)?"0":"")+minutes+":";
- timeValue+=((seconds<10)?"0":"")+seconds+"";
- clock.innerHTML=timeValue;
- setTimeout("showtime()",1000);
- }
- showtime();
- }*/
+function initCheckBox() {
+    var box = $(":checkbox");
+    $.each(box,function (i) {
+        if(box[i].value==1){
+            box[i].checked=true;
+        }
+    })
+}
 
 
 

@@ -43,23 +43,51 @@
         <if test="input!=null and input!=''">
             and t.in_bh like '%'||#{input}||'%'
         </if>
+        <if test="startTime!=null and startTime!=''">
+            and t.create_time &gt; #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and t.create_time &lt; #{endTime}
+        </if>
         order by t.update_time desc
     </select>
 
     <update id="updateAccount" parameterType="cn.koala.platform.model.AccountIn">
         UPDATE Account_in
         SET
-        <if test="accountBh!=null">In_bh = #{accountBh,jdbcType=NUMERIC},</if>
+        <if test="accountBh!=null">In_bh = #{accountBh,jdbcType=VARCHAR},</if>
         <if test="accountType!=null">account_type = #{accountType,jdbcType=VARCHAR},</if>
         <if test="accountName!=null">In_Name = #{accountName,jdbcType=VARCHAR},</if>
-        <if test="otherComment!=null">other_comment = #{otherComment,jdbcType=VARCHAR},</if>
+        <if test="otherComment!=null and otherComment!=''">other_comment = #{otherComment,jdbcType=VARCHAR},</if>
         <if test="updateTime!=null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
         <if test="tradeTarget!=null">supplier=#{tradeTarget,jdbcType=VARCHAR},</if>
         <if test="contactPerson!=null">contact_person = #{contactPerson,jdbcType=VARCHAR},</if>
         <if test="contactWay!=null">contact_way = #{contactWay,jdbcType=VARCHAR},</if>
         <if test="operatePerson!=null">operate_person = #{operatePerson,jdbcType=VARCHAR},</if>
+        <if test="sumMoney!=null">sum_money = #{sumMoney,jdbcType=NUMERIC},</if>
         <if test="accountId!=null">In_id = #{accountId,jdbcType=VARCHAR}</if>
         where IN_id = #{accountId,jdbcType=VARCHAR}
     </update>
+
+    <update id="updateAccountWithNull" parameterType="cn.koala.platform.model.AccountIn">
+        UPDATE Account_in
+        SET
+        In_bh = #{accountBh,jdbcType=VARCHAR},
+        account_type = #{accountType,jdbcType=VARCHAR},
+        In_Name = #{accountName,jdbcType=VARCHAR},
+        other_comment = #{otherComment,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        supplier=#{tradeTarget,jdbcType=VARCHAR},
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+        contact_way = #{contactWay,jdbcType=VARCHAR},
+        operate_person = #{operatePerson,jdbcType=VARCHAR},
+        sum_money = #{sumMoney,jdbcType=NUMERIC},
+        In_id = #{accountId,jdbcType=VARCHAR}
+        where IN_id = #{accountId,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="delAccount" parameterType="string">
+        DELETE account_in t where t.in_id = #{id}
+    </delete>
 
 </mapper>

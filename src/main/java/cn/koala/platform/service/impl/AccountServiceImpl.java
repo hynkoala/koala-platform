@@ -148,7 +148,7 @@ public class AccountServiceImpl implements AccountService {
         accountDto.setUpdateTime(new Date());
         if (StringUtils.isNotBlank(accountDto.getAccountType())) {
             AccountMapper accountMapper = getAccountMapper(accountDto.getAccountType());
-            accountMapper.updateAccount(accountDto);
+            accountMapper.updateAccountWithNull(accountDto);
             logger.info("*****账单" + accountDto.getAccountBh() + "更新成功");
         }
     }
@@ -170,6 +170,16 @@ public class AccountServiceImpl implements AccountService {
             tradeInfoMapper.updateTradeInfo(tradeInfo);
         }
 
+    }
+
+    @Override
+    public void delAccount(String id,String type){
+        if(StringUtils.isNotBlank(type)){
+            AccountMapper accountMapper = getAccountMapper(type);
+            if(accountMapper!=null&&StringUtils.isNotBlank(id)){
+                accountMapper.delAccount(id);
+            }
+        }
     }
 
 }

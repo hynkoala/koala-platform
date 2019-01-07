@@ -3,7 +3,7 @@ $(function () {
     if (thisIsNull($("#account-bh").val())) {
         $("#account-bh").val(getBhFromTime());
     }
-    $(".td-value input, select, option,textarea").mouseover(function () {
+    $(".td-value :text, select, option,textarea").mouseover(function () {
         $(this).css("box-shadow", "0 0 2px 0.5px red inset");
     });
     $(".td-value input, select, option,textarea").mouseout(function () {
@@ -26,7 +26,7 @@ $(function () {
 });
 
 function saveAccount() {
-    var listData = makeListFromTable(".list-form");
+    var listData = makeListFromTable("#list-form");
     listData = JSON.stringify(listData);
     var url = "/koala-platform/account/saveAccount?" + $("#form").serialize();
     $.ajax({
@@ -36,9 +36,9 @@ function saveAccount() {
         async: true,
         contentType: 'application/json;charset=utf-8',
         success: function (data) {
-            if (data == "success") {
-                /*window.location.reload();*/
-                makeBlockTime("保存成功！");
+            if (data.msg == "success") {
+                var url = window.location.host;
+                window.location.href = "http://"+url+accountUrl+"/accountDetails?accountType="+data.accountType+"&accountId="+data.accountId;
             }
 
         },
@@ -49,7 +49,7 @@ function saveAccount() {
 
 }
 var initGoodsType = function () {
-    var url = goodsUrl + "/";
+    var url = goodsUrl + "/getBigTypes";
     $.ajax({
         url: url,
         type: "post",

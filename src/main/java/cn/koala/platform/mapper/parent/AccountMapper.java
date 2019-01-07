@@ -18,5 +18,7 @@ public interface AccountMapper {
     void saveAccount(AccountDto accountDto);
 
     void updateAccount(AccountDto accountDto);
+    void updateAccountWithNull(AccountDto accountDto);
     List<AccountDto> getAccountList(Map map);
+    void delAccount(String id);
 }

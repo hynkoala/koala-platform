@@ -153,7 +153,13 @@ th {
     border-radius: 5px;
     padding-left: 5px;
 }
-
+/*input相关样式*/
+input{
+    padding:2px 5px;
+    background-color: white;
+    height: 30px;
+    font-size:14px;
+}
 .query-input {
     width: 400px;
     height: 30px;
@@ -162,6 +168,22 @@ th {
     border-radius: 2px;
     margin: 0 10px;
     background-color: whitesmoke;
+}
+.lay-input-date{
+    height:30px;
+    width:110px;
+}
+input.default-radio{
+    width:20px !important;
+    height:20px !important;
+    margin-right:10px;
+}
+input.input-checkbox {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    display: block;
+    margin-right:10px;
 }
 
 /*layui样式修改*/
@@ -174,6 +196,7 @@ th {
     height: auto;
     max-height: 800px;
 }
+
 
 
 

@@ -15,21 +15,38 @@
         <result property="contactPerson" column="contact_person" jdbcType="VARCHAR"/>
         <result property="contactWay" column="contact_way" jdbcType="VARCHAR"/>
         <result property="operatePerson" column="operate_person" jdbcType="VARCHAR"/>
+        <result property="doSettle" column="do_settle" jdbcType="VARCHAR"/>
+        <result property="doReceipt" column="do_receipt" jdbcType="VARCHAR"/>
+        <result property="taxRate" column="tax_rate" jdbcType="NUMERIC"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
+    <select id="getUnitsUseAmount" parameterType="java.util.Map" resultType="java.util.Map">
+        select t.trade_target unit,sum(sum_money) money from account_out t
+        where 1=1
+        <if test="startTime!=null and startTime!=''">
+            and t.create_time &gt; #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and t.create_time &lt; #{endTime}
+        </if>
+        group by t.trade_target
+
+    </select>
+
     <insert id="saveAccount" parameterType="cn.koala.platform.model.AccountOut">
         insert into account_out (Out_id, Out_name,Out_bh,Account_type,goods_type,sum_money,
-        other_comment,trade_target,contact_person,contact_way,operate_person,
-        create_time,update_time)
+        other_comment,trade_target,contact_person,contact_way,operate_person,do_settle,do_Receipt,
+        tax_rate,create_time,update_time)
         VALUES(#{accountId,jdbcType=VARCHAR},#{accountName,jdbcType=VARCHAR},
         #{accountBh,jdbcType=VARCHAR},#{accountType,jdbcType=VARCHAR},
         #{goodsType,jdbcType=VARCHAR},#{sumMoney,jdbcType=NUMERIC},
         #{otherComment,jdbcType=VARCHAR},
         #{tradeTarget,jdbcType=VARCHAR},
         #{contactPerson,jdbcType=VARCHAR},#{contactWay,jdbcType=VARCHAR},
-        #{operatePerson,jdbcType=VARCHAR},
+        #{operatePerson,jdbcType=VARCHAR},#{doSettle,jdbcType=VARCHAR},
+        #{doReceipt,jdbcType=VARCHAR},#{taxRate,jdbcType=NUMERIC},
         #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
     </insert>
 
@@ -44,11 +61,21 @@
         </if>
         order by t.update_time desc
     </select>
+    <select id="getTimeSeriesSum" resultType="double" parameterType="java.util.Map">
+        select sum(sum_Money) sumMoney from account_out T
+        where 1=1
+        <if test="startTime!=null and startTime!=''">
+            and t.create_time &gt; #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and t.create_time &lt; #{endTime}
+        </if>
+    </select>
 
     <update id="updateAccount" parameterType="cn.koala.platform.model.AccountOut">
-        UPDATE Account_Out
-        SET
-        <if test="accountBh!=null">Out_bh = #{accountBh,jdbcType=NUMERIC},</if>
+        UPDATE Account_Out SET
+
+        <if test="accountBh!=null">Out_bh = #{accountBh,jdbcType=VARCHAR},</if>
         <if test="accountType!=null">account_type = #{accountType,jdbcType=VARCHAR},</if>
         <if test="accountName!=null">out_Name = #{accountName,jdbcType=VARCHAR},</if>
         <if test="otherComment!=null">other_comment = #{otherComment,jdbcType=VARCHAR},</if>
@@ -57,8 +84,37 @@
         <if test="contactPerson!=null">contact_person = #{contactPerson,jdbcType=VARCHAR},</if>
         <if test="contactWay!=null">contact_way = #{contactWay,jdbcType=VARCHAR},</if>
         <if test="operatePerson!=null">operate_person = #{operatePerson,jdbcType=VARCHAR},</if>
+        <if test="doSettle!=null">do_settle = #{doSettle,jdbcType=VARCHAR},</if>
+        <if test="doReceipt!=null">do_receipt = #{doReceipt,jdbcType=VARCHAR},</if>
+        <if test="sumMoney!=null">sum_money = #{sumMoney,jdbcType=NUMERIC},</if>
+        <if test="taxRate!=null">tax_rate = #{taxRate,jdbcType=NUMERIC},</if>
         <if test="accountId!=null">out_id = #{accountId,jdbcType=VARCHAR}</if>
         where out_id = #{accountId,jdbcType=VARCHAR}
     </update>
+
+    <update id="updateAccountWithNull" parameterType="cn.koala.platform.model.AccountOut">
+        UPDATE Account_Out
+        SET
+        Out_bh = #{accountBh,jdbcType=VARCHAR},
+        account_type = #{accountType,jdbcType=VARCHAR},
+        out_Name = #{accountName,jdbcType=VARCHAR},
+        other_comment = #{otherComment,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        trade_target=#{tradeTarget,jdbcType=VARCHAR},
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+        contact_way = #{contactWay,jdbcType=VARCHAR},
+        operate_person = #{operatePerson,jdbcType=VARCHAR},
+        do_settle = #{doSettle,jdbcType=VARCHAR},
+        do_receipt = #{doReceipt,jdbcType=VARCHAR},
+        sum_money = #{sumMoney,jdbcType=NUMERIC},
+        tax_rate = #{taxRate,jdbcType=NUMERIC},
+        out_id = #{accountId,jdbcType=VARCHAR}
+        where out_id = #{accountId,jdbcType=VARCHAR}
+    </update>
+
+
+    <delete id="delAccount" parameterType="string">
+        DELETE account_out t where t.out_id = #{id}
+    </delete>
 
 </mapper>

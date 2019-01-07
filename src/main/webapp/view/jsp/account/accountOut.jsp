@@ -21,6 +21,12 @@
 <div id="main-content">
     <div id="input-area">
         <form role="form" class="form-inline" id="form">
+            <%--账单内容隐藏项--%>
+            <div class="hidden">
+                <input name="accountId" id="account-id" value="${account.accountId}">
+                <input name="accountType" value="2" id="account-type">
+            </div>
+
             <table class="key-value-table" cellpadding="20">
                 <thead></thead>
                 <tbody>
@@ -33,36 +39,43 @@
                     <td class="td-value">
                         <input type="text" name="accountName" value="${account.accountName}">
                     </td>
-                    <td class="td-field">类别</td>
-                    <td class="td-value">
+                    <%--<td class="td-field">类别</td>--%>
+                    <%--<td class="td-value">
                         <select name="goodsBigType" id="goods-big-type" class="half-width"
                                 onchange="getGoodsSmallType()">
                         </select>
                         <select name="goodsType" id="goods-type" class="half-width"></select>
 
-                    </td>
+                    </td>--%>
                     <td class="td-field">总额</td>
                     <td class="td-value">
-                        <input type="text" name="sumMoney">
+                        <input type="text" name="sumMoney" value="${account.sumMoney}">
+                    </td>
+                    <td class="td-field">是否结清</td>
+                    <td class="td-value">
+                        是：<input id="radio-yes" value="1" class="default-radio" type="radio" name="doSettle">
+                        否：<input id="radio-no" value="0" class="default-radio" type="radio" name="doSettle"
+                                 checked="checked">
                     </td>
                 </tr>
                 <tr>
                     <td class="td-field">出售方</td>
                     <td class="td-value">
-                        <input type="text" name="tradeTarget">
+                        <input type="text" name="tradeTarget" value="${account.tradeTarget}">
                     </td>
                     <td class="td-field">联系人</td>
                     <td class="td-value">
-                        <input type="text" name="contactPerson">
+                        <input type="text" name="contactPerson" value="${account.contactPerson}">
                     </td>
                     <td class="td-field">电话</td>
                     <td class="td-value">
-                        <input type="text" name="contactWay">
+                        <input type="text" name="contactWay" value="${account.contactWay}">
                     </td>
                     <td class="td-field">是否开税</td>
                     <td class="td-value">
-                        <input type="text" placeholder="税率:" class="auto-width">
-                        <span class="auto-width"><input type="checkbox" name="doSelie"
+                        <input type="text" placeholder="税率:" class="auto-width" name="taxRate"
+                               value="${account.taxRate}">
+                        <span class="auto-width"><input type="checkbox" name="doReceipt" value="${account.doReceipt}"
                                                         class="input-checkbox"></span>
                     </td>
                 </tr>
@@ -70,24 +83,17 @@
                     <td class="td-field">备注</td>
                     <td class="td-value" colspan="7">
                         <textarea type="text" name="otherComment"
-                                  overflow="auto"></textarea>
+                                  overflow="auto">${account.otherComment}</textarea>
                     </td>
                 </tr>
                 </tbody>
-                <%--账单内容隐藏项--%>
-                <div class="hidden">
-                    <input name="accountId" id="account-id" value="${account.accountId}">
-                    <input name="accountType" value="2" id="account-type">
-                </div>
             </table>
-        </form>
     </div>
 
     <div id="account-details">
         <div class="item-header">出&nbsp;&nbsp;账&nbsp;&nbsp;单&nbsp;&nbsp;明&nbsp;&nbsp;细</div>
         <form class="list-form" role="form" id="list-form">
-
-            <table id="recent-account-in" class="list-table">
+            <table id="trade_list" class="list-table">
                 <thead class="list-header">
                 <th class="col-header hidden"></th>
                 <th class="col-header hidden"></th>
@@ -139,6 +145,7 @@
                 </tbody>
             </table>
         </form>
+
         <br>
         <input id="account-save" type="button" class="btn-default btn-default-light btn-save right account-btn"
                onclick="saveAccount()"
@@ -197,5 +204,14 @@
 <jsp:include page="../alluse/importJs.jsp"></jsp:include>
 <script src="../static/js/table.js"></script>
 <script src="/koala-platform/static/js/account.js"></script>
+<script>
+    $(function () {
+        if ("${account.doSettle}" == "1") {
+            $("#radio-yes")[0].checked = true
+        } else {
+            $("#radio-no")[0].checked = true
+        }
+    })
+</script>
 </body>
 </html>

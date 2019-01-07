@@ -86,9 +86,11 @@ public class GoodsController {
     @RequestMapping("getSmallTypes")
     public List getSmallTypes(String type) {
         Map map = new HashMap();
-        map.put("type", type);
-        List<Map> resultMap = goodsMapper.getTypesByBigtype(map);
-
+        List<Map> resultMap = new ArrayList<>();
+        if(StringUtils.isNotBlank(type)){
+            map.put("type", type);
+            resultMap = goodsMapper.getTypesByBigtype(map);
+        }
         return resultMap;
     }
 

@@ -23,6 +23,10 @@
 <div id="main-content">
     <div id="input-area">
         <form role="form" class="form-inline" id="form">
+            <div class="hidden">
+                <input name="accountId" id="account-id" value="${account.accountId}">
+                <input name="accountType" value="1" id="account-type">
+            </div>
             <table class="key-value-table">
                 <thead></thead>
                 <tbody>
@@ -45,21 +49,21 @@
                     </td>
                     <td class="td-field">总额</td>
                     <td class="td-value">
-                        <input type="text" name="sumMoney">
+                        <input type="text" name="sumMoney" value="${account.sumMoney}">
                     </td>
                 </tr>
                 <tr>
                     <td class="td-field">供货商</td>
                     <td class="td-value">
-                        <input type="text" name="tradeTarget">
+                        <input type="text" name="tradeTarget" value="${account.tradeTarget}">
                     </td>
                     <td class="td-field">联系人</td>
                     <td class="td-value">
-                        <input type="text" name="contactPerson">
+                        <input type="text" name="contactPerson" value="${account.contactPerson}">
                     </td>
                     <td class="td-field">电话</td>
                     <td class="td-value">
-                        <input type="text" name="contactWay">
+                        <input type="text" name="contactWay" value="${account.contactWay}">
                     </td>
                     <td class="td-field">地址</td>
                     <td class="td-value">
@@ -70,14 +74,10 @@
                     <td class="td-field">备注</td>
                     <td class="td-value" colspan="7">
                         <textarea type="text" name="otherComment"
-                                  overflow="auto"></textarea>
+                                  overflow="auto">${account.otherComment}</textarea>
                     </td>
                 </tr>
                 </tbody>
-                <div class="hidden">
-                    <input name="accountId" id="account-id" value="${account.accountId}">
-                    <input name="accountType" value="1" id="account-type">
-                </div>
             </table>
         </form>
     </div>
@@ -86,7 +86,7 @@
         <div class="item-header">入&nbsp;&nbsp;账&nbsp;&nbsp;单&nbsp;&nbsp;明&nbsp;&nbsp;细</div>
         <form class="list-form" role="form" id="list-form">
 
-            <table id="recent-account-in" class="list-table">
+            <table id="trade-list" class="list-table">
                 <thead class="list-header">
                 <th class="col-header hidden"></th>
                 <th class="col-header hidden"></th>
@@ -122,16 +122,16 @@
                             <input name="goodsType" value="${tradeInfo.goodsType}">
                         </td>
                         <td class="list-value" style="width: 100px">
-                            <input name="goodsSize">
+                            <input name="goodsSize" value="${tradeInfo.goodsSize}">
                         </td>
                         <td class="list-value">
-                            <input name="goodsBrand">
+                            <input name="goodsBrand" value="${tradeInfo.goodsBrand}">
                         </td>
                         <td class="list-value" style="width: 100px">
-                            <input name="tradePrice">
+                            <input name="tradePrice" value="${tradeInfo.goodsType}">
                         </td>
                         <td class="list-value">
-                            <input name="sumPrice">
+                            <input name="sumPrice" value="">
                         </td>
                     </tr>
                 </c:forEach>

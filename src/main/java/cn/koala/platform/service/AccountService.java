@@ -69,4 +69,6 @@ public interface AccountService {
 
     void saveTradeInfo(TradeInfo tradeInfo);
 
+    void delAccount(String accountId,String accountType);
+
 }

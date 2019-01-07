@@ -206,16 +206,6 @@
     function seeDetails(id, accountType) {
         var url = "/koala-platform/account/accountDetails?accountType=" + accountType + "&accountId=" + id;
         window.open(url);
-
-        /*var data = {accountId:id,accountType:"1"};
-         $.ajax({
-         url:url,
-         data:data,
-         type:'post',
-         success:function(){
-         window.open()
-         }
-         })*/
     }
 
 </script>

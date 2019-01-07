@@ -73,7 +73,16 @@
             and t.accountBh=#{accountBh}
         </if>
         <if test="input!=null and input!=''">
-            and t.accountBh like '%'||#{input}||'%'
+            and (instr(t.account_bh,#{input})>0 or
+            instr(t.account_name,#{input})>0 or
+            instr(t.trade_Target,#{input})>0 or
+            instr(t.goods_name,#{input})>0)
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            and t.create_time &gt; #{startTime}
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            and t.create_time &lt; #{endTime}
         </if>
         order by t.update_time desc
     </select>

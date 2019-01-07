@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script id="layui-table-account-flow">
+<script id="layui-table-goods-list">
 
     /*layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
      var laydate = layui.laydate //日期
@@ -21,7 +21,7 @@
      });
      });
      })*/
-    table.on('toolbar(account-flow)', function (obj) {
+    table.on('toolbar(goods-list)', function (obj) {
         var checkStatus = table.checkStatus(obj.config.id)
             , data = checkStatus.data; //获取选中的数据
         var objss = checkStatus.data.obj
@@ -61,7 +61,7 @@
                                  });
                                  objs=[];*/
                                 layer.msg("删除成功");
-                                table.reload("accountFlow")
+                                table.reload("goodsList")
                             }
                         });
                     })
@@ -69,7 +69,7 @@
                 break;
         }
     });
-    table.on('tool(account-flow)', function (obj) {
+    table.on('tool(goods-list)', function (obj) {
         var data = obj.data //获得当前行数据
             , layEvent = obj.event; //获得 lay-event 对应的值
         if (layEvent === 'seeDetails') {
@@ -94,7 +94,7 @@
             layer.msg('编辑操作');
         }
     });
-    table.on('checkbox(account-flow)', function (obj) {
+    table.on('checkbox(goods-list)', function (obj) {
         var data = obj.data;
         if (obj.checked == true) {
             objs.push(obj)
@@ -108,16 +108,16 @@
         }
         layer.msg("xuanzhong")
     })
+    /*table.exportFile(table.config.id,table.data,'xls');*/
 
 
-    var showQueryAccountFlow = function () {
+    var showQueryGoodsList = function () {
         /*货物清单*/
-        var table = layui.table;
         var laypage = layui.laypage;
         table.render({
-            id: "account-flow",
-            elem: "#account-flow-table",
-            url: accountUrl + "/queryAccountFlow",
+            id: "goods-list",
+            elem: "#goods-list-table",
+            url: goodsUrl + "/getGoodsList",
             method: "post",
             toolbar: 'default',
             height: 620,
@@ -128,37 +128,38 @@
                     return d.LAY_INDEX;
                 }
                 }
+                /*{type: 'checkbox', fixed: 'left'}*/
                 , {field: 'goodsId', title: 'ID', width: 0, hide: true}
-                , {field: 'accountType', title: '流水类型', width: 100,align:"center",templet:function(d){
-                    if(d.accountType==1||d.accountType=="1"){
-                        return "入库"
-                    }else if (d.accountType==1||d.accountType=="1"){
-                        return "出库"
-                    }else{
-                        return "未知"
-                    }
-                }}
-                , {field: 'accountBh', title: '账单编号', width: 150, sort: true}
-                , {field: 'accountName', title: '账单名', width: 180, sort: true}
-                , {field: 'tradeTarget', title: '交易对象', width: 120, sort: true}
-                , {field: 'contactPerson', title: '联系人', width: 100}
-                , {field: 'goodsName', title: '货物名', width: 200, sort: true}
-                , {field: 'goodsUnit', title: '单位', width: 80}
-                , {field: 'tradeNumber', title: '数量', width: 80}
-                , {field: 'tradePrice', title: '交易价格', width: 100, sort: true}
-                ,{field: 'goodsBrand', title: '品牌', width: 110}
+                , {field: 'goodsName', title: '货物名', width: 200}
+                , {field: 'goodsUnit', title: '单位', width: 60}
+                , {field: 'goodsType', title: '类别', width: 100, sort: true}
+                /*,{field: 'goodsBrand', title: '品牌', width: 80, sort: true}*/
+                , {field: 'goodsInPrice', title: '进价', width: 80, sort: true}
+                , {field: 'doHave', title: '存量', width: 80, sort: true}
                 , {
-                    field: 'createTime', title: '发生时间', width: 120, sort: true, templet: function (d) {
+                    field: 'createTime', title: '录入时间', width: 120, sort: true, templet: function (d) {
                         return timeFomatter(d.createTime, "yyMMdd")
                     }
                 }
-                , {fixed: 'right', title: "操作", align: 'center', toolbar: '#tool-bar-details'}
+                , {
+                    field: 'updateTime', title: '更新时间', width: 200, sort: true, templet: function (d) {
+                        return timeFomatter(d.createTime, "yyMMddhhmm")
+                    }
+                }
+                , {
+                    field: '', title: "操作", templet: function (d) {
+                        return "<input type='button' class='btn-default btn-default-light' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='明细'>"
+                            + "<input type='button' class='btn-default btn-default-light' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='修改'>"
+                            + "<input type='button' class='btn-default btn-default-delete' onclick=seeDetails('" + d.accountId + "','" + d.accountType + "') value='删除'>";
+                    }
+                }
             ]],
 
             page: true,
             limit: 12,
             limits: [10, 30, 50],
             title: "货物清单"
-        })
+        });
+
     }
 </script>

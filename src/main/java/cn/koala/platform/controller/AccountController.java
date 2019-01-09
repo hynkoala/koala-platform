@@ -1,18 +1,18 @@
 package cn.koala.platform.controller;
 
 import cn.koala.platform.constant.CommonConstant;
-import cn.koala.platform.mapper.AccountInMapper;
 import cn.koala.platform.mapper.GoodsMapper;
 import cn.koala.platform.mapper.TradeInfoMapper;
 import cn.koala.platform.model.Goods;
 import cn.koala.platform.model.TradeInfo;
+import cn.koala.platform.model.TrainUnit;
 import cn.koala.platform.model.project.AccountProject;
 import cn.koala.platform.service.AccountService;
 import cn.koala.platform.service.GoodsService;
 import cn.koala.platform.service.common.DataManagerService;
 import cn.koala.platform.service.common.DataOrganizeService;
 import cn.koala.platform.service.common.ViewManagerService;
-import cn.koala.platform.service.core.AccountDto;
+import cn.koala.platform.service.dto.AccountDto;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -35,13 +35,11 @@ import java.util.Map;
  * Email:hynkoala@163.com
  * Date: 2018.11.27
  * Time:20:08
- * Description:
+ * Description: 账单控制层逻辑，管理账单的保存，更新，查询以及账单相关内容的操作
  */
 @Controller
 @RequestMapping("account")
 public class AccountController {
-    @Autowired
-    AccountInMapper accountInMapper;
     @Autowired
     GoodsService goodsService;
     @Autowired
@@ -73,6 +71,11 @@ public class AccountController {
         }
         AccountDto accountDto = accountService.makeSureAccountDto(account, null);
         if (accountDto != null) {
+            // 先保存或更新交易对象相关信息,再将其id给account的unitId
+            TrainUnit trainUnit = accountService.saveOrUpdateTradeUnit(accountDto);
+            if(trainUnit != null && StringUtils.isNotBlank(trainUnit.getUnitId())){
+                accountDto.setUnitId(trainUnit.getUnitId());
+            }
             // 通过账单id是否存在判断是新建账单还是更新账单
             if (StringUtils.isBlank(accountDto.getAccountId())) {
                 accountDto = accountService.initAccountInfo(accountDto);
@@ -80,7 +83,6 @@ public class AccountController {
             } else {
                 accountService.updateAccount(accountDto);
             }
-
             resultMap.put("accountId",accountDto.getAccountId());
             resultMap.put("accountType",accountDto.getAccountType());
         }

@@ -21,7 +21,7 @@ import java.util.*;
  * Email:hynkoala@163.com
  * Date: 2018.11.27
  * Time:20:23
- * Description:
+ * Description: 货物信息控制层
  */
 @Controller
 @RequestMapping("goods")

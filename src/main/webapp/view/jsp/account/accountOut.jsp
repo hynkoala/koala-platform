@@ -24,6 +24,7 @@
             <%--账单内容隐藏项--%>
             <div class="hidden">
                 <input name="accountId" id="account-id" value="${account.accountId}">
+                <input name="unitId" id="unit-id" value="${account.unitId}">
                 <input name="accountType" value="2" id="account-type">
             </div>
 
@@ -89,112 +90,7 @@
                 </tbody>
             </table>
     </div>
-
-    <div id="account-details">
-        <div class="item-header">出&nbsp;&nbsp;账&nbsp;&nbsp;单&nbsp;&nbsp;明&nbsp;&nbsp;细</div>
-        <form class="list-form" role="form" id="list-form">
-            <table id="trade_list" class="list-table">
-                <thead class="list-header">
-                <th class="col-header hidden"></th>
-                <th class="col-header hidden"></th>
-                <th class="col-header">商品名</th>
-                <th class="col-header">单位</th>
-                <th class="col-header">数量</th>
-                <th class="col-header">单价</th>
-                <th class="col-header">类型</th>
-                <th class="col-header">规格</th>
-                <th class="col-header">品牌</th>
-                <th class="col-header">总价</th>
-                </thead>
-                <tbody class="list-body">
-                <c:forEach var="tradeInfo" items="${tradeInfoList}">
-                    <tr class="list-item tradeInfo-list">
-                        <td class="list-value hidden">
-                            <input name="tradeId" value="${tradeInfo.tradeId}">
-                        </td>
-                        <td class="list-value hidden">
-                            <input name="goodsId" value="${tradeInfo.goodsId}">
-                        </td>
-                        <td class="list-value">
-                            <input name="goodsName" value="${tradeInfo.goodsName}">
-                        </td>
-                        <td class="list-value" style="width: 50px">
-                            <input name="goodsUnit" value="${tradeInfo.goodsUnit}">
-                        </td>
-                        <td class="list-value" style="width: 80px">
-                            <input name="tradeNumber" value="${tradeInfo.tradeNumber}">
-                        </td>
-                        <td class="list-value" style="width: 100px">
-                            <input name="tradePrice" value="${tradeInfo.tradePrice}">
-                        </td>
-                        <td class="list-value">
-                            <input name="goodsType" value="${tradeInfo.goodsType}">
-                        </td>
-                        <td class="list-value" style="width: 100px">
-                            <input name="goodsSize" value="${tradeInfo.goodsSize}">
-                        </td>
-                        <td class="list-value">
-                            <input name="goodsBrand" value="${tradeInfo.goodsBrand}">
-                        </td>
-
-                        <td class="list-value">
-                            <input name="sumPrice">
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </form>
-
-        <br>
-        <input id="account-save" type="button" class="btn-default btn-default-light btn-save right account-btn"
-               onclick="saveAccount()"
-               value="保存">
-        <input type="button" class="btn-default btn-default-light right account-btn" onclick="initTableList(1)"
-               value="增加行">
-        <br>
-        <br>
-    </div>
-
-    <table class="hidden">
-        <tbody class="list-model" class="hidden" hidden="hidden">
-        <tr class="list-item">
-            <td class="list-value hidden">
-                <input name="tradeId">
-            </td>
-            <td class="list-value hidden">
-                <input name="goodsId">
-            </td>
-            <td class="list-value">
-                <input name="goodsName">
-            </td>
-            <td class="list-value" style="width: 50px">
-                <input name="goodsUnit">
-            </td>
-            <td class="list-value" style="width: 80px">
-                <input name="tradeNumber">
-            </td>
-            <td class="list-value" style="width: 100px">
-                <input name="tradePrice">
-            </td>
-            <td class="list-value">
-                <input name="goodsType">
-            </td>
-            <td class="list-value" style="width: 100px">
-                <input name="goodsSize">
-            </td>
-            <td class="list-value">
-                <input name="goodsBrand">
-            </td>
-
-
-            <td class="list-value">
-                <input name="sumPrice">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
+    <jsp:include page="common/goodsDetails.jsp"></jsp:include>
 
 </div>
 <div class="hidden">

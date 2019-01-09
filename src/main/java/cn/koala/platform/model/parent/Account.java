@@ -1,6 +1,6 @@
 package cn.koala.platform.model.parent;
 
-import cn.koala.platform.service.core.AccountDto;
+import cn.koala.platform.service.dto.AccountDto;
 
 import java.util.Date;
 
@@ -25,6 +25,17 @@ public class Account implements AccountDto {
     private Date createTime;
     private Date updateTime;
     private String accountType;
+    private String unitId;
+
+    @Override
+    public String getUnitId() {
+        return unitId;
+    }
+
+    @Override
+    public void setUnitId(String unitId) {
+        this.unitId = unitId;
+    }
 
     @Override
     public String getAccountType() {

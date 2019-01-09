@@ -1,4 +1,4 @@
-package cn.koala.platform.service.core;
+package cn.koala.platform.service.dto;
 
 import java.util.Date;
 
@@ -99,6 +99,24 @@ public interface AccountDto {
      * @Description: get账单交易对象
      */
     void setTradeTarget(String name);
+
+    /**
+     *@Author: <a href="@mailto:hynkoala@163.com">hanyaning</a>
+     *@Date: 2019.01.07
+     *@Param: [id]
+     *@Return: java.lang.String
+     *@Description:     获取交易单位的id
+     */
+    String getUnitId();
+
+    /**
+     *@Author: <a href="@mailto:hynkoala@163.com">hanyaning</a>
+     *@Date: 2019.01.07
+     *@Param: [id]
+     *@Return: void
+     *@Description: set交易单位的id
+     */
+    void setUnitId(String id);
 
     /**
      * @Author: <a href="@mailto:hynkoala@163.com">hanyaning</a>

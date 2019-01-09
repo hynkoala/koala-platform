@@ -7,7 +7,7 @@ import java.util.Date;
  * Email:hynkoala@163.com
  * Date: 2018.07.19
  * Time:17:12
- * Description:
+ * Description: 用户表model
  */
 public class User {
     private String userId;

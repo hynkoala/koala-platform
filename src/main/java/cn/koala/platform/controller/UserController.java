@@ -24,7 +24,7 @@ import java.util.Map;
  * Email:hynkoala@163.com
  * Date: 2018.07.19
  * Time:16:42
- * Description:用户的注册和登录
+ * Description: 用户的注册和登录
  */
 @Controller
 @RequestMapping("user")

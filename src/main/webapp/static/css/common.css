@@ -196,8 +196,19 @@ input.input-checkbox {
     height: auto;
     max-height: 800px;
 }
-
-
+.no-border{
+    border:none;
+}
+.show-input{
+    width:auto;
+    background-color: inherit;
+    color: black;
+    font-size: inherit;
+}
+.father-style{
+    width: inherit;
+    height: inherit;
+}
 
 
 

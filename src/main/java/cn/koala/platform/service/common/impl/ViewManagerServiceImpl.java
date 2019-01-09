@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
  * Email:hynkoala@163.com
  * Date: 2018.12.14
  * Time:10:30
- * Description:
+ * Description: 组织返回view的路径
  */
 @Service
 public class ViewManagerServiceImpl implements ViewManagerService {
@@ -25,8 +25,13 @@ public class ViewManagerServiceImpl implements ViewManagerService {
         } else {
             suffix = "";
         }
-        if (StringUtils.isNotBlank(prefix) && StringUtils.lastIndexOf(prefix, "/") + 1 != prefix.length()) {
-            prefix = prefix + "/";
+        if (StringUtils.isNotBlank(prefix)) {
+            if (StringUtils.lastIndexOf(prefix, "/") + 1 != prefix.length()
+                    && StringUtils.isNotBlank(suffix)) {
+                prefix = prefix + "/";
+            }
+        } else {
+            prefix = "accountIndex";
         }
         path = prefix + suffix;
 

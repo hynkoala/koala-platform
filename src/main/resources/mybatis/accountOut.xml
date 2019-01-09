@@ -11,6 +11,7 @@
         <result property="goodsType" column="goods_type" jdbcType="VARCHAR"/>
         <result property="otherComment" column="other_comment" jdbcType="VARCHAR"/>
         <result property="sumMoney" column="sum_money" jdbcType="NUMERIC"/>
+        <result property="unitId" column="unit_id" jdbcType="VARCHAR"/>
         <result property="tradeTarget" column="trade_target" jdbcType="VARCHAR"/>
         <result property="contactPerson" column="contact_person" jdbcType="VARCHAR"/>
         <result property="contactWay" column="contact_way" jdbcType="VARCHAR"/>
@@ -37,13 +38,13 @@
 
     <insert id="saveAccount" parameterType="cn.koala.platform.model.AccountOut">
         insert into account_out (Out_id, Out_name,Out_bh,Account_type,goods_type,sum_money,
-        other_comment,trade_target,contact_person,contact_way,operate_person,do_settle,do_Receipt,
+        other_comment,trade_target,unit_id,contact_person,contact_way,operate_person,do_settle,do_Receipt,
         tax_rate,create_time,update_time)
         VALUES(#{accountId,jdbcType=VARCHAR},#{accountName,jdbcType=VARCHAR},
         #{accountBh,jdbcType=VARCHAR},#{accountType,jdbcType=VARCHAR},
         #{goodsType,jdbcType=VARCHAR},#{sumMoney,jdbcType=NUMERIC},
         #{otherComment,jdbcType=VARCHAR},
-        #{tradeTarget,jdbcType=VARCHAR},
+        #{tradeTarget,jdbcType=VARCHAR},#{unitId,jdbcType=VARCHAR},
         #{contactPerson,jdbcType=VARCHAR},#{contactWay,jdbcType=VARCHAR},
         #{operatePerson,jdbcType=VARCHAR},#{doSettle,jdbcType=VARCHAR},
         #{doReceipt,jdbcType=VARCHAR},#{taxRate,jdbcType=NUMERIC},
@@ -81,6 +82,7 @@
         <if test="otherComment!=null">other_comment = #{otherComment,jdbcType=VARCHAR},</if>
         <if test="updateTime!=null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
         <if test="tradeTarget!=null">trade_target=#{tradeTarget,jdbcType=VARCHAR},</if>
+        <if test="unitId!=null">unit_id=#{unitId,jdbcType=VARCHAR},</if>
         <if test="contactPerson!=null">contact_person = #{contactPerson,jdbcType=VARCHAR},</if>
         <if test="contactWay!=null">contact_way = #{contactWay,jdbcType=VARCHAR},</if>
         <if test="operatePerson!=null">operate_person = #{operatePerson,jdbcType=VARCHAR},</if>
@@ -101,6 +103,7 @@
         other_comment = #{otherComment,jdbcType=VARCHAR},
         update_time = #{updateTime,jdbcType=TIMESTAMP},
         trade_target=#{tradeTarget,jdbcType=VARCHAR},
+        unit_id=#{unitId,jdbcType=VARCHAR},
         contact_person = #{contactPerson,jdbcType=VARCHAR},
         contact_way = #{contactWay,jdbcType=VARCHAR},
         operate_person = #{operatePerson,jdbcType=VARCHAR},

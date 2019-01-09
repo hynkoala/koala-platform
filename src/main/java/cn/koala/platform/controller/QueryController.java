@@ -17,7 +17,7 @@ import java.util.*;
  * Email:hynkoala@163.com
  * Date: 2018.12.26
  * Time:17:12
- * Description:
+ * Description: 查询功能控制层
  */
 @Controller
 @RequestMapping("query")

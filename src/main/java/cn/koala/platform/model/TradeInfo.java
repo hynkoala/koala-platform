@@ -7,7 +7,7 @@ import java.util.Date;
  * Email:hynkoala@163.com
  * Date: 2018.12.01
  * Time:1:08
- * Description: 交易信息表
+ * Description: 交易信息表model
  */
 public class TradeInfo {
     private String tradeId;
@@ -26,12 +26,21 @@ public class TradeInfo {
     private String goodsName;
     private String goodsUnit;
     private String goodsSize;
+    private String goodsModel;
     private String goodsBrand;
     private String goodsType;
     private String goodsBigType;
     private String operatePerson;
     private Date createTime;
     private Date updateTime;
+
+    public String getGoodsModel() {
+        return goodsModel;
+    }
+
+    public void setGoodsModel(String goodsModel) {
+        this.goodsModel = goodsModel;
+    }
 
     public String getOperatePerson() {
         return operatePerson;

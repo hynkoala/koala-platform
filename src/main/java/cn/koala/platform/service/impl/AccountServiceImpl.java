@@ -1,19 +1,13 @@
 package cn.koala.platform.service.impl;
 
 import cn.koala.platform.constant.AccountConstant;
-import cn.koala.platform.mapper.AccountInMapper;
-import cn.koala.platform.mapper.AccountOutMapper;
-import cn.koala.platform.mapper.GoodsMapper;
-import cn.koala.platform.mapper.TradeInfoMapper;
+import cn.koala.platform.mapper.*;
 import cn.koala.platform.mapper.parent.AccountMapper;
-import cn.koala.platform.model.AccountIn;
-import cn.koala.platform.model.AccountOut;
-import cn.koala.platform.model.Goods;
-import cn.koala.platform.model.TradeInfo;
+import cn.koala.platform.model.*;
 import cn.koala.platform.model.parent.Account;
 import cn.koala.platform.service.AccountService;
 import cn.koala.platform.service.GoodsService;
-import cn.koala.platform.service.core.AccountDto;
+import cn.koala.platform.service.dto.AccountDto;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -43,6 +37,8 @@ public class AccountServiceImpl implements AccountService {
     GoodsService goodsService;
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    TrainUnitMapper trainUnitMapper;
 
     @Override
     public void saveAccount(AccountDto accountDto) {
@@ -173,13 +169,50 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void delAccount(String id,String type){
-        if(StringUtils.isNotBlank(type)){
+    public void delAccount(String id, String type) {
+        if (StringUtils.isNotBlank(type)) {
             AccountMapper accountMapper = getAccountMapper(type);
-            if(accountMapper!=null&&StringUtils.isNotBlank(id)){
+            if (accountMapper != null && StringUtils.isNotBlank(id)) {
                 accountMapper.delAccount(id);
             }
         }
+    }
+
+    @Override
+    public TrainUnit saveOrUpdateTradeUnit(AccountDto accountDto) {
+        //通过单位id是否有值来判断是保存还是更新(单位名有值时才进行保存)
+        TrainUnit trainUnit = null;
+        if (StringUtils.isNotBlank(accountDto.getTradeTarget())) {
+            // 从账单上获取页面内容
+            trainUnit = new TrainUnit();
+            trainUnit.setUnitId(accountDto.getUnitId());
+            trainUnit.setUnitName(accountDto.getTradeTarget());
+            trainUnit.setContactPerson(accountDto.getContactPerson());
+            trainUnit.setContactWay(accountDto.getContactWay());
+            trainUnit.setUpdateTime(new Date());
+            trainUnit.setUnitType(accountDto.getAccountType());
+            if (StringUtils.isNotBlank(accountDto.getUnitId())) {
+                Map paramMap = new HashMap();
+                paramMap.put("unitId",accountDto.getUnitId());
+                TrainUnit oldUnit = null;
+                if(CollectionUtils.isNotEmpty(trainUnitMapper.getTradeUnits(paramMap))){
+                    oldUnit = trainUnitMapper.getTradeUnits(paramMap).get(0);
+                }
+                if(oldUnit!=null){
+                    trainUnit.setUseFrequency(oldUnit.getUseFrequency()+1);
+                    if(oldUnit.getCreateTime()==null){
+                        trainUnit.setCreateTime(new Date());
+                    }
+                }
+                trainUnitMapper.updateTradeUnit(trainUnit);
+            }else {
+                trainUnit.setUnitId(UUID.randomUUID().toString().replace("-","1"));
+                trainUnit.setCreateTime(new Date());
+                trainUnit.setUseFrequency(1);
+                trainUnitMapper.saveTradeUnit(trainUnit);
+            }
+        }
+        return trainUnit;
     }
 
 }

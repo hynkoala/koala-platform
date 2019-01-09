@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.koala.platform.mapper.TrainUnitMapper">
+    <resultMap id="accountOut" type="cn.koala.platform.model.TrainUnit">
+        <id property="unitId" column="Unit_id" jdbcType="VARCHAR"/>
+        <result property="unitName" column="unit_name" jdbcType="VARCHAR"/>
+        <result property="unitType" column="Unit_type" jdbcType="VARCHAR"/>
+        <result property="contactWay" column="contact_way" jdbcType="VARCHAR"/>
+        <result property="contactPerson" column="contact_Person" jdbcType="VARCHAR"/>
+        <result property="useFrequency" column="use_frequency" jdbcType="NUMERIC"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="saveTradeUnit" parameterType="cn.koala.platform.model.AccountOut">
+        insert into train_unit (unit_id, unit_name,Unit_type,contact_person,contact_way,
+        use_frequency,create_time,update_time)
+        VALUES(#{unitId,jdbcType=VARCHAR},#{unitName,jdbcType=VARCHAR},
+        #{unitType,jdbcType=VARCHAR},
+        #{contactPerson,jdbcType=VARCHAR},#{contactWay,jdbcType=VARCHAR},
+        #{useFrequency,jdbcType=NUMERIC},
+        #{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateTradeUnit" parameterType="cn.koala.platform.model.AccountOut">
+        UPDATE train_unit SET
+        <if test="unitName!=null">unit_name = #{unitName,jdbcType=VARCHAR},</if>
+        <if test="unitType!=null">unit_type = #{unitType,jdbcType=VARCHAR},</if>
+        <if test="contactPerson!=null">contact_person = #{contactPerson,jdbcType=VARCHAR},</if>
+        <if test="contactWay!=null">contact_way = #{contactWay,jdbcType=VARCHAR},</if>
+        <if test="useFrequency!=null">use_frequency = #{useFrequency,jdbcType=NUMERIC},</if>
+        unit_id = #{unitId,jdbcType=VARCHAR}
+        where unit_id = #{unitId,jdbcType=VARCHAR}
+    </update>
+
+
+    <delete id="delTradeUnit" parameterType="string">
+        DELETE train_unit t where t.unit_id = #{id}
+    </delete>
+    <select id="getTradeUnits" resultType="cn.koala.platform.model.TrainUnit" parameterType="java.util.Map">
+        select * from train_unit t where 1=1
+        <if test="unitId!=null and unitId !=''">
+            and t.unit_id = #{unitId}
+        </if>
+        <if test="unitName!=null and unitName!=''">
+            and t.unit_name = #{unitName}
+        </if>
+        order by t.use_frequency desc
+    </select>
+
+</mapper>

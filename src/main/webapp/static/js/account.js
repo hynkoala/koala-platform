@@ -1,5 +1,4 @@
 $(function () {
-
     if (thisIsNull($("#account-bh").val())) {
         $("#account-bh").val(getBhFromTime());
     }
@@ -9,15 +8,15 @@ $(function () {
     $(".td-value input, select, option,textarea").mouseout(function () {
         $(this).css("box-shadow", "none");
     });
-
-    var initType = initGoodsType();
-    initType = getGoodsSmallType();
     // 初始化交易商品明细表格
     var rows = 10;
     rows = 10 - $(".tradeInfo-list").length;
     if (rows > 0) {
         initTableList(rows);
     }
+    var initType = initGoodsType();
+    initType = getGoodsSmallType('001', 'all');
+
     $("input.goods-name").bind("input propertychange", function () {
         $("input").removeClass("active");
         $(this).addClass("active");
@@ -38,7 +37,7 @@ function saveAccount() {
         success: function (data) {
             if (data.msg == "success") {
                 var url = window.location.host;
-                window.location.href = "http://"+url+accountUrl+"/accountDetails?accountType="+data.accountType+"&accountId="+data.accountId;
+                window.location.href = "http://" + url + accountUrl + "/accountDetails?accountType=" + data.accountType + "&accountId=" + data.accountId;
             }
 
         },
@@ -56,25 +55,35 @@ var initGoodsType = function () {
         async: false,
         success: function (data) {
             data.forEach(function (e) {
-                $("#goods-big-type").append('<option value="' + e.DM + '"onclick="getGoodsSmallType()">' + e.MC + '</option>');
+                $(".goods-big-type").append('<li value="' + e.DM + '"onclick="getGoodsSmallType()">' + e.MC + '</li>');
             });
-            $("#itemlist option").click(putInGoodsInfo());
+            //$("#itemlist option").click(putInGoodsInfo());
             return true;
         }
     })
 };
-function getGoodsSmallType() {
-    var bigType = $('#goods-big-type').val();
-    $("#goods-type").empty();
+function getGoodsSmallType(bigType, target) {
+    //$("#goods-type").empty();
+    var targetSelect;
+    if (target == "all") {
+        targetSelect = $(".goods-type")
+    } else{
+        targetSelect = $(target).parent().find(".goods-type");
+    }
+    $.each(targetSelect,function(i){
+        $(targetSelect[i]).empty();
+    })
     var url = goodsUrl + "/getSmallTypes";
     $.ajax({
         url: url,
         data: {type: bigType},
         type: "post",
         success: function (data) {
-            data.forEach(function (e) {
-                $("#goods-type").append('<option value="' + e.DM + '">' + e.MC + '</option>');
-            });
+            $.each(targetSelect,function(i){
+                data.forEach(function (e) {
+                    $(targetSelect[i]).append('<option value="' + e.DM + '">' + e.MC + '</option>');
+                });
+            })
             return true;
         }
     })
@@ -89,19 +98,27 @@ function toGoodsList() {
     window.open(url);
 }
 
-function getGoodsInfo(goodsName) {
-    var currentInput = $("input.active");
-    currentInput.parent().find("ul").empty();
+function getGoodsInfo(goodsName,input) {
+    if(thisIsNull(input)){
+        var currentInput = $("input.active");
+    }else {
+        $("input").removeClass("active");
+        currentInput = input;
+        $(currentInput).addClass("active");
+    }
+    //currentInput.parent().find("ul").empty();
+    var currentUl=$(currentInput).parent().find("ul");
     var url = goodsUrl + "/getGoodsInfo?goodsName=" + goodsName;
     $.ajax({
         url: encodeURI(url),
         type: 'post',
         dataType: 'json',
         success: function (data) {
-            $("#itemlist").empty();
+            $(currentInput).parent().find("ul").empty();
             $.each(data, function (e) {
-                currentInput.parent().find("ul").append('<li id="' + data[e].goodsId + '" onclick=putInGoodsInfo(' + JSON.stringify(data[e]) + ')>' + data[e].goodsName + '</li>')
+                $(currentInput).parent().find("ul").append('<li id="' + data[e].goodsId + '" onclick=putInGoodsInfo(' + JSON.stringify(data[e]) + ')>' + data[e].goodsName + '</li>')
             })
+            currentUl.show();
         }
     })
 }
@@ -121,5 +138,20 @@ function putInGoodsInfo(goods) {
         }
     });
     currentInput.parent().find("ul").empty();
+}
+
+function showTypeDropdown(target,size) {
+    var targetUl
+    if(!thisIsNull(target)){
+        if(size=='bigtype'){
+            targetUl = $(target).parent().find("ul.goods-big-type");
+        }else if(size=='smalltype'){
+            targetUl = $(target).parent().find("ul.goods-small-type");
+        }
+    }
+    targetUl.show();
+}
+function showSmallTypeSelect() {
+    makeBlockTime("haha")
 }
 

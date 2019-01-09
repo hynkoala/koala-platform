@@ -28,6 +28,15 @@ $(function () {
         }
     })
     initCheckBox();
+    document.onmousedown=function () {
+        var existShow;
+        $.each($(".dropdown-ul"),function (i) {
+            //if($($(".dropdown-ul")[i]))
+        })
+        setTimeout(function () {
+            $(".dropdown-ul").hide()
+        },200)
+    }
 });
 /*窗口变化时调整*/
 $(window).resize(function () {

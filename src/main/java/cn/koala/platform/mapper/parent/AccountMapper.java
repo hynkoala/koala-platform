@@ -1,6 +1,6 @@
 package cn.koala.platform.mapper.parent;
 
-import cn.koala.platform.service.core.AccountDto;
+import cn.koala.platform.service.dto.AccountDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

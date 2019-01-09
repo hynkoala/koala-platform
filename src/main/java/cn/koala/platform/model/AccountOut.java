@@ -7,7 +7,7 @@ import cn.koala.platform.model.parent.Account;
  * Email:hynkoala@163.com
  * Date: 2018.11.27
  * Time:20:18
- * Description:
+ * Description: 出账单model
  */
 public class AccountOut extends Account {
     private String doReceipt;
